@@ -25,7 +25,7 @@ const Navbar = ({ user, onLogout }) => {
   return (
     <nav className="fixed top-5 left-0 right-0 z-50 text-white w-11/12 mx-auto">
       <div className="py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-bold text-xl">
+        <Link to="/" className="font-bold text-xl">
           <Logo />
         </Link>
 

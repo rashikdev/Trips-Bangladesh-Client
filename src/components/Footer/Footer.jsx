@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router";
+import Logo from "../Shared/Logo";
 
 const Footer = () => {
   return (
@@ -7,8 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
         {/* Logo + Website Name */}
         <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Logo" className="w-10 h-10" />
-          <span className="text-xl font-bold">BD Travel Guide</span>
+          <Logo></Logo>
         </div>
 
         {/* Developer Social Links */}

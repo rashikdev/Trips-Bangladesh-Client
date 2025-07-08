@@ -3,9 +3,25 @@ import { Link } from "react-router";
 import bgImg from "../assets/bannerBg.jpg";
 import GoogleLogin from "./GoogleLogin";
 import { PiEyeBold, PiEyeClosed } from "react-icons/pi";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { loginUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    loginUser(email, password)
+    .then((res) => {
+      toast.success("Login successful!")
+    }).catch(err => {
+      toast.error("Invalid email or password")
+    })
+  };
+
   return (
     <section
       className="min-h-screen bg-cover bg-center flex items-center justify-center px-4"
@@ -18,7 +34,7 @@ const Login = () => {
       <div className="relative z-10 w-full max-w-md bg-white/10 border border-white/30 text-white p-8 rounded-2xl backdrop-blur-md shadow-xl">
         <h2 className="text-3xl font-bold text-center mb-6">Welcome Back</h2>
 
-        <form className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm mb-1">

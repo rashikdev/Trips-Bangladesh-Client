@@ -66,7 +66,7 @@ const Register = () => {
           })
           .catch((err) => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("This email is already registered"));
   };
 
   return (

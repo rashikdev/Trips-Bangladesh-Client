@@ -2,16 +2,30 @@ import React from "react";
 import useAuth from "../hooks/useAuth";
 import { TbBrandGoogle } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const GoogleLogin = ({ title }) => {
   const { googleSignIn } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
   const handleGoogleLogin = async () => {
-    await googleSignIn()
-      .then((res) => {
-        console.log(res.data);
-        alert("sign in successful");
-      })
-      .catch((err) => console.log(err));
+    try {
+      const res = await googleSignIn();
+      const user = res.user;
+
+      const userData = {
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        role: "tourist",
+      };
+
+      axiosSecure.post("/users", userData);
+      toast.success("Sign in successful");
+    } catch (error) {
+      toast.error("something went wrong try again");
+    }
   };
   return (
     <div>

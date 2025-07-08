@@ -1,30 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 import bgImg from "../assets/bannerBg.jpg";
 import GoogleLogin from "./GoogleLogin";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { PiEyeBold, PiEyeClosed } from "react-icons/pi";
+import { getImgUrl } from "../utils/utils";
+import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const { createUser, updateUser } = useAuth();
+  const [uploadImage, setUploadImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const axiosSecure = useAxiosSecure();
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
+  const selectedFile = watch("image");
+
+  // Upload image on file select
+  useEffect(() => {
+    const upload = async () => {
+      if (selectedFile && selectedFile[0]) {
+        const imageUrl = await getImgUrl(selectedFile[0]);
+        setUploadImage(imageUrl);
+      }
+    };
+    upload();
+  }, [selectedFile]);
+
   const onSubmit = (data) => {
-    const file = data.image[0];
+    if (!uploadImage) {
+      return toast.error("Please wait, image is uploading...");
+    }
 
     const formData = {
       name: data.name,
       email: data.email,
       password: data.password,
-      image: file,
+      image: uploadImage,
+      role: "tourist",
     };
 
     console.log(formData);
+    createUser(data.email, data.password)
+      .then((res) => {
+        console.log(res.user);
+        updateUser({ displayName: data.name, photoURL: uploadImage })
+          .then((res) => {
+            axiosSecure
+              .post("/users", formData)
+              .then((res) => {
+                if (res.data.insertedId) {
+                  toast.success("sign up successful");
+                }
+                console.log(res.data);
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -32,10 +74,8 @@ const Register = () => {
       className="min-h-screen bg-cover bg-center flex items-center justify-center px-4"
       style={{ backgroundImage: `url(${bgImg})` }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-      {/* Register Card */}
       <div className="relative z-10 w-full max-w-md bg-white/10 border border-white/30 text-white p-8 rounded-2xl backdrop-blur-md shadow-xl">
         <h2 className="text-3xl font-bold text-center mb-6">Create Account</h2>
 
@@ -91,9 +131,7 @@ const Register = () => {
               type="file"
               id="image"
               accept="image/*"
-              {...register("image", {
-                required: "Profile image is required",
-              })}
+              {...register("image", { required: "Profile image is required" })}
               className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-teal-500 file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
             />
             {errors.image && (
@@ -110,7 +148,7 @@ const Register = () => {
             </label>
             <div className="relative">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="••••••••"
                 {...register("password", {
@@ -128,7 +166,11 @@ const Register = () => {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-white cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <PiEyeBold size={20} /> : <PiEyeClosed size={20} />}
+                {showPassword ? (
+                  <PiEyeBold size={20} />
+                ) : (
+                  <PiEyeClosed size={20} />
+                )}
               </button>
             </div>
             {errors.password && (
@@ -147,7 +189,6 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Google Login */}
         <GoogleLogin title="Sign up with Google" />
 
         <p className="text-center text-sm mt-6 text-white/80">

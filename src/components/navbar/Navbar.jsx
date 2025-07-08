@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../Shared/Logo";
+import useAuth from "../../hooks/useAuth";
 
-const Navbar = ({ user, onLogout }) => {
+const Navbar = () => {
+  const { user, logoutUser } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const menuItems = (
@@ -43,14 +45,14 @@ const Navbar = ({ user, onLogout }) => {
           ) : (
             <div className="relative">
               <img
-                src={user.photo}
+                src={user.photoURL}
                 alt="Profile"
                 className="w-10 h-10 rounded-full cursor-pointer border"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               />
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-md z-50 p-3 space-y-1">
-                  <p className="text-sm font-semibold">{user.name}</p>
+                <div className="absolute right-0 mt-2 w-56 border shadow-lg rounded-md z-50 p-3 space-y-1">
+                  <p className="text-sm font-semibold">{user.displayName}</p>
                   <p className="text-xs text-gray-500">{user.email}</p>
                   <hr />
                   <Link to="/dashboard" className="block hover:text-primary">
@@ -60,7 +62,7 @@ const Navbar = ({ user, onLogout }) => {
                     Offer Announcements
                   </Link>
                   <button
-                    onClick={onLogout}
+                    onClick={logoutUser}
                     className="block w-full text-left text-red-500 hover:underline mt-2"
                   >
                     Logout

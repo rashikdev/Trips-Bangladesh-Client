@@ -41,7 +41,7 @@ const Login = () => {
             </label>
             <div className="relative">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400 transition"
@@ -55,7 +55,11 @@ const Login = () => {
                 className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <PiEyeBold size={20}/> : <PiEyeClosed size={20}/>}
+                {showPassword ? (
+                  <PiEyeBold size={20} />
+                ) : (
+                  <PiEyeClosed size={20} />
+                )}
               </button>
             </div>
           </div>

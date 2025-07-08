@@ -15,7 +15,7 @@ const OverviewSection = () => {
         <div className="h-1 w-24 mx-auto bg-teal-400 rounded-full mb-6"></div>
         <p className="text-lg md:text-xl text-white/80 leading-relaxed space-y-4">
           <span className="block mb-4">
-            <strong className="text-teal-300">BD Travel Guide</strong> is your
+            <strong className="text-teal-300">Travel BD</strong> is your
             ultimate companion for discovering the breathtaking beauty of
             Bangladesh. Whether it's your first trip or your next great
             adventure, we’ve got everything you need.

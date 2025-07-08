@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import { Link } from "react-router";
 import bgImg from "../assets/bannerBg.jpg";
 import GoogleLogin from "./GoogleLogin";
@@ -7,19 +7,31 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loginUser } = useAuth();
+  const { loginUser, forgotPassword } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const emailRef = createRef();
 
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     loginUser(email, password)
-    .then((res) => {
-      toast.success("Login successful!")
-    }).catch(err => {
-      toast.error("Invalid email or password")
-    })
+      .then((res) => {
+        toast.success("Login successful!");
+      })
+      .catch((err) => {
+        toast.error("Invalid email or password");
+      });
+  };
+
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+    if (!email) {
+      return toast.error("Please enter your email");
+    }
+    forgotPassword(email);
+    toast.success("Password reset link sent to your email");
   };
 
   return (
@@ -41,6 +53,7 @@ const Login = () => {
               Email
             </label>
             <input
+              ref={emailRef}
               type="email"
               id="email"
               name="email"
@@ -78,6 +91,12 @@ const Login = () => {
                 )}
               </button>
             </div>
+            <p
+              onClick={handleForgotPassword}
+              className="text-xs pt-3 inline-block hover:underline underline-offset-3 cursor-pointer text-white/80"
+            >
+              Forgot password?
+            </p>
           </div>
 
           {/* Submit Button */}

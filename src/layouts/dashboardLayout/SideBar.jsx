@@ -5,7 +5,7 @@ import NavItem from "../../components/Shared/NavItem";
 
 const SideBar = () => {
   return (
-    <div className="border-r-2 border-teal-400">
+    <div className="lg:border-r-2 border-teal-400 text-white">
       <div className="drawer lg:drawer-open w-fit pr-4">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="flex justify-center items-center">
@@ -31,17 +31,17 @@ const SideBar = () => {
               </svg>
             </label>
           </div>
-          <div className="mx-2 text-xl flex-1 font-semibold px-2">
+          <div className="mx-2 text-xl flex-1 font-semibold px-2 md:hidden">
             Dashboard
           </div>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side backdrop-blur-sm">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu text-white min-h-full w-60 text-xl space-y-5">
+          <ul className="menu text-white min-h-full w-60 text-xl space-y-5 pt-8">
             {/* Sidebar content here */}
             <li>
               <NavLink className="border" to="/">

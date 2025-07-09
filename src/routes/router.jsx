@@ -9,6 +9,9 @@ import MyBooking from "../components/mybooking/MyBooking";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 import ManageStory from "../components/ManageStory/ManageStory";
 import AddStory from "../components/AddStory/AddStory";
+import AboutUs from "../components/aboutUs/AboutUs";
+import AllTrips from "../components/Trip/AllTrtips";
+import PackageDetails from "../pages/package/PackageDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,12 +22,24 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
+        path: "about",
+        Component: AboutUs,
+      },
+      {
+        path: "trips",
+        Component: AllTrips,
+      },
+      {
         path: "login",
         Component: Login,
       },
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "package/:id",
+        Component: PackageDetails,
       },
     ],
   },

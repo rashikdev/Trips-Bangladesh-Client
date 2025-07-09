@@ -4,43 +4,72 @@ import Logo from "../Shared/Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-300 text-gray-700 py-8 mt-12">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-        {/* Logo + Website Name */}
-        <div className="flex items-center gap-2">
-          <Logo></Logo>
+    <footer className="bg-gradient-to-t from-[#0d1b2a] to-[#1b263b] text-white py-10 mt-12">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+        {/* Logo & Tagline */}
+        <div className="flex flex-col items-center md:items-start gap-3">
+          <Logo />
+          <p className="text-white/70 text-sm max-w-xs">
+            Explore Bangladesh with us. Discover hidden gems, local stories, and
+            unforgettable adventures.
+          </p>
         </div>
 
-        {/* Developer Social Links */}
-        <div className="flex gap-5 text-xl">
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-black transition"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-600 transition"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://twitter.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-500 transition"
-          >
-            <FaTwitter />
-          </a>
+        {/* Quick Links */}
+        <div>
+          <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
+          <ul className="space-y-2 text-sm text-white/70">
+            <li>
+              <Link to="/" className="hover:text-teal-300 transition">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/packages" className="hover:text-teal-300 transition">
+                Packages
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-teal-300 transition">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Social Media */}
+        <div className="flex flex-col items-center md:items-end gap-3">
+          <h4 className="text-lg font-semibold">Follow Us</h4>
+          <div className="flex gap-5 text-xl">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-teal-300 transition"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-teal-300 transition"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-teal-300 transition"
+            >
+              <FaTwitter />
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="text-center text-sm mt-6 text-gray-500">
+      <div className="border-t border-white/20 mt-10 pt-4 text-center text-sm text-white/50">
         &copy; {new Date().getFullYear()} BD Travel Guide. All rights reserved.
       </div>
     </footer>

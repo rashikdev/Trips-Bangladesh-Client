@@ -5,6 +5,8 @@ import { Link } from "react-router";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaArrowAltCircleDown, FaArrowDown } from "react-icons/fa";
 import TourPlan from "../tourPlane/TourPlan";
+import TourGuidSlider from "../TourGuidSlider/TourGuidSlider";
+import BookingForm from "./BookingForm";
 
 const PackageDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,12 +23,17 @@ const PackageDetails = () => {
   const { images, thumbnail, description, tourType, price, duration, title } =
     singlepackage;
 
-  console.log(singlepackage);
-  console.log(images);
+  const { data: guides = [], isLoading: guidesLoading } = useQuery({
+    queryKey: ["guides"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/guides");
+      return res.data;
+    },
+  });
 
-  // if (isLoading) {
-  //   return <div className="text-center text-white h-screen">Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div className="text-center text-white h-screen">Loading...</div>;
+  }
 
   return (
     <section className="min-h-screen px-4 md:px-10 text-white pt-30">
@@ -96,8 +103,11 @@ const PackageDetails = () => {
       </div>
       {/* Trour Guide */}
       <div>
-        <h2>Guide 1</h2>
-        <h2>Guide 1</h2>
+        <TourGuidSlider guides={guides} guidesLoading={guidesLoading} />
+      </div>
+      {/* Booking Form */}
+      <div>
+        <BookingForm singlepackage={singlepackage} guides={guides} />
       </div>
     </section>
   );

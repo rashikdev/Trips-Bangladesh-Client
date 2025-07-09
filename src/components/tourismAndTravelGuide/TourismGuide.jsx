@@ -39,7 +39,7 @@ const TourismGuide = () => {
   console.log(randomGuides);
 
   return (
-    <section className="max-w-7xl mx-auto py-10 text-white">
+    <section className="max-w-7xl mx-auto py-10 text-white min-h-[64vh]">
       <Tabs className="">
         <TabList className="flex border-b border-orange-600 mb-10">
           <Tab
@@ -63,7 +63,7 @@ const TourismGuide = () => {
             {randomPackages.map((pkg) => (
               <div
                 key={pkg._id}
-                className="rounded-xl shadow-lg overflow-hidden border border-gray-200 h-[400px] hover:scale-105 transition duration-300 ease-in-out"
+                className="rounded-xl shadow-lg overflow-hidden border border-gray-600 h-[400px] hover:scale-105 transition duration-300 ease-in-out"
                 style={{
                   backgroundImage: `url(${pkg.thumbnail})`,
                   backgroundSize: "cover",
@@ -72,15 +72,15 @@ const TourismGuide = () => {
               >
                 <div className="p-5 flex flex-col justify-between h-full">
                   <div className="space-y-4 text-white">
-                    <h3 className="w-fit bg-[#8f8f8f66] px-2 rounded-2xl font-semibold">
+                    <h3 className="w-fit bg-[#8f8f8f66] px-2 font-semibold">
                       {pkg.title}
                     </h3>
-                    <p className="text-2xl bg-[#8f8f8f66] px-3 w-fit rounded-2xl">
+                    <p className="text-xl bg-[#8f8f8f66] px-3 w-fit">
                       {pkg.price} BDT
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-5xl text-center text-white/40  ">
+                    <h3 className="text-5xl text-center text-white/40">
                       {pkg.tourType}
                     </h3>
                   </div>

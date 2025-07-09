@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useState, useRef } from "react";
 import bannerBg from "../assets/bannerBg.jpg";
+import { Link } from "react-router";
 const Banner = () => {
   const [showMainBanner, setShowMainBanner] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -135,9 +136,11 @@ const Banner = () => {
               Discover iconic landmarks, hidden gems, rich culture, and vibrant
               local life.
             </p>
-            <button className="bg-white text-black font-semibold px-6 py-2 rounded shadow hover:bg-gray-200 banner-item">
-              Start Your Journey
-            </button>
+            <Link to="/trips">
+              <button className="bg-white text-black font-semibold px-6 py-2 rounded shadow hover:bg-gray-200 banner-item cursor-pointer">
+                Start Your Journey
+              </button>
+            </Link>
           </div>
         </div>
       )}

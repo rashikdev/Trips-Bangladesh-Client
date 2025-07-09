@@ -7,7 +7,7 @@ const DashboardHome = () => {
   const { user } = useAuth();
 
   const { role, loading } = useRole(user?.email);
-  console.log(role);
+  
   return (
     <div>
       <div>

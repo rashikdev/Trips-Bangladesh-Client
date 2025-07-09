@@ -11,7 +11,8 @@ import ManageStory from "../components/ManageStory/ManageStory";
 import AddStory from "../components/AddStory/AddStory";
 import AboutUs from "../components/aboutUs/AboutUs";
 import AllTrips from "../components/Trip/AllTrtips";
-import PackageDetails from "../pages/package/PackageDetails";
+import PackageDetails from "../pages/Trip/package/PackageDetails";
+import GuideDetailsPage from "../components/guideDetails/GuideDetailsPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "package/:id",
         Component: PackageDetails,
+      },
+      {
+        path: "guide/:id",
+        Component: GuideDetailsPage
       },
     ],
   },

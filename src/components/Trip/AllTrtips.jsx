@@ -54,7 +54,7 @@ const AllTrips = () => {
                 </div>
 
                 <Link
-                  to={`/packages/${pkg._id}`}
+                  to={`/package/${pkg._id}`}
                   className="inline-block bg-primary hover:bg-orange-600 text-white font-medium px-5 py-2 rounded-full text-sm transition text-center group"
                 >
                   Explore{" "}

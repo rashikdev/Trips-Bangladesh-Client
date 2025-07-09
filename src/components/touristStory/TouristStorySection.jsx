@@ -9,13 +9,13 @@ const TouristStorySection = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Simulate fetching 4 random stories from your backend
-    fetch("/api/stories/random?limit=4") // replace with your actual endpoint
-      .then((res) => res.json())
-      .then((data) => setStories(data))
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   // Simulate fetching 4 random stories from your backend
+  //   fetch("/api/stories/random?limit=4") // replace with your actual endpoint
+  //     .then((res) => res.json())
+  //     .then((data) => setStories(data))
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   const handleShareClick = (storyUrl) => {
     if (!user) {

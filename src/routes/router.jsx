@@ -14,6 +14,7 @@ import AllTrips from "../components/Trip/AllTrtips";
 import PackageDetails from "../pages/Trip/package/PackageDetails";
 import GuideDetailsPage from "../components/guideDetails/GuideDetailsPage";
 import Payment from "../payment/Payment";
+import JoinAsTourGuide from "../Profile/TouristProfile/JoinAsTourGuide";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -90,6 +91,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "guideApplication",
+        element: (
+          <PrivateRoute>
+            <JoinAsTourGuide></JoinAsTourGuide>
           </PrivateRoute>
         ),
       },

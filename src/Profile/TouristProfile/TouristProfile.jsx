@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TouristProfile = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [editModal, setEditModal] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.displayName || "",
@@ -18,64 +21,80 @@ const TouristProfile = () => {
     setEditModal(false);
   };
 
+  const { data: application = {} } = useQuery({
+    queryKey: ["applications"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/applications?email=${user?.email}`);
+      return res.data;
+    },
+  });
+
+  const isPending = application[0]?.status === "pending";
   return (
-    <section className="py-16 px-4 md:px-10  min-h-screen text-white">
-      <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl p-8">
-        <h2 className="text-3xl font-bold mb-8 text-center">
+    <section className="py-20 px-4 md:px-10 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+      <div className="max-w-5xl mx-auto bg-white/10 border border-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-10">
+        <h2 className="text-4xl font-bold mb-10 text-center">
           Welcome,{" "}
-          <span className="text-teal-300">
+          <span className="text-primary">
             {user?.displayName?.split(" ")[0]}
           </span>
           !
         </h2>
 
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          {/* Profile Image */}
+        <div className="flex flex-col md:flex-row items-center gap-10">
+          {/* Profile Picture */}
           <img
             src={user?.photoURL}
             alt="Profile"
-            className="w-36 h-36 rounded-full object-cover border-4 border-white/30 shadow-md"
+            className="w-40 h-40 rounded-full object-cover border-4 border-orange-400 shadow-md"
           />
 
-          {/* Info */}
-          <div className="flex-1 space-y-3">
+          {/* Info Section */}
+          <div className="flex-1 space-y-3 text-lg">
             <p>
-              <span className="font-semibold">Name:</span> {user?.displayName}
+              <span className="font-semibold text-orange-400">Name:</span>{" "}
+              {user?.displayName}
             </p>
             <p>
-              <span className="font-semibold">Email:</span> {user?.email}
+              <span className="font-semibold text-orange-400">Email:</span>{" "}
+              {user?.email}
             </p>
             <p>
-              <span className="font-semibold">Role:</span>{" "}
-              <span className="bg-teal-600 px-2 py-1 rounded text-sm font-medium">
-                {user?.role || "Tourist"}
+              <span className="font-semibold text-orange-400">Role:</span>{" "}
+              <span className="bg-green-600 px-2 py-[1px] rounded text-sm font-medium">
+                Tourist
               </span>
             </p>
 
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-4 mt-5">
+            <div className="flex flex-wrap gap-4 pt-4">
               <button
                 onClick={() => setEditModal(true)}
-                className="px-5 py-2 rounded bg-white text-black font-semibold hover:bg-gray-200 transition"
+                className="px-4 py-1 rounded bg-white text-slate-900 font-semibold hover:bg-slate-100 transition cursor-pointer"
               >
                 Edit Profile
               </button>
 
               <button
-                onClick={() => navigate("/join-tour-guide")}
-                className="px-5 py-2 rounded bg-purple-600 text-white hover:bg-purple-700 font-semibold transition"
+                onClick={() => navigate("/dashboard/guideApplication")}
+                disabled={isPending}
+                className={`px-4 py-1 rounded font-semibold transition ${
+                  isPending
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-purple-600 hover:bg-purple-700 cursor-pointer"
+                }`}
               >
-                Apply for Tour Guide
+                {isPending ? "Pending Application" : "Apply as a Guide"}
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-4 mt-20 *:border">
-        <div className="flex-1 h-60"></div>
-        <div className="flex-1 h-60"></div>
-        <div className="flex-1 h-60"></div>
+      {/* Optional Stats Placeholder Section */}
+      <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
+        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg"></div>
+        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg"></div>
+        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg"></div>
       </div>
 
       {/* Modal */}
@@ -83,13 +102,12 @@ const TouristProfile = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm px-4">
           <form
             onSubmit={handleUpdate}
-            className="bg-white text-black p-6 md:p-8 rounded-2xl w-full max-w-md shadow-xl space-y-4"
+            className="bg-white text-black p-8 rounded-2xl w-full max-w-md shadow-xl space-y-5"
           >
             <h3 className="text-2xl font-bold text-center mb-2">
               Edit Your Profile
             </h3>
 
-            {/* Name */}
             <div>
               <label className="block text-sm font-medium mb-1">Name</label>
               <input
@@ -98,11 +116,10 @@ const TouristProfile = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
                 }
-                className="w-full px-4 py-2 border rounded-md"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
               />
             </div>
 
-            {/* Photo URL */}
             <div>
               <label className="block text-sm font-medium mb-1">
                 Photo URL
@@ -113,11 +130,10 @@ const TouristProfile = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, photoURL: e.target.value }))
                 }
-                className="w-full px-4 py-2 border rounded-md"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
               />
             </div>
 
-            {/* Buttons */}
             <div className="flex justify-end gap-3 pt-4">
               <button
                 type="button"

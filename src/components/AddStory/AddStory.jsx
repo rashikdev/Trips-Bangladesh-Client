@@ -114,7 +114,7 @@ const AddStory = () => {
           <button
             type="submit"
             disabled={uploading}
-            className={`w-full py-2 rounded-md font-semibold transition ${
+            className={`w-full py-2 rounded-md font-semibold transition cursor-pointer ${
               uploading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-white text-black hover:bg-gray-200"

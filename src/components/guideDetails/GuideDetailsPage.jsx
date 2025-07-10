@@ -15,8 +15,12 @@ const GuideDetailsPage = () => {
     },
   });
 
-  console.log(Guide);
+  // console.log(Guide);
   const { name, email, image, experience, languages, phone, rating } = Guide;
+
+  if (isLoading) {
+    return <div className="text-center h-screen">Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen pt-30 text-white md:w-11/12 mx-auto md:px-10 px-3">

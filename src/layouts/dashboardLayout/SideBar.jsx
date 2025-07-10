@@ -5,7 +5,7 @@ import NavItem from "../../components/Shared/NavItem";
 
 const SideBar = () => {
   return (
-    <div className="lg:border-r-2 border-teal-400 text-white">
+    <div className="lg:border-r-2 border-primary text-white">
       <div className="drawer lg:drawer-open w-fit pr-4">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="flex justify-center items-center">
@@ -55,7 +55,10 @@ const SideBar = () => {
               <NavItem item="My Bookings" link="/dashboard/myBookings" />
               <NavItem item="Manage Stories" link="/dashboard/manageStories" />
               <NavItem item="Add Stories" link="/dashboard/addStory" />
-              <NavItem item="Join as tour guide" link="/dashboard/tourGuide" />
+              <NavItem
+                item="Join as tour guide"
+                link="/dashboard/guideApplication"
+              />
             </div>
           </ul>
         </div>

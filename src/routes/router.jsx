@@ -13,6 +13,7 @@ import AboutUs from "../components/aboutUs/AboutUs";
 import AllTrips from "../components/Trip/AllTrtips";
 import PackageDetails from "../pages/Trip/package/PackageDetails";
 import GuideDetailsPage from "../components/guideDetails/GuideDetailsPage";
+import Payment from "../payment/Payment";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "guide/:id",
-        Component: GuideDetailsPage
+        Component: GuideDetailsPage,
       },
     ],
   },
@@ -81,6 +82,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddStory></AddStory>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
           </PrivateRoute>
         ),
       },

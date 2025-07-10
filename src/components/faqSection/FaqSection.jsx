@@ -12,11 +12,11 @@ const FaqSection = () => {
           <div className="collapse collapse-arrow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl">
             <input type="checkbox" />
             <div className="collapse-title text-lg font-medium">
-              What is BD Travel Guide?
+              What is Trips?
             </div>
             <div className="collapse-content text-white/80">
               <p>
-                BD Travel Guide is your companion for exploring Bangladesh —
+                Trips is your companion for exploring Bangladesh —
                 find tourist attractions, book packages, and connect with tour
                 guides all in one place.
               </p>

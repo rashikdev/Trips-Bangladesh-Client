@@ -1,30 +1,18 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const MyBooking = () => {
   const { user } = useAuth();
-  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
-  const handleCancel = async (id) => {
-    const confirm = window.confirm("Are you sure you want to cancel?");
-    if (!confirm) return;
-
-    try {
-      await axios.delete(`http://localhost:5000/bookings/${id}`);
-      setBookings((prev) => prev.filter((b) => b._id !== id));
-    } catch (err) {
-      console.error("Cancel failed:", err);
-    }
-  };
-
-  const handlePayment = (booking) => {
-    navigate(`/payment/${booking._id}`, { state: booking });
-  };
-
-  const { data: myBookings = [], isLoading } = useQuery({
+  const {
+    data: myBookings = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/bookings?email=${user?.email}`);
@@ -32,6 +20,34 @@ const MyBooking = () => {
     },
   });
 
+  const handleCancel = async (id) => {
+    try {
+      const res = await axiosSecure.delete(`/bookings/${id}`);
+      if (res.data.deletedCount > 0) {
+        refetch();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCancelConfirmation = (packageId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are about to cancel this booking.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      cancelButtonText: "No, keep it!",
+      confirmButtonText: "Yes, cancel it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleCancel(packageId);
+        Swal.fire("Cancelled!", "Your booking has been cancelled.", "success");
+      }
+    });
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -65,31 +81,35 @@ const MyBooking = () => {
                   <td className="p-3">
                     {new Date(booking?.tourDate).toLocaleDateString()}
                   </td>
-                  <td className="p-3">${booking?.price}</td>
+                  <td className="p-3">{booking?.price} BDT</td>
                   <td className="p-3 capitalize font-medium text-center">
                     {booking.status === "pending" && (
-                      <span className="text-yellow-400 bg-gray-200/40 px-1 rounded">
-                        Pending
+                      <span className="text-red-400 bg-gray-200/40 px-1 rounded">
+                        {booking.status}
                       </span>
                     )}
-                    {booking.status === "confirmed" && (
+                    {booking.status === "In Review" && (
+                      <span className="text-yellow-200 bg-gray-200/40 px-1 rounded">
+                        {booking.status}
+                      </span>
+                    )}
+                    {booking.status === "Accepted" && (
                       <span className="text-green-400 bg-gray-200/40 px-1 rounded">
-                        Confirmed
+                        {booking.status}
                       </span>
                     )}
                   </td>
                   <td className="p-3 flex gap-3 justify-center">
                     {booking?.status === "pending" && (
                       <>
+                        <Link to={`/dashboard/payment/${booking?._id}`}>
+                          <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 cursor-pointer">
+                            Pay
+                          </button>
+                        </Link>
                         <button
-                          onClick={() => handlePayment(booking)}
-                          className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                        >
-                          Pay
-                        </button>
-                        <button
-                          onClick={() => handleCancel(booking?._id)}
-                          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                          onClick={() => handleCancelConfirmation(booking?._id)}
+                          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 cursor-pointer"
                         >
                           Cancel
                         </button>

@@ -8,11 +8,11 @@ const AboutUs = () => {
         <h2 className="md:text-4xl text-2xl font-bold">About the Developer</h2>
 
         {/* Developer Profile */}
-        <div className="flex flex-col md:flex-row items-center gap-8 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-md shadow-xl">
+        <div className="flex flex-col md:flex-row items-center gap-8 bg-white/10 border border-white/20 rounded-xl p-8 backdrop-blur-md shadow-xl group">
           <img
             src={developerImg}
             alt="Developer"
-            className="md:w-30 md:h-50 w-60 h-60 rounded-full object-cover border-4 border-white/30"
+            className="md:w-30 md:h-50 w-60 h-60 rounded-full object-cover border-4 border-white/30 group-hover:border-orange-400"
           />
 
           <div className="text-left space-y-4">

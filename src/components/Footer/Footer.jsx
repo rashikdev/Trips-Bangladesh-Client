@@ -70,7 +70,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/20 mt-10 pt-4 text-center text-sm text-white/50">
-        &copy; {new Date().getFullYear()} BD Travel Guide. All rights reserved.
+        &copy; {new Date().getFullYear()} Trips. All rights reserved.
       </div>
     </footer>
   );

@@ -7,7 +7,6 @@ import DashboardLayout from "../layouts/dashboardLayout/DashboardLayout";
 import DashboardHome from "../layouts/dashboardLayout/DashboardHome";
 import MyBooking from "../components/mybooking/MyBooking";
 import PrivateRoute from "./privateRoute/PrivateRoute";
-import ManageStory from "../components/ManageStory/ManageStory";
 import AddStory from "../components/AddStory/AddStory";
 import AboutUs from "../components/aboutUs/AboutUs";
 import AllTrips from "../components/Trip/AllTrtips";
@@ -15,6 +14,7 @@ import PackageDetails from "../pages/Trip/package/PackageDetails";
 import GuideDetailsPage from "../components/guideDetails/GuideDetailsPage";
 import Payment from "../payment/Payment";
 import JoinAsTourGuide from "../Profile/TouristProfile/JoinAsTourGuide";
+import ManageStories from "../pages/manageStories/ManageStories";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -71,14 +71,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "manageStories",
-        element: (
-          <PrivateRoute>
-            <ManageStory></ManageStory>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "addStory",
         element: (
           <PrivateRoute>
@@ -99,6 +91,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <JoinAsTourGuide></JoinAsTourGuide>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageStories",
+        element: (
+          <PrivateRoute>
+            <ManageStories></ManageStories>
           </PrivateRoute>
         ),
       },

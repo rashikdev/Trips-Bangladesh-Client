@@ -5,8 +5,8 @@ import NavItem from "../../components/Shared/NavItem";
 
 const SideBar = () => {
   return (
-    <div className="lg:border-r-2 border-primary text-white">
-      <div className="drawer lg:drawer-open w-fit pr-4">
+    <div className="lg:border-r-2 border-primary text-white h-full">
+      <div className="drawer sticky top-0 lg:drawer-open w-fit pr-4">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="flex justify-center items-center">
           <div className="drawer-content flex flex-col lg:hidden">

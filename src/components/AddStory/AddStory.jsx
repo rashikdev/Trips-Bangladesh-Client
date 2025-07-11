@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
-import { getImgUrl } from "../../utils/utils"; // must return uploaded image URL
+import { getCloudinaryImgUrl, getImgUrl } from "../../utils/utils";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddStory = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -16,46 +18,60 @@ const AddStory = () => {
   } = useForm();
 
   const [uploading, setUploading] = useState(false);
+  const [storyImages, setStoryImages] = useState([]);
+
+  // upload image in cloudinary
+  const handleUploadImage = async (e) => {
+    setUploading(true);
+    const files = e.target.files;
+    const uploadPromises = Array.from(files).map((file) =>
+      getCloudinaryImgUrl(file)
+    );
+    try {
+      const urls = await Promise.all(uploadPromises);
+      setStoryImages(urls);
+      setUploading(false);
+    } catch (err) {
+      toast.error("Failed to upload images.");
+    }
+  };
+
+  // console.log(storyImages);
 
   const onSubmit = async (data) => {
     if (!user) {
       toast.error("You must be logged in to submit a story.");
       return;
     }
-
-    const files = data.images;
-    if (!files || files.length === 0) {
-      toast.error("Please select at least one image.");
+    if (!storyImages.length) {
+      toast.error("Please upload at least one image.");
       return;
     }
-
-    try {
-      setUploading(true);
-      const imageUploadPromises = Array.from(files).map((file) =>
-        getImgUrl(file)
-      );
-      const imageUrls = await Promise.all(imageUploadPromises);
-
-      const newStory = {
-        title: data.title,
-        content: data.content,
-        images: imageUrls,
-        author: {
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        },
-        createdAt: new Date(),
-      };
-
-      console.log(newStory)
-
-    } catch (error) {
-      console.error(error);
-      toast.error("Upload failed");
-    } finally {
-      setUploading(false);
+    if (uploading) {
+      toast.error("Please wait, image is uploading...");
+      return;
     }
+    const newStory = {
+      title: data?.title,
+      content: data?.content,
+      images: storyImages,
+      author: user?.displayName,
+      authorEmail: user?.email,
+      authorImage: user?.photoURL,
+    };
+
+    // save story in database
+    axiosSecure
+      .post("/story", newStory)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Story added successfully.");
+          navigate("/dashboard/manageStories");
+        }
+      })
+      .catch((err) => {
+        toast.error("Failed to add story.");
+      });
   };
 
   return (
@@ -100,10 +116,14 @@ const AddStory = () => {
             <input
               type="file"
               multiple
+              name="images"
               accept="image/*"
               {...register("images", {
                 required: "At least one image required",
               })}
+              onChange={(e) => {
+                handleUploadImage(e);
+              }}
               className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-teal-500 file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
             />
             {errors.images && (

@@ -6,6 +6,7 @@ const ManageStoryCard = ({
   handleRemoveImage,
   handleAddImages,
   uploadingStoryId,
+  handleDeleteStory,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
@@ -31,7 +32,12 @@ const ManageStoryCard = ({
         {menuOpen && (
           <ul className="absolute top-10 right-0 bg-gray-500 p-3 rounded w-34 *:cursor-pointer *:rounded-md *:hover:bg-gray-800">
             <li className="text-white mb-2 bg-gray-900 pl-2">Edit Story</li>
-            <li className="text-red-600 bg-gray-900 pl-2">Delete</li>
+            <li
+              onClick={() => handleDeleteStory(story._id)}
+              className="text-red-600 bg-gray-900 pl-2"
+            >
+              Delete
+            </li>
           </ul>
         )}
       </div>
@@ -65,7 +71,7 @@ const ManageStoryCard = ({
             multiple
             accept="image/*"
             onChange={(e) => handleAddImages(e, story._id)}
-            className="text-white text-xs bg-slate-700 rounded px-2 py-1 file:bg-teal-500 file:text-white file:border-none file:rounded file:px-3 file:py-1"
+            className="text-white text-xs bg-slate-700 rounded px-2 py-1 file:bg-teal-500 file:text-white file:border-none file:rounded file:px-3 file:py-1 cursor-pointer"
           />
           {uploadingStoryId === story._id && (
             <span className="loading loading-spinner text-success mr-4"></span>

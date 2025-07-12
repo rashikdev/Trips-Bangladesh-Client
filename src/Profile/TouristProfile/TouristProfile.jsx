@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { getCloudinaryImgUrl } from "../../utils/utils";
 import { set } from "react-hook-form";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const TouristProfile = () => {
   const { user, updateUser } = useAuth();
@@ -119,7 +120,28 @@ const TouristProfile = () => {
       return res.data;
     },
   });
-  console.log(stats);
+
+  const handleJoinGuide = () => {
+    if (!userProfile?.languages && !userProfile?.number) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Incomplete Profile!",
+        text: "Please complete your profile before continuing.",
+        confirmButtonText: "Update Now",
+        confirmButtonColor: "orange",
+        iconColor: "#facc15",
+        customClass: {
+          popup: "rounded-xl shadow-lg",
+          confirmButton: "px-6 py-2",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setEditModal(true);
+        }
+      });
+    }
+    navigate("/dashboard/guideApplication");
+  };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -194,7 +216,7 @@ const TouristProfile = () => {
             Edit Profile
           </button>
           <button
-            onClick={() => navigate("/dashboard/guideApplication")}
+            onClick={handleJoinGuide}
             disabled={isPending}
             className={`btn border-none shadow-none ${
               isPending ? "bg-gray-500 cursor-not-allowed" : "btn-primary"

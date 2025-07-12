@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { getCloudinaryImgUrl, getImgUrl } from "../../utils/utils";
+import { getCloudinaryImgUrl } from "../../utils/utils";
 import { set } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -112,6 +112,15 @@ const TouristProfile = () => {
 
   const isPending = application[0]?.status === "pending";
 
+  const { data: stats = {}, isLoading: statsLoading } = useQuery({
+    queryKey: ["userStats", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/userStats?email=${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log(stats);
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -197,10 +206,36 @@ const TouristProfile = () => {
       </div>
 
       {/* Optional Stats Placeholder Section */}
-      <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
-        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg"></div>
-        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg"></div>
-        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg"></div>
+      <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto text-white">
+        {/* Card 1: Total Stories */}
+        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
+          <div className="flex items-center gap-3 text-primary text-lg font-semibold">
+            <span>Total Stories</span>
+          </div>
+          <p className="text-center text-3xl font-bold text-white/90">
+            {stats?.totalStories || 0}
+          </p>
+        </div>
+
+        {/* Card 2: Total Booking */}
+        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
+          <div className="flex items-center gap-3 text-primary text-lg font-semibold">
+            <span>Total Bookings</span>
+          </div>
+          <p className="text-center text-3xl font-bold text-white/90">
+            {stats?.totalBookings || 0}
+          </p>
+        </div>
+
+        {/* Card 3: Total Payments */}
+        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
+          <div className="flex items-center gap-3 text-primary text-lg font-semibold">
+            <span>Payments</span>
+          </div>
+          <p className="text-center text-3xl font-bold text-white/90">
+            {stats?.totalPayments || 0}
+          </p>
+        </div>
       </div>
 
       {/* Modal */}

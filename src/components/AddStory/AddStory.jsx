@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
-import { getCloudinaryImgUrl, getImgUrl } from "../../utils/utils";
+import { getCloudinaryImgUrl } from "../../utils/utils";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddStory = () => {

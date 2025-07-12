@@ -15,6 +15,7 @@ import GuideDetailsPage from "../components/guideDetails/GuideDetailsPage";
 import Payment from "../payment/Payment";
 import JoinAsTourGuide from "../Profile/TouristProfile/JoinAsTourGuide";
 import ManageStories from "../pages/manageStories/ManageStories";
+import UpdateStory from "../pages/updateStory/UpdateStory";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +76,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddStory></AddStory>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "updateStory/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateStory></UpdateStory>
           </PrivateRoute>
         ),
       },

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
+import { Link } from "react-router";
 
 const ManageStoryCard = ({
   story,
@@ -7,8 +8,14 @@ const ManageStoryCard = ({
   handleAddImages,
   uploadingStoryId,
   handleDeleteStory,
+  refetch,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    refetch();
+  }, [story]);
+
   return (
     <div className="bg-white/10 rounded-xl p-4 shadow-md space-y-4 py-8">
       <div className="flex justify-between relative">
@@ -30,11 +37,15 @@ const ManageStoryCard = ({
           <CiMenuKebab size={22} />
         </button>
         {menuOpen && (
-          <ul className="absolute top-10 right-0 bg-gray-500 p-3 rounded w-34 *:cursor-pointer *:rounded-md *:hover:bg-gray-800">
-            <li className="text-white mb-2 bg-gray-900 pl-2">Edit Story</li>
+          <ul className="absolute top-10 right-0 bg-gray-500 p-3 rounded w-34 *:cursor-pointer">
+            <Link to={`/dashboard/updateStory/${story._id}`}>
+              <li className="text-white mb-2 bg-gray-900 pl-2 rounded-md hover:bg-gray-800">
+                Edit Story
+              </li>
+            </Link>
             <li
               onClick={() => handleDeleteStory(story._id)}
-              className="text-red-600 bg-gray-900 pl-2"
+              className="text-red-600 bg-gray-900 pl-2 rounded-md hover:bg-gray-800"
             >
               Delete
             </li>

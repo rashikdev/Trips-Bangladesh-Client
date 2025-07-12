@@ -88,7 +88,12 @@ const ManageStories = () => {
     },
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
+      </div>
+    );
 
   return (
     <section className="p-6 bg-slate-900 min-h-screen text-white mt-10">
@@ -112,6 +117,7 @@ const ManageStories = () => {
               handleAddImages={handleAddImages}
               uploadingStoryId={uploadingStoryId}
               handleDeleteStory={handleDeleteStory}
+              refetch={refetch}
             />
           ))}
         </div>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import bgImg from "../assets/bannerBg.jpg";
 import GoogleLogin from "./GoogleLogin";
 import { PiEyeBold, PiEyeClosed } from "react-icons/pi";
-import { getImgUrl } from "../utils/utils";
+import { getCloudinaryImgUrl } from "../utils/utils";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
@@ -13,8 +13,10 @@ const Register = () => {
   const { createUser, updateUser } = useAuth();
   const [uploadImage, setUploadImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const axiosSecure = useAxiosSecure();
-
+  const location = useLocation();
+  const Navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,30 +30,42 @@ const Register = () => {
   useEffect(() => {
     const upload = async () => {
       if (selectedFile && selectedFile[0]) {
-        const imageUrl = await getImgUrl(selectedFile[0]);
-        setUploadImage(imageUrl);
+        setIsUploading(true);
+        const uploadPromises = Array.from(selectedFile).map((file) =>
+          getCloudinaryImgUrl(file)
+        );
+        try {
+          const urls = await Promise.all(uploadPromises);
+          setUploadImage(urls[0]);
+          setIsUploading(false);
+        } catch (err) {
+          console.log(err);
+          setIsUploading(false);
+        }
       }
     };
     upload();
   }, [selectedFile]);
 
   const onSubmit = (data) => {
-    if (!uploadImage) {
+    if (isUploading) {
       return toast.error("Please wait, image is uploading...");
+    }
+    if (!uploadImage) {
+      return toast.error("Please upload an image.");
     }
 
     const formData = {
       name: data.name,
       email: data.email,
-      password: data.password,
       image: uploadImage,
       role: "tourist",
     };
 
-    console.log(formData);
+    // console.log(formData);
     createUser(data.email, data.password)
       .then((res) => {
-        console.log(res.user);
+        // console.log(res.user);
         updateUser({ displayName: data.name, photoURL: uploadImage })
           .then((res) => {
             axiosSecure
@@ -59,6 +73,7 @@ const Register = () => {
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success("sign up successful");
+                  Navigate(location.state || "/");
                 }
                 console.log(res.data);
               })
@@ -68,6 +83,7 @@ const Register = () => {
       })
       .catch((err) => toast.error("This email is already registered"));
   };
+  console.log(uploadImage);
 
   return (
     <section

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { getImgUrl } from "../../utils/utils";
+import { getCloudinaryImgUrl, getImgUrl } from "../../utils/utils";
 import { set } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -12,30 +12,94 @@ const TouristProfile = () => {
   const axiosSecure = useAxiosSecure();
   const [editModal, setEditModal] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
 
   const handleUpload = async (e) => {
-    const image = await getImgUrl(e.target.files[0]);
-    setUploadedImage(image);
+    setIsUploading(true);
+    const files = e.target.files;
+    const uploadPromises = Array.from(files).map((file) =>
+      getCloudinaryImgUrl(file)
+    );
+    try {
+      const urls = await Promise.all(uploadPromises);
+      setUploadedImage(urls[0]);
+      setIsUploading(false);
+    } catch (err) {
+      toast.error("Failed to upload images.");
+    }
   };
 
+  const {
+    data: userProfile = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users?email=${user?.email}`);
+      return res.data;
+    },
+  });
   const handleUpdate = (e) => {
     e.preventDefault();
     setSaving(true);
     const form = e.target;
-    const name = form.name.value || user?.displayName;
-    const photoURL = uploadedImage || user?.photoURL;
+    const name = form.name.value || userProfile?.displayName;
+    const image = uploadedImage || userProfile?.image;
+    const rawInput = form.phoneNumber.value.trim().replace(/\s+/g, "");
+    const number = rawInput;
+
+    const languages = [...form.language]
+      .filter((input) => input.checked)
+      .map((input) => input.value);
+
+    const isValid = /^\+8801[3-9][0-9]{8}$/.test(number);
+
+    if (!number || !isValid) {
+      setSaving(false);
+      return toast.error(
+        "Please enter a valid phone number with country code (+880)"
+      );
+    }
+    if (languages.length < 1) {
+      setSaving(false);
+      return toast.error("Please select at least one language");
+    }
+
+    if (isUploading) {
+      setSaving(false);
+      return toast.error("Please wait, image is uploading...");
+    }
+
+    const updatedData = { name, image, number, languages };
+
     updateUser({
       displayName: name,
-      photoURL: photoURL,
+      photoURL: image,
     })
       .then(() => {
-        setSaving(false);
-        toast.success("Profile updated successfully");
-        setEditModal(false);
+        axiosSecure
+          .patch(`/users/${userProfile?._id}`, updatedData)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              setSaving(false);
+              toast.success("Profile updated successfully");
+              setEditModal(false);
+            }
+          })
+          .catch((err) => {
+            setSaving(false);
+            setEditModal(false);
+            toast.error("something went wrong try again");
+          });
       })
-      .catch((err) => toast.error("something went wrong try again"));
+      .catch((err) => {
+        setSaving(false);
+        toast.error("something went wrong try again");
+      });
   };
 
   const { data: application = {} } = useQuery({
@@ -47,63 +111,88 @@ const TouristProfile = () => {
   });
 
   const isPending = application[0]?.status === "pending";
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
-    <section className="py-20 px-4 md:px-10 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-      <div className="max-w-5xl mx-auto bg-white/10 border border-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-10">
-        <h2 className="text-4xl font-bold mb-10 text-center">
-          Welcome,{" "}
-          <span className="text-primary">
-            {user?.displayName?.split(" ")[0]}
-          </span>
-          !
-        </h2>
+    <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+      {/* User Profile info */}
+      <div className="text-white md:w-11/12 mx-auto md:px-10 px-3 relative">
+        <h3 className="text-2xl font-bold mb-6">Welcome To Your Profile</h3>
 
-        <div className="flex flex-col md:flex-row items-center gap-10">
-          {/* Profile Picture */}
-          <img
-            src={user?.photoURL}
-            alt="Profile"
-            className="w-40 h-40 rounded-full object-cover border-4 border-orange-400 shadow-md"
-          />
+        <div className="flex flex-col md:flex-row gap-5 items-center bg-white/5 border border-white/10 py-12 rounded-xl shadow-md backdrop-blur">
+          {/* Guide Image */}
+          <div className="flex-1">
+            <img
+              src={userProfile?.image}
+              alt={userProfile?.name}
+              className="h-56 w-56 object-cover mx-auto rounded-full border-4 border-orange-500 shadow-lg"
+            />
+          </div>
 
-          {/* Info Section */}
-          <div className="flex-1 space-y-3 text-lg">
+          {/* user Details */}
+          <div className="flex-1 text-left space-y-4">
+            <h2 className="text-3xl font-bold text-primary">
+              {userProfile?.name}
+            </h2>
+
             <p>
-              <span className="font-semibold text-orange-400">Name:</span>{" "}
-              {user?.displayName}
+              <span className="font-semibold text-gray-300">Email:</span>{" "}
+              <span className="text-white">{userProfile?.email}</span>
             </p>
+
             <p>
-              <span className="font-semibold text-orange-400">Email:</span>{" "}
-              {user?.email}
-            </p>
-            <p>
-              <span className="font-semibold text-orange-400">Role:</span>{" "}
-              <span className="bg-green-600 px-2 py-[1px] rounded text-sm font-medium">
-                Tourist
+              <span className="font-semibold text-gray-300">Phone:</span>{" "}
+              <span className="text-white">
+                {userProfile?.number ? (
+                  userProfile?.number
+                ) : (
+                  <span className="text-sm text-red-500">Not Set</span>
+                )}
               </span>
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <button
-                onClick={() => setEditModal(true)}
-                className="px-4 py-1 rounded bg-white text-slate-900 font-semibold hover:bg-slate-100 transition cursor-pointer"
-              >
-                Edit Profile
-              </button>
-
-              <button
-                onClick={() => navigate("/dashboard/guideApplication")}
-                disabled={isPending}
-                className={`px-4 py-1 rounded font-semibold transition ${
-                  isPending
-                    ? "bg-gray-500 cursor-not-allowed"
-                    : "bg-purple-600 hover:bg-purple-700 cursor-pointer"
-                }`}
-              >
-                {isPending ? "Pending Application" : "Apply as a Guide"}
-              </button>
-            </div>
+            <p>
+              <span className="font-semibold text-gray-300">Languages:</span>{" "}
+              {userProfile?.languages ? (
+                userProfile?.languages.map((lang, index) => (
+                  <span
+                    key={index}
+                    className="text-white text-sm font-semibold mr-2"
+                  >
+                    {lang},
+                  </span>
+                ))
+              ) : (
+                <span className="text-sm text-red-500">Not Set yet</span>
+              )}
+            </p>
+            <p>
+              <span className="font-semibold text-gray-300">Role:</span>{" "}
+              <span className="text-white bg-primary px-2 py-[2px] text-sm rounded-full font-semibold">
+                Tourist
+              </span>
+            </p>
           </div>
+        </div>
+        <div className="absolute space-x-4 bottom-3 right-14">
+          <button
+            onClick={() => setEditModal(true)}
+            className="btn btn-primary bg-white text-black border-none shadow-none hover:bg-gray-400"
+          >
+            Edit Profile
+          </button>
+          <button
+            onClick={() => navigate("/dashboard/guideApplication")}
+            disabled={isPending}
+            className={`btn border-none shadow-none ${
+              isPending ? "bg-gray-500 cursor-not-allowed" : "btn-primary"
+            }`}
+          >
+            {isPending ? "Pending Application" : "Join As Tour Guide"}
+          </button>
         </div>
       </div>
 
@@ -116,7 +205,7 @@ const TouristProfile = () => {
 
       {/* Modal */}
       {editModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm px-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-md px-4">
           <form
             onSubmit={handleUpdate}
             className="bg-white/10 border border-white/20 p-8 rounded-2xl w-full max-w-md shadow-xl space-y-5"
@@ -130,9 +219,58 @@ const TouristProfile = () => {
               <input
                 type="text"
                 name="name"
-                defaultValue={user?.displayName}
+                defaultValue={userProfile?.name}
                 className="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none"
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                name="phoneNumber"
+                defaultValue={userProfile?.number}
+                placeholder="+880 XXXXXXXXX"
+                className="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none"
+              />
+            </div>
+            <p className="text-sm font-medium mb-2">Languages you speak</p>
+            <div className="flex gap-7">
+              <div>
+                <input
+                  type="checkbox"
+                  id="English"
+                  name="language"
+                  defaultChecked={userProfile?.languages?.includes("English")}
+                  value="English"
+                  className="accent-primary mr-1"
+                />
+                <label htmlFor="English">English</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="Bengali"
+                  name="language"
+                  defaultChecked={userProfile?.languages?.includes("Bengali")}
+                  value="Bengali"
+                  className="accent-primary mr-1"
+                />
+                <label htmlFor="Bengali">Bengali</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="Hindi"
+                  name="language"
+                  defaultChecked={userProfile?.languages?.includes("Hindi")}
+                  value="Hindi"
+                  className="accent-primary mr-1"
+                />
+                <label htmlFor="Hindi">Hindi</label>
+              </div>
             </div>
 
             <div>
@@ -142,7 +280,7 @@ const TouristProfile = () => {
                 name="photo"
                 accept="image/*"
                 onChange={handleUpload}
-                className="w-full px-3 py-1 rounded-md  border border-white/30 text-white file:text-white file:bg-teal-500 file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
+                className="w-full px-3 py-1 rounded-md  border border-white/30 text-white file:text-white file:bg-primary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
               />
             </div>
 

@@ -4,10 +4,13 @@ import { TbBrandGoogle } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useLocation, useNavigate } from "react-router";
 
 const GoogleLogin = ({ title }) => {
   const { googleSignIn } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     try {
@@ -22,6 +25,7 @@ const GoogleLogin = ({ title }) => {
       };
 
       axiosSecure.post("/users", userData);
+      navigate(location.state || "/");
       toast.success("Sign in successful");
     } catch (error) {
       toast.error("something went wrong try again");

@@ -1,5 +1,5 @@
 import React, { createRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import bgImg from "../assets/bannerBg.jpg";
 import GoogleLogin from "./GoogleLogin";
 import { PiEyeBold, PiEyeClosed } from "react-icons/pi";
@@ -10,14 +10,17 @@ const Login = () => {
   const { loginUser, forgotPassword } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = createRef();
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.state);
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     loginUser(email, password)
-      .then((res) => {
+      .then((result) => {
         toast.success("Login successful!");
+        navigate(location.state || "/");
       })
       .catch((err) => {
         toast.error("Invalid email or password");

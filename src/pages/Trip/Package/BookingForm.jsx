@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 const BookingForm = ({ singlepackage, guides }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [tourDate, setTourDate] = useState(null);
   const [selectedGuide, setSelectedGuide] = useState("");
   const axiosSecure = useAxiosSecure();
@@ -20,7 +21,7 @@ const BookingForm = ({ singlepackage, guides }) => {
 
     if (!user) {
       toast.error("You must be logged in to book a tour");
-      return navigate("/login");
+      return navigate("/login", { state: location.pathname });
     }
 
     if (!tourDate || !selectedGuide) {

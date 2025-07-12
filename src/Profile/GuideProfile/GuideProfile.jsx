@@ -8,7 +8,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-const TouristProfile = () => {
+const GuideProfile = () => {
   const { user, updateUser } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [editModal, setEditModal] = useState(false);
@@ -103,46 +103,6 @@ const TouristProfile = () => {
       });
   };
 
-  const { data: application = {} } = useQuery({
-    queryKey: ["applications"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/applications?email=${user?.email}`);
-      return res.data;
-    },
-  });
-
-  const isPending = application[0]?.status === "pending";
-
-  const { data: stats = {}, isLoading: statsLoading } = useQuery({
-    queryKey: ["userStats", user?.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/userStats?email=${user?.email}`);
-      return res.data;
-    },
-  });
-
-  const handleJoinGuide = () => {
-    if (!userProfile?.languages && !userProfile?.number) {
-      return Swal.fire({
-        icon: "warning",
-        title: "Incomplete Profile!",
-        text: "Please complete your profile before continuing.",
-        confirmButtonText: "Update Now",
-        confirmButtonColor: "orange",
-        iconColor: "#facc15",
-        customClass: {
-          popup: "rounded-xl shadow-lg",
-          confirmButton: "px-6 py-2",
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setEditModal(true);
-        }
-      });
-    }
-    navigate("/dashboard/guideApplication");
-  };
-
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -176,60 +136,41 @@ const TouristProfile = () => {
 
             <p>
               <span className="font-semibold text-gray-300">Phone:</span>{" "}
-              <span className="text-white">
-                {userProfile?.number ? (
-                  userProfile?.number
-                ) : (
-                  <span className="text-sm text-red-500">Not Set</span>
-                )}
-              </span>
+              <span className="text-white">{userProfile?.number}</span>
             </p>
 
             <p>
               <span className="font-semibold text-gray-300">Languages:</span>{" "}
-              {userProfile?.languages ? (
-                userProfile?.languages.map((lang, index) => (
-                  <span
-                    key={index}
-                    className="text-white text-sm font-semibold mr-2"
-                  >
-                    {lang},
-                  </span>
-                ))
-              ) : (
-                <span className="text-sm text-red-500">Not Set yet</span>
-              )}
+              {userProfile?.languages.map((lang, index) => (
+                <span
+                  key={index}
+                  className="text-white text-sm font-semibold mr-2"
+                >
+                  {lang},
+                </span>
+              ))}
             </p>
             <p>
               <span className="font-semibold text-gray-300">Role:</span>{" "}
-              <span className="text-white bg-primary px-2 py-[2px] text-sm rounded-full font-semibold">
-                Tourist
+              <span className="text-white bg-green-500 px-3 py-[2px] text-sm rounded-full font-semibold capitalize">
+                {userProfile?.role}
               </span>
             </p>
           </div>
         </div>
-        <div className="absolute space-x-4 bottom-3 right-14">
+        <div className="absolute space-x-4 top-30 right-16">
           <button
             onClick={() => setEditModal(true)}
             className="btn btn-primary bg-white text-black border-none shadow-none hover:bg-gray-400"
           >
             Edit Profile
           </button>
-          <button
-            onClick={handleJoinGuide}
-            disabled={isPending}
-            className={`btn border-none shadow-none ${
-              isPending ? "bg-gray-500 cursor-not-allowed" : "btn-primary"
-            }`}
-          >
-            {isPending ? "Pending Application" : "Join As Tour Guide"}
-          </button>
         </div>
       </div>
 
       {/* Optional Stats Placeholder Section */}
-      <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto text-white">
-        {/* Card 1: Total Stories */}
+      {/* <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto text-white">
+
         <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
           <div className="flex items-center gap-3 text-primary text-lg font-semibold">
             <span>Total Stories</span>
@@ -239,7 +180,6 @@ const TouristProfile = () => {
           </p>
         </div>
 
-        {/* Card 2: Total Booking */}
         <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
           <div className="flex items-center gap-3 text-primary text-lg font-semibold">
             <span>Total Bookings</span>
@@ -249,7 +189,6 @@ const TouristProfile = () => {
           </p>
         </div>
 
-        {/* Card 3: Total Payments */}
         <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
           <div className="flex items-center gap-3 text-primary text-lg font-semibold">
             <span>Payments</span>
@@ -258,7 +197,7 @@ const TouristProfile = () => {
             {stats?.totalPayments || 0}
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Modal */}
       {editModal && (
@@ -363,4 +302,4 @@ const TouristProfile = () => {
   );
 };
 
-export default TouristProfile;
+export default GuideProfile;

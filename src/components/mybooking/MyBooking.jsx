@@ -56,7 +56,12 @@ const MyBooking = () => {
   return (
     <section className="px-4 md:px-12 py-16 min-h-screen text-white">
       {myBookings.length === 0 ? (
-        <p className="text-center">No bookings found.</p>
+        <div className="bg-white/10 p-8 rounded-lg text-center shadow-md border border-white/20 max-w-md flex flex-col items-center mx-auto mt-10">
+          <h2 className="text-2xl font-semibold mb-3">No Bookings Found</h2>
+          <p className="text-gray-300 mb-2">
+            You haven't made any bookings yet.
+          </p>
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full table-auto text-sm  rounded-lg shadow-md">

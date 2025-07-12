@@ -4,10 +4,12 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { use } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 
 const JoinAsTourGuide = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,7 +17,33 @@ const JoinAsTourGuide = () => {
     formState: { errors },
   } = useForm();
 
+  const { data: userProfile = [], refetch } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users?email=${user?.email}`);
+      return res.data;
+    },
+  });
+
   const onSubmit = (data) => {
+    if (!userProfile?.languages && !userProfile?.number) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Incomplete Profile!",
+        text: "Please complete your profile before continuing.",
+        confirmButtonText: "Update Now",
+        confirmButtonColor: "orange",
+        iconColor: "#facc15",
+        customClass: {
+          popup: "rounded-xl shadow-lg",
+          confirmButton: "px-6 py-2",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/dashboard");
+        }
+      });
+    }
     data.applicant = user?.email;
     data.status = "pending";
 

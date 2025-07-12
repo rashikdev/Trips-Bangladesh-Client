@@ -2,8 +2,13 @@ import React from "react";
 import { NavLink } from "react-router";
 import Logo from "../../components/Shared/Logo";
 import NavItem from "../../components/Shared/NavItem";
+import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 
 const SideBar = () => {
+  const { user } = useAuth();
+  const { role, loading } = useRole(user?.email);
+  console.log(role);
   return (
     <div className="lg:border-r-2 border-primary text-white h-full">
       <div className="drawer z-50 sticky top-0 lg:drawer-open w-fit pr-4">
@@ -52,13 +57,20 @@ const SideBar = () => {
             </li>
             <div className="text-lg p-2 space-y-6">
               <NavItem item="Manage Profile" link="/dashboard" />
-              <NavItem item="My Bookings" link="/dashboard/myBookings" />
+              {role === "tourist" && (
+                <NavItem item="My Bookings" link="/dashboard/myBookings" />
+              )}
+              {role === "guide" && (
+                <NavItem item="My Assigned Tours" link="/dashboard/myBookings" />
+              )}
               <NavItem item="Manage Stories" link="/dashboard/manageStories" />
               <NavItem item="Add Stories" link="/dashboard/addStory" />
-              <NavItem
-                item="Join as tour guide"
-                link="/dashboard/guideApplication"
-              />
+              {role === "tourist" && (
+                <NavItem
+                  item="Join as tour guide"
+                  link="/dashboard/guideApplication"
+                />
+              )}
             </div>
           </ul>
         </div>

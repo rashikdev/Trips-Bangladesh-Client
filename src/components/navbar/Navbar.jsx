@@ -12,7 +12,7 @@ const Navbar = () => {
       <NavLink to="/" className="hover:text-primary">
         Home
       </NavLink>
-      <NavLink to="/community" className="hover:text-primary">
+      <NavLink to="/community/stories" className="hover:text-primary">
         Community
       </NavLink>
       <NavLink to="/about" className="hover:text-primary">
@@ -47,13 +47,13 @@ const Navbar = () => {
               <img
                 src={user.photoURL}
                 alt="Profile"
-                className="w-10 h-10 rounded-full cursor-pointer border"
+                className="w-10 h-10 rounded-full cursor-pointer border-2 border-primary"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               />
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 border shadow-lg rounded-md z-50 p-3 space-y-1">
+                <div className="absolute right-0 mt-2 w-56 border shadow-lg rounded-md z-50 p-3 space-y-1 backdrop-blur-md">
                   <p className="text-sm font-semibold">{user.displayName}</p>
-                  <p className="text-xs text-gray-500">{user.email}</p>
+                  <p className="text-xs text-gray-300">{user.email}</p>
                   <hr />
                   <Link to="/dashboard" className="block hover:text-primary">
                     Dashboard

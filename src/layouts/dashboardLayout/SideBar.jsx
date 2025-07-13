@@ -61,7 +61,13 @@ const SideBar = () => {
                 <NavItem item="My Bookings" link="/dashboard/myBookings" />
               )}
               {role === "guide" && (
-                <NavItem item="My Assigned Tours" link="/dashboard/myBookings" />
+                <NavItem
+                  item="My Assigned Tours"
+                  link="/dashboard/myAssignedTours"
+                />
+              )}
+              {role === "admin" && (
+                <NavItem item="Add Package" link="/dashboard/addPackage" />
               )}
               <NavItem item="Manage Stories" link="/dashboard/manageStories" />
               <NavItem item="Add Stories" link="/dashboard/addStory" />

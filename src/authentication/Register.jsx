@@ -16,7 +16,7 @@ const Register = () => {
   const [isUploading, setIsUploading] = useState(false);
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -71,9 +71,9 @@ const Register = () => {
             axiosSecure
               .post("/users", formData)
               .then((res) => {
-                if (res.data.insertedId) {
+                if (res.data.inserted) {
                   toast.success("sign up successful");
-                  Navigate(location.state || "/");
+                  navigate(location.state || "/");
                 }
                 console.log(res.data);
               })

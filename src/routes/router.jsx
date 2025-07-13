@@ -16,6 +16,9 @@ import Payment from "../payment/Payment";
 import JoinAsTourGuide from "../Profile/TouristProfile/JoinAsTourGuide";
 import ManageStories from "../pages/manageStories/ManageStories";
 import UpdateStory from "../pages/updateStory/UpdateStory";
+import MyAssignedTours from "../Profile/GuideProfile/MyAssignedTours";
+import Community from "../pages/Community/Community";
+import AddPackage from "../Profile/AdminProfile/AddPackage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +52,10 @@ export const router = createBrowserRouter([
         path: "guide/:id",
         Component: GuideDetailsPage,
       },
+      {
+        path: "community/stories",
+        Component: Community,
+      },
     ],
   },
   {
@@ -68,6 +75,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyBooking></MyBooking>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myAssignedTours",
+        element: (
+          <PrivateRoute>
+            <MyAssignedTours></MyAssignedTours>
           </PrivateRoute>
         ),
       },
@@ -108,6 +123,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageStories></ManageStories>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "addPackage",
+        element: (
+          <PrivateRoute>
+            <AddPackage></AddPackage>
           </PrivateRoute>
         ),
       },

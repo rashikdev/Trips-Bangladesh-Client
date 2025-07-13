@@ -36,67 +36,78 @@ const PackageDetails = () => {
   }
 
   return (
-    <section className="min-h-screen px-4 md:px-10 text-white pt-30">
-      <div className="*:border flex flex-col md:flex-row gap-4">
+    <section className="min-h-screen px-4 md:px-10 text-white lg:pt-30 pt-20">
+      <div className="flex flex-col md:flex-row gap-4 md:h-[60vh]">
         {/* large thumbnail */}
-        <div className="md:flex-3">
+        <div className="w-full md:w-2/5 h-64 md:h-full">
           <img
             src={thumbnail}
             alt="thumbnail"
-            className="w-full h-full min-h-[750px]"
+            className="w-full h-full object-cover rounded-lg"
           />
         </div>
 
         {/* details with images */}
-        <div className="md:flex-5 p-10">
-          <div className="space-y-8">
-            <h2 className="text-3xl font-bold mb-4">{title}</h2>
-            <p className="text-lg max-w-2xl">{description}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
-              {/* Price */}
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-center shadow-md hover:shadow-lg transition">
-                <h4 className="text-lg font-semibold text-white/70 mb-2">
-                  Price
-                </h4>
-                <p className="text-2xl font-bold text-orange-400">${price}</p>
-              </div>
-
-              {/* Duration */}
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-center shadow-md hover:shadow-lg transition">
-                <h4 className="text-lg font-semibold text-white/70 mb-2">
-                  Duration
-                </h4>
-                <p className="text-2xl font-bold text-orange-400">3 days</p>
-              </div>
-
-              {/* Tour Type */}
-              <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 text-center shadow-md hover:shadow-lg transition">
-                <h4 className="text-lg font-semibold text-white/70 mb-2">
-                  Tour Type
-                </h4>
-                <p className="text-2xl font-bold text-orange-400">{tourType}</p>
-              </div>
+        <div className="w-full md:w-3/5 overflow-y-auto">
+          <div className="flex flex-col h-full gap-8 justify-between md:px-10">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">{title}</h2>
+              <p className="text-base md:text-lg text-white/80">
+                {description}
+              </p>
             </div>
 
-            <div>
-              <h3 className="text-2xl font-bold my-4">
-                Tour Gallery – Explore the Stunning Views You'll Visit
-              </h3>
-              <div className="flex gap-8">
-                {Array.isArray(images) &&
-                  images.map((img, idx) => (
-                    <img
-                      key={idx}
-                      src={img}
-                      alt={`Gallery ${idx + 1}`}
-                      className="w-full h-80 object-cover rounded-lg border"
-                    />
-                  ))}
+            <div className="flex flex-col-reverse md:flex-col justify-around h-full gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Price */}
+                <div className="bg-white/10 backdrop-blur-lg p-4 rounded-xl border border-primary text-center shadow-md">
+                  <h4 className="text-sm md:text-base font-semibold text-white/70 mb-2">
+                    Price
+                  </h4>
+                  <p className="text-xl font-bold text-orange-400">${price}</p>
+                </div>
+
+                {/* Duration */}
+                <div className="bg-white/10 backdrop-blur-lg p-4 rounded-xl border border-primary text-center shadow-md">
+                  <h4 className="text-sm md:text-base font-semibold text-white/70 mb-2">
+                    Duration
+                  </h4>
+                  <p className="text-xl font-bold text-orange-400">3 days</p>
+                </div>
+
+                {/* Tour Type */}
+                <div className="bg-white/10 backdrop-blur-lg p-4 rounded-xl border border-primary text-center shadow-md">
+                  <h4 className="text-sm md:text-base font-semibold text-white/70 mb-2">
+                    Tour Type
+                  </h4>
+                  <p className="text-xl font-bold text-orange-400">
+                    {tourType}
+                  </p>
+                </div>
+              </div>
+
+              {/* Gallery */}
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold mb-8">
+                  Tour Gallery – Explore the Stunning Views You'll Visit
+                </h3>
+                <div className="flex gap-5 overflow-x-auto mt-4">
+                  {Array.isArray(images) &&
+                    images.map((img, idx) => (
+                      <img
+                        key={idx}
+                        src={img}
+                        alt={`Gallery ${idx + 1}`}
+                        className="w-63 h-40 object-cover rounded-lg shrink-0"
+                      />
+                    ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {/* tour plan */}
       <div>
         <TourPlan />

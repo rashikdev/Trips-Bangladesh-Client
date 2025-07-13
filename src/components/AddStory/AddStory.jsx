@@ -140,7 +140,7 @@ const AddStory = () => {
                 : "bg-white text-black hover:bg-gray-200"
             }`}
           >
-            {uploading ? "Uploading..." : "Submit Story"}
+            {uploading ? "Uploading Image..." : "Submit Story"}
           </button>
         </form>
       </div>

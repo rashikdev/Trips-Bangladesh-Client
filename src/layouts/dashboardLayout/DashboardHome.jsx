@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
 import GuideProfile from "../../Profile/GuideProfile/GuideProfile";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import AdminProfile from "../../Profile/AdminProfile/AdminProfile";
 
 const DashboardHome = () => {
   const { user } = useAuth();
@@ -16,6 +17,8 @@ const DashboardHome = () => {
       <div>{!loading && role === "tourist" && <TouristProfile />}</div>
       
       <div>{!loading && role === "guide" && <GuideProfile />}</div>
+
+      <div>{!loading && role === "admin" && <AdminProfile />}</div>
     </div>
   );
 };

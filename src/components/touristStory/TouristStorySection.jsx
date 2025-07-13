@@ -99,7 +99,7 @@ const TouristStorySection = () => {
         </div>
 
         <div className="text-center mt-10">
-          <Link to="/all-stories">
+          <Link to="/community/stories">
             <button className="bg-white text-black font-semibold px-6 py-2 rounded hover:bg-gray-200 transition">
               All Stories
             </button>

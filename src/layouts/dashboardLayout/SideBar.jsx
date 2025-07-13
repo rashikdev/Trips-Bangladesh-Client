@@ -66,11 +66,29 @@ const SideBar = () => {
                   link="/dashboard/myAssignedTours"
                 />
               )}
+
               {role === "admin" && (
                 <NavItem item="Add Package" link="/dashboard/addPackage" />
               )}
-              <NavItem item="Manage Stories" link="/dashboard/manageStories" />
-              <NavItem item="Add Stories" link="/dashboard/addStory" />
+
+              {role === "admin" && (
+                <NavItem item="Manage Users" link="/dashboard/manageUsers" />
+              )}
+
+              {role === "admin" && (
+                <NavItem item="Manage Candidates" link="/dashboard/manageCandidates" />
+              )}
+
+              {(role === "tourist" || role === "guide") && (
+                <>
+                  <NavItem
+                    item="Manage Stories"
+                    link="/dashboard/manageStories"
+                  />
+                  <NavItem item="Add Stories" link="/dashboard/addStory" />
+                </>
+              )}
+
               {role === "tourist" && (
                 <NavItem
                   item="Join as tour guide"

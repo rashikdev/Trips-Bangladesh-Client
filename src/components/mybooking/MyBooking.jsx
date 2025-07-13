@@ -56,72 +56,71 @@ const MyBooking = () => {
   return (
     <section className="px-4 md:px-12 py-16 min-h-screen text-white">
       {myBookings.length === 0 ? (
-        <div className="bg-white/10 p-8 rounded-lg text-center shadow-md border border-white/20 max-w-md flex flex-col items-center mx-auto mt-10">
-          <h2 className="text-2xl font-semibold mb-3">No Bookings Found</h2>
-          <p className="text-gray-300 mb-2">
-            You haven't made any bookings yet.
+        <div className="bg-white/10 p-8 rounded-xl text-center shadow-xl border border-white/20 max-w-md flex flex-col items-center mx-auto mt-16 backdrop-blur-md">
+          <h2 className="text-3xl font-semibold mb-3 text-orange-400">
+            No Bookings Found
+          </h2>
+          <p className="text-white/70">
+            You haven&apos;t made any bookings yet.
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full table-auto text-sm  rounded-lg shadow-md">
-            <thead className="bg-gray-700 text-white text-left">
+        <div className="overflow-x-auto shadow-lg rounded-xl border border-white/20 backdrop-blur-md bg-white/5">
+          <table className="w-full text-sm text-white">
+            <thead className="bg-white/10 uppercase text-xs text-white/80">
               <tr>
-                <th className="p-3">Package</th>
-                <th className="p-3">Tour Guide</th>
-                <th className="p-3">Tour Date</th>
-                <th className="p-3">Price</th>
-                <th className="p-3 text-center">Status</th>
-                <th className="p-3 text-center">Actions</th>
+                <th className="p-4 text-left">Package</th>
+                <th className="p-4 text-left">Tour Guide</th>
+                <th className="p-4 text-left">Tour Date</th>
+                <th className="p-4 text-left">Price</th>
+                <th className="p-4 text-center">Status</th>
+                <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {myBookings.map((booking) => (
                 <tr
                   key={booking?._id}
-                  className="border-b hover:bg-teal-800 transition"
+                  className="border-t border-white/10 hover:bg-white/5 transition"
                 >
-                  <td className="p-3">{booking?.packageName}</td>
-                  <td className="p-3">{booking?.tourGuide.name || "N/A"}</td>
-                  <td className="p-3">
+                  <td className="p-4 font-medium">{booking?.packageName}</td>
+                  <td className="p-4">{booking?.tourGuide?.name || "N/A"}</td>
+                  <td className="p-4">
                     {new Date(booking?.tourDate).toLocaleDateString()}
                   </td>
-                  <td className="p-3">{booking?.price} BDT</td>
-                  <td className="p-3 capitalize font-medium text-center">
-                    {booking.status === "pending" && (
-                      <span className="text-red-400 bg-gray-200/40 px-1 rounded">
-                        {booking.status}
-                      </span>
-                    )}
-                    {booking.status === "In Review" && (
-                      <span className="text-yellow-200 bg-gray-200/40 px-1 rounded">
-                        {booking.status}
-                      </span>
-                    )}
-                    {booking.status === "Accepted" && (
-                      <span className="text-green-400 bg-gray-200/40 px-1 rounded">
-                        {booking.status}
-                      </span>
-                    )}
+                  <td className="p-4">{booking?.price} BDT</td>
+                  <td className="p-4 text-center">
+                    <span
+                      className={`px-2 py-1 rounded text-sm font-semibold ${
+                        booking.status === "pending"
+                          ? "bg-red-400/10 text-red-400"
+                          : booking.status === "In Review"
+                          ? "bg-yellow-300/10 text-yellow-200"
+                          : "bg-green-400/10 text-green-400"
+                      }`}
+                    >
+                      {booking.status}
+                    </span>
                   </td>
-                  <td className="p-3 flex gap-3 justify-center">
-                    {booking?.status === "pending" && (
-                      <>
+                  <td className="p-4 text-center">
+                    {booking?.status === "pending" ? (
+                      <div className="flex justify-center gap-3">
                         <Link to={`/dashboard/payment/${booking?._id}`}>
-                          <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 cursor-pointer">
+                          <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded transition text-sm">
                             Pay
                           </button>
                         </Link>
                         <button
                           onClick={() => handleCancelConfirmation(booking?._id)}
-                          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 cursor-pointer"
+                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded transition text-sm"
                         >
                           Cancel
                         </button>
-                      </>
-                    )}
-                    {booking?.status !== "pending" && (
-                      <span className="text-gray-400">No action</span>
+                      </div>
+                    ) : (
+                      <span className="text-gray-400 text-sm italic">
+                        No action
+                      </span>
                     )}
                   </td>
                 </tr>

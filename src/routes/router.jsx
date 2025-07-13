@@ -19,6 +19,8 @@ import UpdateStory from "../pages/updateStory/UpdateStory";
 import MyAssignedTours from "../Profile/GuideProfile/MyAssignedTours";
 import Community from "../pages/Community/Community";
 import AddPackage from "../Profile/AdminProfile/AddPackage";
+import ManageUsers from "../Profile/AdminProfile/ManageUsers";
+import ManageCandidates from "../Profile/AdminProfile/ManageCandidates";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -131,6 +133,22 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddPackage></AddPackage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageUsers",
+        element: (
+          <PrivateRoute>
+            <ManageUsers></ManageUsers>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageCandidates",
+        element: (
+          <PrivateRoute>
+            <ManageCandidates></ManageCandidates>
           </PrivateRoute>
         ),
       },

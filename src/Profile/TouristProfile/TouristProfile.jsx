@@ -7,6 +7,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import PaymentHistory from "./PaymentHistory";
 
 const TouristProfile = () => {
   const { user, updateUser } = useAuth();
@@ -104,14 +105,15 @@ const TouristProfile = () => {
   };
 
   const { data: application = {} } = useQuery({
-    queryKey: ["applications"],
+    queryKey: ["applications", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/applications?email=${user?.email}`);
       return res.data;
     },
   });
 
-  const isPending = application[0]?.status === "pending";
+  const isPending = application?.status === "pending";
+  console.log(application);
 
   const { data: stats = {}, isLoading: statsLoading } = useQuery({
     queryKey: ["userStats", user?.email],
@@ -143,14 +145,14 @@ const TouristProfile = () => {
     navigate("/dashboard/guideApplication");
   };
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
+  // if (isLoading) {
+  //   return <h1>Loading...</h1>;
+  // }
 
   return (
-    <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-10">
       {/* User Profile info */}
-      <div className="text-white md:w-11/12 mx-auto md:px-10 px-3 relative">
+      <div className="text-white md:px-10 px-3 relative">
         <h3 className="text-2xl font-bold mb-6">Welcome To Your Profile</h3>
 
         <div className="flex flex-col md:flex-row gap-5 items-center bg-white/5 border border-white/10 py-12 rounded-xl shadow-md backdrop-blur">
@@ -180,7 +182,7 @@ const TouristProfile = () => {
                 {userProfile?.number ? (
                   userProfile?.number
                 ) : (
-                  <span className="text-sm text-red-500">Not Set</span>
+                  <span className="text-sm text-red-500">Not Set yet</span>
                 )}
               </span>
             </p>
@@ -218,9 +220,7 @@ const TouristProfile = () => {
           <button
             onClick={handleJoinGuide}
             disabled={isPending}
-            className={`btn border-none shadow-none ${
-              isPending ? "bg-gray-500 cursor-not-allowed" : "btn-primary"
-            }`}
+            className={`btn btn-primary border-none shadow-none`}
           >
             {isPending ? "Pending Application" : "Join As Tour Guide"}
           </button>
@@ -228,7 +228,7 @@ const TouristProfile = () => {
       </div>
 
       {/* Optional Stats Placeholder Section */}
-      <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto text-white">
+      <div className="grid md:grid-cols-3 gap-6 text-white md:px-10 px-3">
         {/* Card 1: Total Stories */}
         <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
           <div className="flex items-center gap-3 text-primary text-lg font-semibold">
@@ -258,6 +258,10 @@ const TouristProfile = () => {
             {stats?.totalPayments || 0}
           </p>
         </div>
+      </div>
+
+      <div>
+        <PaymentHistory></PaymentHistory>
       </div>
 
       {/* Modal */}

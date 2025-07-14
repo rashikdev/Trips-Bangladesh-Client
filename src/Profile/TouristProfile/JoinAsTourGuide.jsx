@@ -43,12 +43,13 @@ const JoinAsTourGuide = () => {
         }
       });
     }
-    data.applicantName = user?.displayName;
-    data.applicantEmail = user?.email;
+
     data.status = "pending";
 
+    const applicationInfo = { ...userProfile, ...data };
+
     axiosSecure
-      .post("/applications", data)
+      .post("/applications", applicationInfo)
       .then((res) => {
         if (res.data.insertedId) {
           console.log(res.data);

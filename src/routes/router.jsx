@@ -21,6 +21,10 @@ import Community from "../pages/Community/Community";
 import AddPackage from "../Profile/AdminProfile/AddPackage";
 import ManageUsers from "../Profile/AdminProfile/ManageUsers";
 import ManageCandidates from "../Profile/AdminProfile/ManageCandidates";
+import AdminPrivateRoute from "./privateRoute/AdminPrivateRoute";
+import AccessDenied from "./privateRoute/AccessDenied";
+import AccessDenied2 from "./privateRoute/AccesDenied2";
+import GuidePrivateRoute from "./privateRoute/GuidePriveteRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +62,14 @@ export const router = createBrowserRouter([
         path: "community/stories",
         Component: Community,
       },
+      {
+        path: "/accessDenied/adminPrivateRoute",
+        Component: AccessDenied,
+      },
+      {
+        path: "/accessDenied/guidePrivateRoute",
+        Component: AccessDenied2,
+      },
     ],
   },
   {
@@ -84,7 +96,9 @@ export const router = createBrowserRouter([
         path: "myAssignedTours",
         element: (
           <PrivateRoute>
-            <MyAssignedTours></MyAssignedTours>
+            <GuidePrivateRoute>
+              <MyAssignedTours></MyAssignedTours>
+            </GuidePrivateRoute>
           </PrivateRoute>
         ),
       },
@@ -132,7 +146,9 @@ export const router = createBrowserRouter([
         path: "addPackage",
         element: (
           <PrivateRoute>
-            <AddPackage></AddPackage>
+            <AdminPrivateRoute>
+              <AddPackage></AddPackage>
+            </AdminPrivateRoute>
           </PrivateRoute>
         ),
       },
@@ -140,7 +156,9 @@ export const router = createBrowserRouter([
         path: "manageUsers",
         element: (
           <PrivateRoute>
-            <ManageUsers></ManageUsers>
+            <AdminPrivateRoute>
+              <ManageUsers></ManageUsers>
+            </AdminPrivateRoute>
           </PrivateRoute>
         ),
       },
@@ -148,7 +166,9 @@ export const router = createBrowserRouter([
         path: "manageCandidates",
         element: (
           <PrivateRoute>
-            <ManageCandidates></ManageCandidates>
+            <AdminPrivateRoute>
+              <ManageCandidates></ManageCandidates>
+            </AdminPrivateRoute>
           </PrivateRoute>
         ),
       },

@@ -9,13 +9,13 @@ import AdminProfile from "../../Profile/AdminProfile/AdminProfile";
 const DashboardHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  
+
   const { role, loading } = useRole(user?.email);
 
   return (
     <div>
       <div>{!loading && role === "tourist" && <TouristProfile />}</div>
-      
+
       <div>{!loading && role === "guide" && <GuideProfile />}</div>
 
       <div>{!loading && role === "admin" && <AdminProfile />}</div>

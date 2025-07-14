@@ -24,19 +24,24 @@ const ManageCandidates = () => {
   const handleDetails = (app) => {
     setDetails(app);
     setModal(true);
+    console.log(app);
   };
   const handleAccept = async (app) => {
+    // console.log(app)
     try {
-      const res = await axiosSecure.patch(`/applications/${app._id}`, {
-        email: app.applicantEmail,
-      });
+      const res = await axiosSecure.patch(`/applications/${app._id}`, app);
 
-      const { updateResult, deleteResult } = res.data;
+      const { updateResult, deleteResult, guideResult } = res.data;
+      console.log(updateResult, deleteResult, guideResult);
 
-      if (updateResult.modifiedCount > 0 && deleteResult.deletedCount > 0) {
+      if (
+        updateResult.modifiedCount > 0 &&
+        deleteResult.deletedCount > 0 &&
+        guideResult.insertedId
+      ) {
         Swal.fire({
           icon: "success",
-          title: `${app.applicantName} is now a Tour Guide!`,
+          title: `${app.name} is now a Tour Guide!`,
           timer: 2000,
           toast: true,
           showConfirmButton: false,
@@ -58,51 +63,36 @@ const ManageCandidates = () => {
   };
 
   const handleReject = async (app) => {
-    try {
-      const confirm = await Swal.fire({
-        title: "Are you sure?",
-        text: "This action will permanently remove the application.",
-        icon: "warning",
-        width: 450,
-        backdrop: `
-    rgba(0,0,0,0.8)
-    left top
-    no-repeat
-  `,
-        showCancelButton: true,
-        confirmButtonColor: "#dc2626",
-        cancelButtonColor: "#64748b",
-        confirmButtonText: "Yes, Reject",
-        cancelButtonText: "Cancel",
-        customClass: {
-          popup: "rounded-xl",
-          confirmButton: "px-5 py-2 text-sm",
-          cancelButton: "px-5 py-2 text-sm",
-        },
-      });
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to reject ${app.name}'s application.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, reject it!",
+      cancelButtonText: "Cancel",
+    });
 
-      if (confirm.isConfirmed) {
-        // delete application from database
-        await axiosSecure.delete(`/applications/${app._id}`).then((res) => {
-          if (res.data.deletedCount) {
-            Swal.fire({
-              icon: "success",
-              title: "Application rejected!",
-              timer: 1500,
-              toast: true,
-              showConfirmButton: false,
-              timerProgressBar: true,
-            });
-            refetch();
-          }
-        });
+    if (result.isConfirmed) {
+      try {
+        const res = await axiosSecure.delete(
+          `/applications/delete?email=${app.email}`
+        );
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: `${app?.name} has been rejected!`,
+            timer: 2000,
+            toast: true,
+            showConfirmButton: false,
+          });
+          refetch();
+        }
+      } catch (error) {
+        console.error(error);
+        Swal.fire("Error", "Something went wrong while rejecting.", "error");
       }
-    } catch (error) {
-      console.error("Reject failed:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Failed to reject!",
-      });
     }
   };
 
@@ -131,8 +121,8 @@ const ManageCandidates = () => {
                   className="border-t border-white/20 hover:bg-white/5 transition"
                 >
                   <td className="px-4 py-3">{index + 1}</td>
-                  <td className="px-4 py-3">{app?.applicantName}</td>
-                  <td className="px-4 py-3">{app.applicantEmail}</td>
+                  <td className="px-4 py-3">{app?.name}</td>
+                  <td className="px-4 py-3">{app.email}</td>
                   <td className="px-4 py-3 capitalize">tourist</td>
                   <td className="px-4 py-3 text-center space-x-3 font-semibold">
                     <button
@@ -193,11 +183,15 @@ const ManageCandidates = () => {
               </div>
               <div>
                 <span className="font-semibold text-gray-700">Name:</span>{" "}
-                <span className="text-gray-800">{details?.applicantName}</span>
+                <span className="text-gray-800">{details?.name}</span>
               </div>
               <div>
                 <span className="font-semibold text-gray-700">Email:</span>{" "}
-                <span className="text-gray-800">{details?.applicantEmail}</span>
+                <span className="text-gray-800">{details?.email}</span>
+              </div>
+              <div>
+                <span className="font-semibold text-gray-700">Phone:</span>{" "}
+                <span className="text-gray-800">{details?.number}</span>
               </div>
               <div>
                 <span className="font-semibold text-gray-700">Reason:</span>

@@ -36,7 +36,7 @@ const TourismGuide = () => {
       return res.data;
     },
   });
-  console.log(randomGuides);
+  console.log(randomGuides)
 
   return (
     <section className="max-w-7xl mx-auto py-10 text-white min-h-[64vh]">

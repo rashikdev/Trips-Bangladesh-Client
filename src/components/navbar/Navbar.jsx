@@ -2,10 +2,23 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../Shared/Logo";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      localStorage.removeItem("access-token");
+      toast.success("Logout successful.");
+      setDropdownOpen(false);
+    } catch (err) {
+      console.error("Logout failed:", err);
+      toast.error("Failed to logout. Try again.");
+    }
+  };
 
   const menuItems = (
     <>
@@ -62,7 +75,7 @@ const Navbar = () => {
                     Offer Announcements
                   </Link>
                   <button
-                    onClick={logoutUser}
+                    onClick={handleLogout}
                     className="block w-full text-left text-red-500 hover:underline mt-2"
                   >
                     Logout

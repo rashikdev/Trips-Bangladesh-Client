@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, use, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 
 const provider = new GoogleAuthProvider();
 
@@ -48,9 +49,23 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/jwt", { email: currentUser.email })
+          .then((res) => {
+            localStorage.setItem("access-token", res.data.token);
+          })
+          .catch((err) => {
+            console.error("Failed to get JWT:", err);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
     });
+
     return () => unsubscribe();
-  });
+  }, []);
 
   const updateUser = (updateData) => {
     setLoading(true);

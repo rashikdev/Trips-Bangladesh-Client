@@ -13,10 +13,10 @@ const OverviewSection = () => {
           <div className="h-1 w-24 bg-primary rounded-full mb-6 mx-auto md:mx-0"></div>
           <p className="text-lg md:text-xl text-white/80 leading-relaxed">
             <span className="block mb-4">
-              <strong className="text-primary">Trips</strong> is your
-              ultimate companion for discovering the breathtaking beauty of
-              Bangladesh. Whether it's your first trip or your next great
-              adventure, we’ve got everything you need.
+              <strong className="text-primary">Trips</strong> is your ultimate
+              companion for discovering the breathtaking beauty of Bangladesh.
+              Whether it's your first trip or your next great adventure, we’ve
+              got everything you need.
             </span>
             <span className="block">
               Explore iconic landmarks, hidden gems, local food, cultural
@@ -33,10 +33,10 @@ const OverviewSection = () => {
             height="315"
             src="https://www.youtube.com/embed/fN21oOdni_c?si=EwRJuWLN_SQhSAOI"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
           ></iframe>
         </div>
       </div>

@@ -21,6 +21,18 @@ const SideBar = () => {
   const { user, logoutUser } = useAuth();
   const { role } = useRole(user?.email);
 
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      localStorage.removeItem("access-token");
+      toast.success("Logout successful.");
+      setDropdownOpen(false);
+    } catch (err) {
+      console.error("Logout failed:", err);
+      toast.error("Failed to logout. Try again.");
+    }
+  };
+
   const navLinkClass =
     "flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-white/10 transition text-white";
 
@@ -111,7 +123,7 @@ const SideBar = () => {
             )}
           </ul>
           <div className="absolute bottom-4 w-full px-2 left-2">
-            <button onClick={logoutUser} className="btn btn-primary w-full">
+            <button onClick={handleLogout} className="btn btn-primary w-full">
               Logout
             </button>
           </div>

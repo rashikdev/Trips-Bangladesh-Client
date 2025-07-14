@@ -92,7 +92,8 @@ const MyBooking = () => {
                   <td className="p-4 text-center">
                     <span
                       className={`px-2 py-1 rounded text-sm font-semibold ${
-                        booking.status === "pending"
+                        booking.status === "pending" ||
+                        booking.status === "rejected"
                           ? "bg-red-400/10 text-red-400"
                           : booking.status === "In Review"
                           ? "bg-yellow-300/10 text-yellow-200"

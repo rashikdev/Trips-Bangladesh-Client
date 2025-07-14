@@ -7,6 +7,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import AdminStatsCards from "./AdminStatsCards";
 
 const TouristProfile = () => {
   const { user, updateUser } = useAuth();
@@ -43,6 +44,7 @@ const TouristProfile = () => {
       return res.data;
     },
   });
+
   const handleUpdate = (e) => {
     e.preventDefault();
     setSaving(true);
@@ -115,17 +117,16 @@ const TouristProfile = () => {
   console.log(application);
 
   const { data: stats = {}, isLoading: statsLoading } = useQuery({
-    queryKey: ["userStats", user?.email],
+    queryKey: ["adminStats"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/userStats?email=${user?.email}`);
+      const res = await axiosSecure.get("/adminStats");
       return res.data;
     },
   });
 
-
-  // if (isLoading) {
-  //   return <h1>Loading...</h1>;
-  // }
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-10">
@@ -208,49 +209,7 @@ const TouristProfile = () => {
       </div>
 
       {/* Admin State Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-10">
-        <div className="bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur shadow-md hover:scale-[1.02] transition">
-          <h4 className="text-lg font-semibold text-orange-400 mb-2">
-            Total Payment
-          </h4>
-          <p className="text-2xl font-bold">৳ 1,25,000</p>
-          <p className="text-white/60 text-sm mt-1">All-time user payments</p>
-        </div>
-
-        <div className="bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur shadow-md hover:scale-[1.02] transition">
-          <h4 className="text-lg font-semibold text-orange-400 mb-2">
-            Total Tour Guides
-          </h4>
-          <p className="text-2xl font-bold">34</p>
-          <p className="text-white/60 text-sm mt-1">
-            Verified and active guides
-          </p>
-        </div>
-
-        <div className="bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur shadow-md hover:scale-[1.02] transition">
-          <h4 className="text-lg font-semibold text-orange-400 mb-2">
-            Total Packages
-          </h4>
-          <p className="text-2xl font-bold">58</p>
-          <p className="text-white/60 text-sm mt-1">Available for booking</p>
-        </div>
-
-        <div className="bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur shadow-md hover:scale-[1.02] transition">
-          <h4 className="text-lg font-semibold text-orange-400 mb-2">
-            Total Clients
-          </h4>
-          <p className="text-2xl font-bold">120</p>
-          <p className="text-white/60 text-sm mt-1">Registered tourists</p>
-        </div>
-
-        <div className="bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur shadow-md hover:scale-[1.02] transition">
-          <h4 className="text-lg font-semibold text-orange-400 mb-2">
-            Total Stories
-          </h4>
-          <p className="text-2xl font-bold">76</p>
-          <p className="text-white/60 text-sm mt-1">Shared by users</p>
-        </div>
-      </div>
+      <AdminStatsCards stats={stats}></AdminStatsCards>
 
       {/* Modal */}
       {editModal && (

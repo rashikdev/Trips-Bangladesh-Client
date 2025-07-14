@@ -23,15 +23,29 @@ const MyAssignedTours = () => {
 
   const handleAccept = async (id) => {
     alert("Accepted");
-    // try {
-    //   const res = await axiosSecure.patch(`/bookings/${id}/accept`);
-    //   if (res.data.modifiedCount > 0) {
-    //     toast.success("Tour accepted successfully");
-    //     refetch();
-    //   }
-    // } catch (err) {
-    //   toast.error("Failed to accept tour");
-    // }
+    try {
+      const res = await axiosSecure.patch(`/bookings/${id}`, {
+        status: "accepted",
+      });
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          icon: "success",
+          title: "Tour accepted",
+          timer: 2000,
+          toast: true,
+          showConfirmButton: false,
+        });
+        refetch();
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Failed to accept tour",
+        timer: 2000,
+        toast: true,
+        showConfirmButton: false,
+      });
+    }
   };
 
   const handleReject = async (id) => {
@@ -47,13 +61,28 @@ const MyAssignedTours = () => {
 
     if (result.isConfirmed) {
       try {
-        const res = await axiosSecure.patch(`/bookings/${id}/reject`);
+        const res = await axiosSecure.patch(`/bookings/${id}`, {
+          status: "rejected",
+        });
         if (res.data.modifiedCount > 0) {
-          toast.success("Tour rejected");
+          Swal.fire({
+            icon: "success",
+            title: "Tour rejected",
+            timer: 2000,
+            toast: true,
+            showConfirmButton: false,
+          });
           refetch();
         }
       } catch (err) {
-        toast.error("Failed to reject tour");
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Failed to reject tour",
+          timer: 2000,
+          toast: true,
+          showConfirmButton: false,
+        });
       }
     }
   };
@@ -89,25 +118,31 @@ const MyAssignedTours = () => {
                 <td className="px-4 py-2">${tour.price}</td>
                 <td
                   className={`px-4 py-2 capitalize ${
-                    tour.status === "In Review"
-                      ? "text-green-500"
-                      : "text-red-500"
+                    tour.status === "In Review" && "text-yellow-500"
+                  } ${tour.status === "accepted" && "text-green-500"} ${
+                    (tour.status === "pending" || tour.status === "rejected") &&
+                    "text-red-500"
                   }`}
                 >
                   {tour.status}
                 </td>
                 <td className="px-4 py-2 space-x-2">
-                  <button
-                    onClick={() => handleAccept(tour._id)}
-                    disabled={tour.status !== "In Review"}
-                    className={`px-3 py-1 rounded ${
-                      tour.status === "In Review"
-                        ? "bg-green-500 hover:bg-green-600 text-white"
-                        : "bg-gray-400 cursor-not-allowed"
-                    }`}
-                  >
-                    Accept
-                  </button>
+                  {tour.status === "In Review" && (
+                    <button
+                      onClick={() => handleAccept(tour._id)}
+                      className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
+                    >
+                      Accept
+                    </button>
+                  )}
+                  {tour.status === "pending" && (
+                    <button
+                      disabled={true}
+                      className="px-3 py-1 bg-gray-500 cursor-not-allowed text-white rounded"
+                    >
+                      Accept
+                    </button>
+                  )}
                   {tour.status === "In Review" && (
                     <button
                       onClick={() => handleReject(tour._id)}
@@ -115,6 +150,12 @@ const MyAssignedTours = () => {
                     >
                       Reject
                     </button>
+                  )}
+                  {(tour.status === "accepted" ||
+                    tour.status === "rejected") && (
+                    <span className="text-gray-300 text-center">
+                      No Actions
+                    </span>
                   )}
                 </td>
               </tr>

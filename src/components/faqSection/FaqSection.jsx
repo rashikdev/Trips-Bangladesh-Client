@@ -1,67 +1,84 @@
 import React from "react";
-
+import question from "../../assets/Question.gif";
 const FaqSection = () => {
   return (
-    <section className="py-16 px-4 md:px-12 bg-gradient-to-b from-[#1b263b] to-[#0d1b2a] text-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+    <section className="py-20 px-4 md:px-12">
+      <div className="max-w-7xl mx-auto py-4">
+        <h2 className="text-4xl font-bold text-orange-600 text-center mb-10">
           Frequently Asked Questions
         </h2>
-
-        <div className="space-y-4">
-          <div className="collapse collapse-arrow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl">
-            <input type="checkbox" />
-            <div className="collapse-title text-lg font-medium">
-              What is Trips?
-            </div>
-            <div className="collapse-content text-white/80">
-              <p>
-                Trips is your companion for exploring Bangladesh —
-                find tourist attractions, book packages, and connect with tour
-                guides all in one place.
-              </p>
-            </div>
+        <div className="flex flex-col md:flex-row gap-12 items-center">
+          <div className="hidden md:block">
+            <img
+              src={question}
+              alt="FAQ Illustration"
+              className="w-full h-full rounded-xl shadow-lg"
+            />
           </div>
 
-          <div className="collapse collapse-arrow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl">
-            <input type="checkbox" />
-            <div className="collapse-title text-lg font-medium">
-              How do I book a tour package?
-            </div>
-            <div className="collapse-content text-white/80">
-              <p>
-                Simply browse our packages, click "View Details", and book from
-                there after logging in to your account.
-              </p>
-            </div>
-          </div>
+          {/* Right FAQ content */}
+          <div className="">
+            <div className="space-y-4">
+              {/* Q1 */}
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-white rounded-xl">
+                <input type="checkbox" />
+                <div className="collapse-title text-lg font-semibold text-white">
+                  What is Trips?
+                </div>
+                <div className="collapse-content text-gray-400">
+                  <p>
+                    Trips is your companion for exploring Bangladesh — find
+                    tourist attractions, book packages, and connect with tour
+                    guides all in one place.
+                  </p>
+                </div>
+              </div>
 
-          <div className="collapse collapse-arrow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl">
-            <input type="checkbox" />
-            <div className="collapse-title text-lg font-medium">
-              Can I cancel a booking?
-            </div>
-            <div className="collapse-content text-white/80">
-              <p>
-                You can cancel a booking if its status is still "Pending". Paid
-                bookings are subject to our cancellation policy.
-              </p>
-            </div>
-          </div>
+              {/* Q2 */}
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-white rounded-xl">
+                <input type="checkbox" />
+                <div className="collapse-title text-lg font-semibold text-white">
+                  How do I book a tour package?
+                </div>
+                <div className="collapse-content text-gray-400">
+                  <p>
+                    Simply browse our packages, click "View Details", and book
+                    from there after logging in to your account.
+                  </p>
+                </div>
+              </div>
 
-          <div className="collapse collapse-arrow bg-white/10 backdrop-blur-md border border-white/20 rounded-xl">
-            <input type="checkbox" />
-            <div className="collapse-title text-lg font-medium">
-              How do I become a tour guide?
-            </div>
-            <div className="collapse-content text-white/80">
-              <p>
-                Go to your profile and click on “Apply for Tour Guide”. Fill out
-                the application form and wait for admin approval.
-              </p>
+              {/* Q3 */}
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-white rounded-xl">
+                <input type="checkbox" />
+                <div className="collapse-title text-lg font-semibold text-white">
+                  Can I cancel a booking?
+                </div>
+                <div className="collapse-content text-gray-400">
+                  <p>
+                    You can cancel a booking if its status is still "Pending".
+                    Paid bookings are subject to our cancellation policy.
+                  </p>
+                </div>
+              </div>
+
+              {/* Q4 */}
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-white rounded-xl">
+                <input type="checkbox" />
+                <div className="collapse-title text-lg font-semibold text-white">
+                  How do I become a tour guide?
+                </div>
+                <div className="collapse-content text-gray-400">
+                  <p>
+                    Go to your profile and click on “Apply for Tour Guide”. Fill
+                    out the application form and wait for admin approval.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        {/* Left Image */}
       </div>
     </section>
   );

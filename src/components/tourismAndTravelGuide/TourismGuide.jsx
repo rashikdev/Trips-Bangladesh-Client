@@ -22,7 +22,6 @@ const TourismGuide = () => {
       return res.data;
     },
   });
-  console.log(randomPackages);
 
   // random guides
   const {
@@ -36,7 +35,6 @@ const TourismGuide = () => {
       return res.data;
     },
   });
-  console.log(randomGuides)
 
   return (
     <section className="max-w-7xl mx-auto py-10 text-white min-h-[64vh]">
@@ -72,10 +70,10 @@ const TourismGuide = () => {
               >
                 <div className="p-5 flex flex-col justify-between h-full">
                   <div className="space-y-4 text-white">
-                    <h3 className="w-fit bg-[#8f8f8f66] px-2 font-semibold">
+                    <h3 className="w-fit px-2 font-semibold">
                       {pkg.title}
                     </h3>
-                    <p className="text-xl bg-[#8f8f8f66] px-3 w-fit">
+                    <p className="text-xl px-3 font-bold w-fit">
                       {pkg.price} BDT
                     </p>
                   </div>

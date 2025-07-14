@@ -110,7 +110,7 @@ const SideBar = () => {
               </>
             )}
           </ul>
-          <div className="absolute bottom-4 w-full px-2">
+          <div className="absolute bottom-4 w-full px-2 left-2">
             <button onClick={logoutUser} className="btn btn-primary w-full">
               Logout
             </button>

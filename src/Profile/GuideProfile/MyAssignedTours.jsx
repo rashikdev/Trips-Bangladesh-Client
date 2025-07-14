@@ -22,15 +22,16 @@ const MyAssignedTours = () => {
   });
 
   const handleAccept = async (id) => {
-    try {
-      const res = await axiosSecure.patch(`/bookings/${id}/accept`);
-      if (res.data.modifiedCount > 0) {
-        toast.success("Tour accepted successfully");
-        refetch();
-      }
-    } catch (err) {
-      toast.error("Failed to accept tour");
-    }
+    alert("Accepted");
+    // try {
+    //   const res = await axiosSecure.patch(`/bookings/${id}/accept`);
+    //   if (res.data.modifiedCount > 0) {
+    //     toast.success("Tour accepted successfully");
+    //     refetch();
+    //   }
+    // } catch (err) {
+    //   toast.error("Failed to accept tour");
+    // }
   };
 
   const handleReject = async (id) => {
@@ -61,7 +62,7 @@ const MyAssignedTours = () => {
     return <p className="text-center mt-10 text-white">Loading...</p>;
 
   return (
-    <section className="min-h-screen py-10 px-6 bg-slate-900 text-white">
+    <section className="min-h-screen py-10 px-6 text-white">
       <h2 className="text-3xl font-semibold mb-6 text-center">
         My Assigned Tours
       </h2>
@@ -82,22 +83,32 @@ const MyAssignedTours = () => {
               <tr key={tour._id} className="border-t border-white/10">
                 <td className="px-4 py-2">{tour.packageName}</td>
                 <td className="px-4 py-2">{tour.touristName}</td>
-                <td className="px-4 py-2">{tour.tourDate}</td>
+                <td className="px-4 py-2">
+                  {new Date(tour.tourDate).toDateString()}
+                </td>
                 <td className="px-4 py-2">${tour.price}</td>
-                <td className="px-4 py-2 capitalize">{tour.status}</td>
+                <td
+                  className={`px-4 py-2 capitalize ${
+                    tour.status === "In Review"
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  {tour.status}
+                </td>
                 <td className="px-4 py-2 space-x-2">
                   <button
                     onClick={() => handleAccept(tour._id)}
-                    disabled={tour.status !== "in-review"}
+                    disabled={tour.status !== "In Review"}
                     className={`px-3 py-1 rounded ${
-                      tour.status === "in-review"
+                      tour.status === "In Review"
                         ? "bg-green-500 hover:bg-green-600 text-white"
                         : "bg-gray-400 cursor-not-allowed"
                     }`}
                   >
                     Accept
                   </button>
-                  {tour.status === "in-review" && (
+                  {tour.status === "In Review" && (
                     <button
                       onClick={() => handleReject(tour._id)}
                       className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"

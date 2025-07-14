@@ -111,7 +111,9 @@ const GuideProfile = () => {
     <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
       {/* User Profile info */}
       <div className="text-white md:w-11/12 mx-auto md:px-10 px-3 relative">
-        <h3 className="text-2xl font-bold mb-6">Welcome To Your Profile</h3>
+        <h3 className="text-2xl font-bold mb-6 text-center text-primary">
+          Welcome To Your Profile
+        </h3>
 
         <div className="flex flex-col md:flex-row gap-5 items-center bg-white/5 border border-white/10 py-12 rounded-xl shadow-md backdrop-blur">
           {/* Guide Image */}

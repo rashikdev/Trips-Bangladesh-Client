@@ -1,69 +1,95 @@
 import React from "react";
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUsSection = () => {
   return (
-    <section className="py-16 px-4 md:px-10 bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] text-white">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+    <section className="py-20 px-4 md:px-10 bg-gradient-to-br from-[#0d1b2a] to-[#1b263b] text-white">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
           Contact Us
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-10 ">
+        <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-5">
-            <h2 className="text-2xl font-semibold">Still have questions?</h2>
+          <div className="space-y-6">
+            <h3 className="text-2xl font-semibold text-primary">
+              Still have questions?
+            </h3>
             <p className="text-white/80">
-              need help with your booking, or just want to say
-              hi? We’re always happy to hear from you!
+              Need help with your booking, or just want to say hi? We’re always
+              happy to hear from you!
             </p>
-            <div>
-              <h4 className="font-semibold mb-1">Email</h4>
-              <p className="text-white/70">support@bdtravelguide.com</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-1">Phone</h4>
-              <p className="text-white/70">+880 1234 567 890</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-1">Address</h4>
-              <p className="text-white/70">
-                123 Travel Street, Dhaka, Bangladesh
-              </p>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <FaEnvelope className="text-primary" />
+                <div>
+                  <h4 className="font-semibold text-white">Email</h4>
+                  <p className="text-white/70">support@bdtravelguide.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <FaPhoneAlt className="text-primary" />
+                <div>
+                  <h4 className="font-semibold text-white">Phone</h4>
+                  <p className="text-white/70">+880 1234 567 890</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <FaMapMarkerAlt className="text-primary" />
+                <div>
+                  <h4 className="font-semibold text-white">Address</h4>
+                  <p className="text-white/70">
+                    123 Travel Street, Dhaka, Bangladesh
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <form className="bg-white/10 p-6 rounded-xl backdrop-blur-md border border-white/20 shadow-lg space-y-4">
+          <form
+            className="bg-white/10 p-6 rounded-xl backdrop-blur-md border border-white/20 shadow-lg space-y-5"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Message sent!");
+            }}
+          >
             <div>
-              <label className="block text-sm mb-1">Name</label>
+              <label className="block text-sm mb-1 font-medium">Name</label>
               <input
                 type="text"
-                className="w-full px-4 py-2 rounded bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="w-full px-4 py-2 rounded bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-orange-400"
                 placeholder="Your Name"
                 required
               />
             </div>
+
             <div>
-              <label className="block text-sm mb-1">Email</label>
+              <label className="block text-sm mb-1 font-medium">Email</label>
               <input
                 type="email"
-                className="w-full px-4 py-2 rounded bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="w-full px-4 py-2 rounded bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-orange-400"
                 placeholder="you@example.com"
                 required
               />
             </div>
+
             <div>
-              <label className="block text-sm mb-1">Message</label>
+              <label className="block text-sm mb-1 font-medium">Message</label>
               <textarea
                 rows="4"
-                className="w-full px-4 py-2 rounded bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="w-full px-4 py-2 rounded bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-orange-400"
                 placeholder="Write your message here..."
                 required
               ></textarea>
             </div>
+
             <button
               type="submit"
-              className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition"
+              className="w-full bg-primary hover:bg-orange-500 text-white font-semibold py-2 rounded-md transition duration-200 shadow-md shadow-orange-300/30"
             >
               Send Message
             </button>

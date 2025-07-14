@@ -157,8 +157,8 @@ const JoinAsTourGuide = () => {
           </div>
         </div>
       ) : (
-        <div className="min-h-screen flex items-center justify-center px-4">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 shadow-lg text-center animate-fadeIn">
+        <div className="min-h-screen mt-24 w-fit mx-auto px-4">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 shadow-lg text-center">
             <h2 className="text-2xl md:text-3xl font-semibold text-orange-400 mb-2">
               Application Already Submitted
             </h2>

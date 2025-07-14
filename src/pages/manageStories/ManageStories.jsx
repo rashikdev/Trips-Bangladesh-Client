@@ -96,10 +96,10 @@ const ManageStories = () => {
     );
 
   return (
-    <section className="p-6 bg-slate-900 min-h-screen text-white mt-10">
+    <section className="p-6 min-h-screen text-white mt-10">
       {stories.length === 0 ? (
         <div className="bg-white/10 p-8 rounded-lg text-center shadow-md border border-white/20 max-w-md flex flex-col items-center mx-auto mt-10">
-          <h2 className="text-2xl font-semibold mb-3">No Stories Yet</h2>
+          <h2 className="text-2xl text-primary font-semibold mb-3">No Stories Yet</h2>
           <p className="text-gray-300 mb-2">
             You haven't added any stories yet.
           </p>

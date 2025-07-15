@@ -14,9 +14,9 @@ const projects = [
       "User dashboard & profile management: Each user has a personalized dashboard to manage their tasks, view progress, and modify profile settings.",
       "JWT-based authentication & authorization: Ensure secure access to the platform with industry-standard JSON Web Tokens for user authentication and authorization.",
     ],
-    liveSite: "https://ecommerce-ten.vercel.app/",
-    gitHubClient: "https://github.com/rashikdev/HobbyHub",
-    gitHubServer: "https://github.com/rashikdev/hobbyhub-server",
+    liveSite: "https://study-bond-bd1de.web.app/",
+    gitHubClient: "https://github.com/rashikdev/StudyBond",
+    gitHubServer: "https://github.com/rashikdev/STUDY-BOND_Server",
   },
   {
     name: "HOBBY HUB",
@@ -29,9 +29,9 @@ const projects = [
       "Responsive dark & light mode UI: Enhance user experience with a fully responsive design that supports both dark and light modes for better visibility.",
       "Dynamic filtering & search functionality: Empower users with advanced search options and dynamic filters to find tours that suit their interests quickly.",
     ],
-    liveSite: "https://study-bond-bd1de.web.app/",
-    gitHubClient: "https://github.com/rashikdev/StudyBond",
-    gitHubServer: "https://github.com/rashikdev/STUDY-BOND_Server",
+    liveSite: "https://hobby-hub-a8201.web.app/",
+    gitHubClient: "https://github.com/rashikdev/HobbyHub?tab=readme-ov-file",
+    gitHubServer: "https://github.com/rashikdev/hobbyhub-server",
   },
 ];
 const AboutUs = () => {
@@ -70,7 +70,7 @@ const AboutUs = () => {
             {/* Social Links */}
             <div className="flex gap-4 text-xl mt-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/rashikdev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-teal-300 transition"

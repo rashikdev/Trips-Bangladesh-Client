@@ -8,6 +8,10 @@ const ManageCandidates = () => {
   const axiosSecure = useAxiosSecure();
   const [modal, setModal] = useState(false);
   const [details, setDetails] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalApplications, setTotalApplications] = useState(0);
+  const limit = 10;
+
   const {
     data: applications = [],
     refetch,
@@ -15,12 +19,15 @@ const ManageCandidates = () => {
   } = useQuery({
     queryKey: ["applications"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/applications");
-      return res.data;
+      const res = await axiosSecure.get(
+        `/applications?page=${currentPage}&limit=${limit}`
+      );
+      setTotalApplications(res.data.total);
+      return res.data.applications;
     },
   });
 
-  console.log(applications);
+  const totalPages = Math.ceil(totalApplications / limit);
 
   const handleDetails = (app) => {
     setDetails(app);
@@ -101,7 +108,9 @@ const ManageCandidates = () => {
 
   return (
     <section className="p-10 min-h-screen text-white">
-      <h2 className="text-2xl font-semibold mb-5">Manage Candidates</h2>
+      <h2 className="text-2xl font-semibold mb-5 text-primary">
+        Manage Candidates
+      </h2>
 
       <div className="overflow-x-auto bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
         <table className="min-w-full text-left">
@@ -158,6 +167,26 @@ const ManageCandidates = () => {
             )}
           </tbody>
         </table>
+      </div>
+      {/* Pagination */}
+      <div className="flex justify-center mt-5">
+        <div className="inline-flex -space-x-px rounded-md shadow-sm">
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+            (page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`relative inline-flex items-center px-4 py-2 text-sm font-medium ${
+                  currentPage === page
+                    ? "bg-blue-500 text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-50"
+                } border border-gray-300`}
+              >
+                {page}
+              </button>
+            )
+          )}
+        </div>
       </div>
       {modal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">

@@ -205,9 +205,9 @@ const SideBar = () => {
             )}
             <button
               onClick={handleLogout}
-              className="absolute bottom-4 left-8 bg-red-500 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer"
+              className="absolute bottom-4 left-8 py-1 bg-red-500 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
             >
-              logout
+              Logout
             </button>
           </ul>
         </div>

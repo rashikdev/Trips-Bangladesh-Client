@@ -148,7 +148,7 @@ const Register = () => {
               id="image"
               accept="image/*"
               {...register("image", { required: "Profile image is required" })}
-              className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-teal-500 file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
+              className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-secondary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
             />
             {errors.image && (
               <p className="text-sm text-red-400 mt-1">

@@ -94,7 +94,7 @@ const AddPackage = () => {
 
   return (
     <section className="max-w-4xl mx-auto py-10 px-4 md:px-0 text-white">
-      <h2 className="text-3xl font-bold mb-6 text-center">
+      <h2 className="text-3xl font-bold mb-6 text-center text-primary">
         Add New Tour Package
       </h2>
       <form

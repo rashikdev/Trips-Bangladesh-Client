@@ -150,7 +150,7 @@ const JoinAsTourGuide = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-teal-500 hover:bg-teal-600 transition text-white py-2 px-4 rounded-md cursor-pointer"
+                className="w-full bg-primary transition text-white py-2 px-4 rounded-md cursor-pointer"
               >
                 Submit Application
               </button>

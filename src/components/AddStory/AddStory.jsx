@@ -124,7 +124,7 @@ const AddStory = () => {
               onChange={(e) => {
                 handleUploadImage(e);
               }}
-              className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-teal-500 file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
+              className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-secondary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
             />
             {errors.images && (
               <p className="text-sm text-red-400">{errors.images.message}</p>
@@ -137,7 +137,7 @@ const AddStory = () => {
             className={`w-full py-2 rounded-md font-semibold transition cursor-pointer ${
               uploading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-white text-black hover:bg-gray-200"
+                : "bg-primary text-white"
             }`}
           >
             {uploading ? "Uploading Image..." : "Submit Story"}

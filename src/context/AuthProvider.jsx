@@ -72,6 +72,12 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
 
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
+
   const authInfo = {
     user,
     loading,
@@ -81,6 +87,7 @@ const AuthProvider = ({ children }) => {
     googleSignIn,
     updateUser,
     forgotPassword,
+    setLoading,
   };
   return (
     <authContext.Provider value={authInfo}>{children}</authContext.Provider>

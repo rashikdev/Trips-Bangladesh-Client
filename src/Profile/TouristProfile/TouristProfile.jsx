@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +11,7 @@ import PaymentHistory from "./PaymentHistory";
 import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const TouristProfile = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, loading, setLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [editModal, setEditModal] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -45,6 +45,7 @@ const TouristProfile = () => {
       return res.data;
     },
   });
+  console.log(userProfile);
   const handleUpdate = (e) => {
     e.preventDefault();
     setSaving(true);
@@ -73,6 +74,7 @@ const TouristProfile = () => {
 
     if (isUploading) {
       setSaving(false);
+      setLoading(false);
       return toast.error("Please wait, image is uploading...");
     }
 
@@ -89,6 +91,7 @@ const TouristProfile = () => {
             if (res.data.modifiedCount > 0) {
               refetch();
               setSaving(false);
+              setLoading(false);
               toast.success("Profile updated successfully");
               setEditModal(false);
             }
@@ -96,6 +99,7 @@ const TouristProfile = () => {
           .catch((err) => {
             setSaving(false);
             setEditModal(false);
+            setLoading(false);
             toast.error("something went wrong try again");
           });
       })
@@ -146,7 +150,7 @@ const TouristProfile = () => {
     navigate("/dashboard/guideApplication");
   };
 
-  if (isLoading) {
+  if (isLoading || statsLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
@@ -216,7 +220,7 @@ const TouristProfile = () => {
         <div className="absolute space-x-9 lg:space-x-4 lg:bottom-3 lg:right-14 bottom-4 right-8">
           <button
             onClick={() => setEditModal(true)}
-            className="md:px-4 md:py-2 px-2 py-1 bg-primary text-white rounded border-none shadow-none"
+            className="md:px-4 md:py-2 px-2 py-1 bg-primary text-white rounded border-none shadow-none cursor-pointer hover:bg-white hover:text-primary transition duration-300"
           >
             Edit Profile
           </button>
@@ -225,8 +229,8 @@ const TouristProfile = () => {
             disabled={isPending}
             className={`md:px-4 md:py-2 px-2 py-1 border-none shadow-none rounded ${
               isPending
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-primary text-black hover:bg-gray-400"
+                ? "bg-gray-600 text-white cursor-not-allowed"
+                : "bg-white text-black hover:bg-primary hover:text-white transition duration-300 cursor-pointer"
             }`}
           >
             {isPending ? "Pending Application" : "Join As Tour Guide"}

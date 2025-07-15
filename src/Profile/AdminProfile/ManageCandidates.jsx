@@ -17,7 +17,7 @@ const ManageCandidates = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["applications"],
+    queryKey: ["applications", currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/applications?page=${currentPage}&limit=${limit}`
@@ -25,6 +25,7 @@ const ManageCandidates = () => {
       setTotalApplications(res.data.total);
       return res.data.applications;
     },
+    keepPreviousData: true,
   });
 
   const totalPages = Math.ceil(totalApplications / limit);
@@ -170,24 +171,49 @@ const ManageCandidates = () => {
       </div>
       {/* Pagination */}
       <div className="flex justify-center mt-5">
-        <div className="inline-flex -space-x-px rounded-md shadow-sm">
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-            (page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`relative inline-flex items-center px-4 py-2 text-sm font-medium ${
-                  currentPage === page
-                    ? "bg-blue-500 text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-50"
-                } border border-gray-300`}
-              >
-                {page}
-              </button>
-            )
-          )}
+        <div className="flex justify-center mt-6 gap-5 flex-wrap">
+          {/* Prev Button */}
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-1 bg-gray-700 text-white rounded disabled:opacity-50"
+          >
+            Prev
+          </button>
+
+          {/* Page Numbers */}
+          <div className="flex gap-4 rounded-md shadow-sm">
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-4 py-1 text-sm font-medium rounded 
+            ${
+              currentPage === page
+                ? "bg-primary text-white"
+                : "bg-gray-300 text-black hover:bg-gray-400"
+            }`}
+                >
+                  {page}
+                </button>
+              )
+            )}
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="px-4 py-1 bg-gray-700 text-white rounded disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       </div>
+      
       {modal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
           <div className="relative bg-white text-gray-900 rounded-xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-8 shadow-xl">

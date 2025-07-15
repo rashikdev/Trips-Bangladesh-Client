@@ -1,18 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
+import Pagination from "../../components/Shared/Pagination";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPayments, setTotalPayments] = useState(0);
+  const limit = 10;
+
+  const totalPages = Math.ceil(totalPayments / limit);
 
   const { data: payments = [], isLoading } = useQuery({
-    queryKey: ["payments", user?.email],
+    queryKey: ["payments", user?.email, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/payments?email=${user?.email}`);
-      return res.data;
+      const res = await axiosSecure.get(`/payments?email=${user?.email}&page=${currentPage}&limit=${limit}`);
+      setTotalPayments(res.data.total);
+      return res.data.payments;
     },
   });
 
@@ -76,6 +83,7 @@ const PaymentHistory = () => {
           </tbody>
         </table>
       </div>
+      <Pagination totalPages={totalPages} currentPage={currentPage} onChange={setCurrentPage}></Pagination>
     </section>
   );
 };

@@ -1,26 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
+import { set } from "react-hook-form";
+import Pagination from "../../components/Shared/Pagination";
 
 const MyAssignedTours = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalApplications, setTotalApplications] = useState(0);
+  const limit = 10;
 
   const {
     data: assignedTours = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["assignedTours", user?.email],
+    queryKey: ["assignedTours", user?.email, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/assigned-tours?email=${user?.email}`);
-      return res.data;
+      const res = await axiosSecure.get(
+        `/assigned-tours?email=${user?.email}&page=${currentPage}&limit=${limit}`
+      );
+      setTotalApplications(res.data.total);
+      return res.data.assignedTours;
     },
   });
+
+  const totalPages = Math.ceil(totalApplications / limit);
 
   const handleAccept = async (id) => {
     alert("Accepted");
@@ -88,12 +99,11 @@ const MyAssignedTours = () => {
     }
   };
 
-  if (isLoading)
-    return <LoadingSpinner></LoadingSpinner>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <section className="min-h-screen py-10 px-6 text-white">
-      <h2 className="text-3xl font-semibold mb-6 text-center">
+      <h2 className="text-3xl font-semibold mb-6 text-center text-primary">
         My Assigned Tours
       </h2>
       <div className="overflow-x-auto bg-white/10 p-6 rounded-lg border border-white/20">
@@ -171,6 +181,12 @@ const MyAssignedTours = () => {
           </tbody>
         </table>
       </div>
+      {/* pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onChange={setCurrentPage}
+      ></Pagination>
     </section>
   );
 };

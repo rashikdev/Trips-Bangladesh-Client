@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import Logo from "../../components/Shared/Logo";
 import NavItem from "../../components/Shared/NavItem";
 import useAuth from "../../hooks/useAuth";
@@ -16,10 +16,12 @@ import {
   FaEdit,
   FaHome,
 } from "react-icons/fa";
+import toast from "react-hot-toast";
 const SideBar = () => {
   const { user, logoutUser } = useAuth();
   const { role, loading } = useRole(user?.email);
   console.log(role);
+  const navigate = useNavigate();
 
   const navLinkClass = "flex items-center gap-3 px-4 py-2";
 
@@ -28,7 +30,7 @@ const SideBar = () => {
       await logoutUser();
       localStorage.removeItem("access-token");
       toast.success("Logout successful.");
-      setDropdownOpen(false);
+      navigate("/login");
     } catch (err) {
       console.error("Logout failed:", err);
       toast.error("Failed to logout. Try again.");
@@ -205,7 +207,7 @@ const SideBar = () => {
             )}
             <button
               onClick={handleLogout}
-              className="absolute bottom-4 left-8 py-1 bg-red-500 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
+              className="absolute bottom-4 left-8 py-1 bg-red-700 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
             >
               Logout
             </button>

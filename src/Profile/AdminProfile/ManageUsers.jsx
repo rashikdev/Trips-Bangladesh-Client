@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Select from "react-select";
+import Pagination from "../../components/Shared/Pagination";
 
 const roleOptions = [
   { value: "", label: "All Roles" },
@@ -15,7 +16,7 @@ const ManageUsers = () => {
   const [selectedRole, setSelectedRole] = useState(roleOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
-  const limit = 5;
+  const limit = 10;
 
   const axiosSecure = useAxiosSecure();
 
@@ -24,7 +25,9 @@ const ManageUsers = () => {
       const roleQuery = role ? `role=${role}` : "";
       const searchQuery = searchText ? `search=${searchText}` : "";
       const pageQuery = `page=${page}&limit=${limit}`;
-      const queryStr = [roleQuery, searchQuery, pageQuery].filter(Boolean).join("&");
+      const queryStr = [roleQuery, searchQuery, pageQuery]
+        .filter(Boolean)
+        .join("&");
 
       const res = await axiosSecure.get(`/users?${queryStr}`);
       setUsers(res.data.users);
@@ -96,7 +99,9 @@ const ManageUsers = () => {
                   key={user._id}
                   className="border-t border-white/20 hover:bg-white/5 transition"
                 >
-                  <td className="px-4 py-3">{(currentPage - 1) * limit + index + 1}</td>
+                  <td className="px-4 py-3">
+                    {(currentPage - 1) * limit + index + 1}
+                  </td>
                   <td className="px-4 py-3">{user.name}</td>
                   <td className="px-4 py-3">{user.email}</td>
                   <td className="px-4 py-3 capitalize">{user.role}</td>
@@ -114,37 +119,11 @@ const ManageUsers = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-6 gap-5 flex-wrap">
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
-        >
-          Prev
-        </button>
-
-        {[...Array(totalPages).keys()].map((page) => (
-          <button
-            key={page}
-            onClick={() => setCurrentPage(page + 1)}
-            className={`px-4 py-2 rounded ${
-              currentPage === page + 1
-                ? "bg-primary text-white"
-                : "bg-gray-300 text-black"
-            }`}
-          >
-            {page + 1}
-          </button>
-        ))}
-
-        <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onChange={setCurrentPage}
+      ></Pagination>
     </div>
   );
 };

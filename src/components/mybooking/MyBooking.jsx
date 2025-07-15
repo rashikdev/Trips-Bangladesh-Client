@@ -5,20 +5,30 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../loadingPage/LoadingSpinner";
 import BookingCelebration from "../celebration/BookingCelebration";
+import { useState } from "react";
+import Pagination from "../Shared/Pagination";
 
 const MyBooking = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalBookings, setTotalBookings] = useState(0);
+  const limit = 10;
+
+  const totalPages = Math.ceil(totalBookings / limit);
 
   const {
     data: myBookings = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["bookings", user?.email],
+    queryKey: ["bookings", user?.email, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/bookings?email=${user?.email}`);
-      return res.data;
+      const res = await axiosSecure.get(
+        `/bookings?email=${user?.email}&page=${currentPage}&limit=${limit}`
+      );
+      setTotalBookings(res.data.total);
+      return res.data.bookings;
     },
   });
 
@@ -139,7 +149,17 @@ const MyBooking = () => {
           </table>
         </div>
       )}
-      <BookingCelebration bookings={myBookings}></BookingCelebration>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onChange={setCurrentPage}
+      ></Pagination>
+      <BookingCelebration
+        bookings={myBookings}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onChange={setCurrentPage}
+      ></BookingCelebration>
     </section>
   );
 };

@@ -202,7 +202,7 @@ const TouristProfile = () => {
         <div className="absolute space-x-4 bottom-3 right-14">
           <button
             onClick={() => setEditModal(true)}
-            className="btn btn-primary text-white border-none shadow-none hover:bg-gray-400"
+            className="btn btn-primary text-white border-none shadow-none hover:bg-white hover:text-primary"
           >
             Edit Profile
           </button>

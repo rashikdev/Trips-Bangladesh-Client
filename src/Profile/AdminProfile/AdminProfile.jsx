@@ -129,7 +129,7 @@ const TouristProfile = () => {
   }
 
   return (
-    <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-10">
+    <section className="py-10 px-4 min-h-screen text-white space-y-10">
       {/* User Profile info */}
       <div className="text-white md:px-10 px-3 relative">
         {/* Welcome Message */}
@@ -201,7 +201,7 @@ const TouristProfile = () => {
         <div className="absolute space-x-4 bottom-3 right-14">
           <button
             onClick={() => setEditModal(true)}
-            className="btn btn-primary bg-white text-black border-none shadow-none hover:bg-gray-400"
+            className="btn btn-primary text-white border-none shadow-none hover:bg-gray-400"
           >
             Edit Profile
           </button>

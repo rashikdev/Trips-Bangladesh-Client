@@ -150,12 +150,14 @@ const TouristProfile = () => {
   // }
 
   return (
-    <section className="py-10 px-4 min-h-screen text-white space-y-10">
+    <section className="py-10 md:px-4 min-h-screen text-white space-y-10">
       {/* User Profile info */}
       <div className="text-white md:px-10 px-3 relative">
-        <h3 className="text-2xl font-bold mb-6 text-center text-primary">Welcome To Your Profile</h3>
+        <h3 className="text-2xl font-bold mb-6 text-center text-primary">
+          Welcome To Your Profile
+        </h3>
 
-        <div className="flex flex-col md:flex-row gap-5 items-center bg-white/5 border border-white/10 py-12 rounded-xl shadow-md backdrop-blur">
+        <div className="flex flex-col md:flex-row gap-5 items-center bg-white/5 border border-white/10 py-18 rounded-xl shadow-md backdrop-blur">
           {/* Guide Image */}
           <div className="flex-1">
             <img
@@ -210,17 +212,17 @@ const TouristProfile = () => {
             </p>
           </div>
         </div>
-        <div className="absolute space-x-4 bottom-3 right-14">
+        <div className="absolute space-x-9 lg:space-x-4 lg:bottom-3 lg:right-14 bottom-4 right-8">
           <button
             onClick={() => setEditModal(true)}
-            className="btn btn-primary bg-white text-black border-none shadow-none hover:bg-gray-400"
+            className="md:px-4 md:py-2 px-2 py-1 bg-primary text-white rounded border-none shadow-none"
           >
             Edit Profile
           </button>
           <button
             onClick={handleJoinGuide}
             disabled={isPending}
-            className={`btn btn-primary border-none shadow-none`}
+            className={`md:px-4 md:py-2 px-2 py-1 border-none shadow-none rounded ${isPending ? "bg-gray-400 cursor-not-allowed" : "bg-primary text-black hover:bg-gray-400"}`}
           >
             {isPending ? "Pending Application" : "Join As Tour Guide"}
           </button>

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import Logo from "../Shared/Logo";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import MobileMenu from "./MobileMenu";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -87,7 +88,14 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden">menu</div>
+        <div className="flex md:hidden items-center gap-5">
+          <img
+            src={user?.photoURL}
+            alt=""
+            className="w-8 h-8 rounded-full object-cover border-2 border-primary"
+          />
+          <MobileMenu></MobileMenu>
+        </div>
       </div>
 
       {/* Optional: Add a mobile dropdown below if needed */}

@@ -160,10 +160,10 @@ const GuideProfile = () => {
             </p>
           </div>
         </div>
-        <div className="absolute space-x-4 top-30 right-16">
+        <div className="absolute space-x-4 md:top-30 md:right-16 top-18 right-6">
           <button
             onClick={() => setEditModal(true)}
-            className="btn btn-primary bg-white text-black border-none shadow-none hover:bg-gray-400"
+            className="text-sm px-2 py-1 bg-primary text-white border-none shadow-none hover:bg-gray-400 rounded font-semibold"
           >
             Edit Profile
           </button>

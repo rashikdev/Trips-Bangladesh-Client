@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm"; 
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import LoadingSpinner from "../components/loadingPage/LoadingSpinner";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -19,7 +20,7 @@ const Payment = () => {
     },
   });
 
-  if (isLoading) return <p>Loading booking...</p>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div className="p-4 max-w-xl mx-auto mt-30">

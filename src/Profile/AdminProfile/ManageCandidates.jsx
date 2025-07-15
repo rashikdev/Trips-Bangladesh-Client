@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const ManageCandidates = () => {
   const axiosSecure = useAxiosSecure();
@@ -96,7 +97,7 @@ const ManageCandidates = () => {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <section className="p-10 min-h-screen text-white">

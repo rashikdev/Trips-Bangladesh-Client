@@ -125,7 +125,7 @@ const Navbar = () => {
           {!user ? (
             <NavLink
               to="/login"
-              className="hover:text-primary transition-colors duration-200"
+              className="px-4 py-[3px] rounded-full text-white font-semibold shadow-md hover:bg-white hover:text-primary border-2 border-primary transition-all duration-300"
             >
               Login
             </NavLink>

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const MyAssignedTours = () => {
   const { user } = useAuth();
@@ -88,7 +89,7 @@ const MyAssignedTours = () => {
   };
 
   if (isLoading)
-    return <p className="text-center mt-10 text-white">Loading...</p>;
+    return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <section className="min-h-screen py-10 px-6 text-white">

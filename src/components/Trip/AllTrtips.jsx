@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../loadingPage/LoadingSpinner";
 
 const AllTrips = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,7 +20,7 @@ const AllTrips = () => {
   });
 
   if (isLoading)
-    return <div className="text-center text-white h-screen">Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   if (isError) return <div>Something went wrong</div>;
 
   return (

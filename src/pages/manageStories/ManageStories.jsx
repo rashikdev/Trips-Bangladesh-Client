@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ManageStoryCard from "./ManageStoryCard";
 import toast from "react-hot-toast";
 import { getCloudinaryImgUrl } from "../../utils/utils";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const ManageStories = () => {
   const { user } = useAuth();
@@ -88,18 +89,15 @@ const ManageStories = () => {
     },
   });
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
-      </div>
-    );
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <section className="p-6 min-h-screen text-white mt-10">
       {stories.length === 0 ? (
         <div className="bg-white/10 p-8 rounded-lg text-center shadow-md border border-white/20 max-w-md flex flex-col items-center mx-auto mt-10">
-          <h2 className="text-2xl text-primary font-semibold mb-3">No Stories Yet</h2>
+          <h2 className="text-2xl text-primary font-semibold mb-3">
+            No Stories Yet
+          </h2>
           <p className="text-gray-300 mb-2">
             You haven't added any stories yet.
           </p>

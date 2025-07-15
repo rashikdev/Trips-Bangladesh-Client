@@ -61,11 +61,11 @@ const Community = () => {
   return (
     <section className="min-h-screen py-26 px-6 md:px-12 text-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
+        <h2 className="text-4xl font-bold text-center my-5 text-primary">
           Community Stories
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 pt-4">
           {stories.map((story) => (
             <StoryCard key={story._id} story={story} />
           ))}

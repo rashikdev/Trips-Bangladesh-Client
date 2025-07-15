@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import StoryCard from "../../pages/Community/StoryCard";
+import LoadingSpinner from "../loadingPage/LoadingSpinner";
 
 const GuideDetailsPage = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const GuideDetailsPage = () => {
   const { name, email, image, experience, languages, phone, rating } = Guide;
 
   if (isLoading) {
-    return <div className="text-center h-screen">Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

@@ -25,6 +25,7 @@ import AdminPrivateRoute from "./privateRoute/AdminPrivateRoute";
 import AccessDenied from "./privateRoute/AccessDenied";
 import AccessDenied2 from "./privateRoute/AccesDenied2";
 import GuidePrivateRoute from "./privateRoute/GuidePriveteRoute";
+import NotFoundPage from "../components/ErrorPage/NotFoundPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -174,4 +175,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    Component: NotFoundPage,
+  }
 ]);

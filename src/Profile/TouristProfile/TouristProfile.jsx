@@ -8,6 +8,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import PaymentHistory from "./PaymentHistory";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const TouristProfile = () => {
   const { user, updateUser } = useAuth();
@@ -145,9 +146,9 @@ const TouristProfile = () => {
     navigate("/dashboard/guideApplication");
   };
 
-  // if (isLoading) {
-  //   return <h1>Loading...</h1>;
-  // }
+  if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
 
   return (
     <section className="py-10 md:px-4 min-h-screen text-white space-y-10">
@@ -222,7 +223,11 @@ const TouristProfile = () => {
           <button
             onClick={handleJoinGuide}
             disabled={isPending}
-            className={`md:px-4 md:py-2 px-2 py-1 border-none shadow-none rounded ${isPending ? "bg-gray-400 cursor-not-allowed" : "bg-primary text-black hover:bg-gray-400"}`}
+            className={`md:px-4 md:py-2 px-2 py-1 border-none shadow-none rounded ${
+              isPending
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-primary text-black hover:bg-gray-400"
+            }`}
           >
             {isPending ? "Pending Application" : "Join As Tour Guide"}
           </button>

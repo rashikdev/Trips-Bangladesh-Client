@@ -38,7 +38,7 @@ const AboutUs = () => {
   return (
     <section className="min-h-screen text-white py-30 px-6 md:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
-        <h2 className="md:text-4xl text-2xl text-center font-bold">
+        <h2 className="md:text-4xl text-2xl text-center font-bold text-primary">
           About the Developer
         </h2>
 
@@ -117,7 +117,7 @@ const AboutUs = () => {
                     <img
                       src={project.thumbnail}
                       alt={project.name}
-                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                      className="w-full h-full hover:scale-105 transition duration-300"
                     />
                   </div>
 

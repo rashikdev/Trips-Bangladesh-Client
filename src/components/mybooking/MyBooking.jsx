@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../loadingPage/LoadingSpinner";
 
 const MyBooking = () => {
   const { user } = useAuth();
@@ -50,7 +51,7 @@ const MyBooking = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const JoinAsTourGuide = () => {
   const { user } = useAuth();
@@ -77,7 +78,7 @@ const JoinAsTourGuide = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

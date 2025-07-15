@@ -8,6 +8,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import AdminStatsCards from "./AdminStatsCards";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const TouristProfile = () => {
   const { user, updateUser } = useAuth();
@@ -125,7 +126,7 @@ const TouristProfile = () => {
   });
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

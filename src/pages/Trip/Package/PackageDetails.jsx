@@ -7,6 +7,7 @@ import { FaArrowAltCircleDown, FaArrowDown } from "react-icons/fa";
 import TourPlan from "../tourPlane/TourPlan";
 import TourGuidSlider from "../TourGuidSlider/TourGuidSlider";
 import BookingForm from "./BookingForm";
+import LoadingSpinner from "../../../components/loadingPage/LoadingSpinner";
 
 const PackageDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -32,7 +33,7 @@ const PackageDetails = () => {
   });
 
   if (isLoading) {
-    return <div className="text-center text-white h-screen">Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

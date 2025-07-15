@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const AdminPrivateRoute = ({ children }) => {
   const { user, loading: authLoading } = useAuth();
@@ -12,11 +13,7 @@ const AdminPrivateRoute = ({ children }) => {
 
   // Wait until both user and role are loaded
   if (authLoading || roleLoading || !email) {
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <span className="loading loading-spinner loading-lg text-blue-600"></span>
-      </div>
-    );
+    return <LoadingSpinner></LoadingSpinner>
   }
 
   if (role !== "admin") {

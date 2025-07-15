@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const GuidePrivateRoute = ({ children }) => {
   const { user, loading: authLoading } = useAuth();
@@ -11,11 +12,7 @@ const GuidePrivateRoute = ({ children }) => {
   const { role, loading: roleLoading } = useRole(email);
 
   if (authLoading || roleLoading || !email) {
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <span className="loading loading-spinner loading-lg text-blue-600"></span>
-      </div>
-    );
+    return <LoadingSpinner></LoadingSpinner>
   }
 
   if (role !== "guide") {

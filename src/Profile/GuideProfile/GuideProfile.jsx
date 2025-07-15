@@ -7,6 +7,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
 const GuideProfile = () => {
   const { user, updateUser } = useAuth();
@@ -104,11 +105,11 @@ const GuideProfile = () => {
   };
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
-    <section className="py-10 px-4 min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <section className="py-10 px-4 min-h-screen  text-white">
       {/* User Profile info */}
       <div className="text-white md:w-11/12 mx-auto md:px-10 px-3 relative">
         <h3 className="text-2xl font-bold mb-6 text-center text-primary">

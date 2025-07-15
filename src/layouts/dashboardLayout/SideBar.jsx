@@ -21,8 +21,7 @@ const SideBar = () => {
   const { role, loading } = useRole(user?.email);
   console.log(role);
 
-  const navLinkClass =
-    "flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-white/10 transition text-white";
+  const navLinkClass = "flex items-center gap-3 px-4 py-2";
 
   const handleLogout = async () => {
     try {
@@ -80,24 +79,55 @@ const SideBar = () => {
               </NavLink>
             </li>
 
-            <NavLink to="/dashboard" className={navLinkClass}>
+            <NavLink
+              to="/dashboard"
+              end
+              className={({ isActive }) =>
+                `${navLinkClass} ${isActive ? "text-primary" : "text-white"}`
+              }
+            >
               <FaUser /> Manage Profile
             </NavLink>
 
             {role === "tourist" && (
               <>
-                <NavLink to="/dashboard/myBookings" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/myBookings"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaBook /> My Bookings
                 </NavLink>
-                <NavLink to="/dashboard/manageStories" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/manageStories"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaEdit /> Manage Stories
                 </NavLink>
-                <NavLink to="/dashboard/addStory" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/addStory"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaRegImages /> Add Stories
                 </NavLink>
                 <NavLink
                   to="/dashboard/guideApplication"
-                  className={navLinkClass}
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
                 >
                   <FaUserTie /> Join as Tour Guide
                 </NavLink>
@@ -108,14 +138,32 @@ const SideBar = () => {
               <>
                 <NavLink
                   to="/dashboard/myAssignedTours"
-                  className={navLinkClass}
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
                 >
                   <FaTasks /> My Assigned Tours
                 </NavLink>
-                <NavLink to="/dashboard/manageStories" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/manageStories"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaEdit /> Manage Stories
                 </NavLink>
-                <NavLink to="/dashboard/addStory" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/addStory"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaRegImages /> Add Stories
                 </NavLink>
               </>
@@ -123,15 +171,33 @@ const SideBar = () => {
 
             {role === "admin" && (
               <>
-                <NavLink to="/dashboard/addPackage" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/addPackage"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaPlus /> Add Package
                 </NavLink>
-                <NavLink to="/dashboard/manageUsers" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/manageUsers"
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
+                >
                   <FaUsers /> Manage Users
                 </NavLink>
                 <NavLink
                   to="/dashboard/manageCandidates"
-                  className={navLinkClass}
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive ? "text-primary" : "text-white"
+                    }`
+                  }
                 >
                   <FaClipboardList /> Manage Candidates
                 </NavLink>

@@ -177,7 +177,7 @@ const AddPackage = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition"
+          className="w-full py-3 bg-primary hover:bg-orange-600 text-white font-semibold rounded-lg transition"
         >
           Add Package
         </button>

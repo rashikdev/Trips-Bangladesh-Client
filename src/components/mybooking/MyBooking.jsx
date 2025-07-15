@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../loadingPage/LoadingSpinner";
+import BookingCelebration from "../celebration/BookingCelebration";
 
 const MyBooking = () => {
   const { user } = useAuth();
@@ -45,7 +46,14 @@ const MyBooking = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         handleCancel(packageId);
-        Swal.fire("Cancelled!", "Your booking has been cancelled.", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Booking Cancelled!",
+          confirmButtonColor: "#d33",
+          timer: 2000,
+          toast: true,
+          showConfirmButton: false,
+        });
       }
     });
   };
@@ -131,6 +139,7 @@ const MyBooking = () => {
           </table>
         </div>
       )}
+      <BookingCelebration bookings={myBookings}></BookingCelebration>
     </section>
   );
 };

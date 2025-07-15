@@ -36,7 +36,7 @@ const projects = [
 ];
 const AboutUs = () => {
   return (
-    <section className="min-h-screen text-white py-30 px-6 md:px-12">
+    <section className="min-h-screen text-white pt-30 px-6 md:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         <h2 className="md:text-4xl text-2xl text-center font-bold text-primary">
           About the Developer
@@ -52,7 +52,7 @@ const AboutUs = () => {
             />
           </div>
 
-          <div className="text-left space-y-4 flex-3">
+          <div className="text-left space-y-4 flex-3 p-4 md:p-0">
             <h3 className="text-2xl font-semibold">MD. Rashik</h3>
             <p className="text-white/80">
               I'm a passionate MERN Stack Developer with a love for crafting
@@ -100,7 +100,7 @@ const AboutUs = () => {
         {/* Featured Projects */}
         <div className="py-16 text-white">
           <div className="">
-            <h3 className="text-3xl font-bold text-center mb-12">
+            <h3 className="text-3xl font-bold text-center mb-12 text-primary">
               Featured Projects
             </h3>
 

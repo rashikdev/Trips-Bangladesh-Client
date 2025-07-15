@@ -20,6 +20,7 @@
     "gsap": "^3.13.0",
     "motion": "^12.23.5",
     "react": "^19.1.0",
+    "react-confetti": "^6.4.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
@@ -29,6 +30,7 @@
     "react-select": "^5.10.2",
     "react-share": "^5.2.2",
     "react-tabs": "^6.1.0",
+    "react-use": "^17.6.0",
     "sweetalert2": "^11.22.2",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11"

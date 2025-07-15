@@ -26,7 +26,7 @@ const AllTrips = () => {
   return (
     <section className="min-h-screen py-16 px-6 md:px-12 bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] text-white pt-30">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
+        <h2 className="text-4xl font-bold text-center mb-12 text-primary">
           Explore All Trips
         </h2>
 

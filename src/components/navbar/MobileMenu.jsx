@@ -83,7 +83,7 @@ const MobileMenu = () => {
           initial={{ x: "100%" }}
           animate={{ x: "-0%" }}
           transition={{ duration: 0.5 }}
-          className="absolute -right-4 -top-8 w-screen h-screen backdrop-blur-xl text-white shadow-lg p-6 space-y-4 z-40 border border-white/10 menu text-center"
+          className="absolute -right-10 -top-10 w-screen h-screen bg-black/90 text-white shadow-lg p-6 space-y-4 z-50 menu text-center"
         >
           {/* User Info */}
           {user && (

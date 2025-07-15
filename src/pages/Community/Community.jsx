@@ -59,7 +59,7 @@ const Community = () => {
     },
   });
   return (
-    <section className="min-h-screen py-26 px-6 md:px-12 text-white">
+    <section className="min-h-screen pt-26 px-6 md:px-12 text-white">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center my-5 text-primary">
           Community Stories

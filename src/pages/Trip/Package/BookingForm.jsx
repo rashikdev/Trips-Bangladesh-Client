@@ -39,22 +39,19 @@ const BookingForm = ({ singlepackage, guides }) => {
       tourGuide: JSON.parse(selectedGuide),
       status: "pending",
     };
-
     try {
       const res = await axiosSecure.post("/bookings", bookingInfo);
 
       if (res.data.insertedId) {
+        sessionStorage.setItem("trigger-congrats", "yes");
         Swal.fire({
           icon: "success",
           title: "Tour booked successfully!",
-          html: `
-          <p>Your booking has been placed successfully.</p>
-          <a href="/dashboard/myBookings" class="text-blue-600 underline font-medium mt-2 inline-block">Go to My Bookings</a>
-        `,
           showConfirmButton: false,
-          timer: 5000,
+          timer: 2000,
           timerProgressBar: true,
         });
+        navigate("/dashboard/myBookings");
       }
     } catch (error) {
       console.error("Booking failed:", error);
@@ -120,7 +117,7 @@ const BookingForm = ({ singlepackage, guides }) => {
           <label className="block mb-1 font-medium">Price</label>
           <input
             type="text"
-            value={`$${price}`}
+            value={`${price}`}
             readOnly
             className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
           />

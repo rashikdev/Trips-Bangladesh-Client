@@ -37,7 +37,7 @@ const PackageDetails = () => {
   }
 
   return (
-    <section className="min-h-screen px-4 md:px-10 text-white lg:pt-30 pt-20">
+    <section className="min-h-screen px-4 md:px-10 text-white pt-30">
       <div className="flex flex-col md:flex-row gap-4 md:h-[60vh]">
         {/* large thumbnail */}
         <div className="w-full md:w-2/5 h-64 md:h-full">

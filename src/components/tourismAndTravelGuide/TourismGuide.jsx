@@ -38,7 +38,7 @@ const TourismGuide = () => {
 
   return (
     <section className="max-w-7xl mx-auto text-white min-h-[64vh]">
-      <Tabs className="">
+      <Tabs className="p-5 md:p-0">
         <TabList className="flex border-b border-orange-600 mb-10">
           <Tab
             className="flex items-center gap-2 px-6 py-3 cursor-pointer"

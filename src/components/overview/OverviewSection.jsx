@@ -4,7 +4,7 @@ const OverviewSection = () => {
   return (
     <section className="relative py-20 text-white overflow-hidden">
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center backdrop-blur-md bg-white/5 px-10 py-20 rounded-xl border border-white/10 shadow-xl">
+      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center backdrop-blur-md bg-white/5 md:px-10 px-4 md:py-20 py-10 rounded-xl border border-white/10 shadow-xl">
         {/* Text Content */}
         <div className="text-center md:text-left">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -27,10 +27,9 @@ const OverviewSection = () => {
         </div>
 
         {/* Video Content */}
-        <div className="aspect-w-16 aspect-h-9 h-full w-full rounded-lg overflow-hidden shadow-lg border border-white/10">
+        <div className="aspect-w-16 aspect-h-9 h-full w-full rounded-lg overflow-hidden shadow-lg ">
           <iframe
-            width="560"
-            height="315"
+            className="w-full md:h-full h-[250px]"
             src="https://www.youtube.com/embed/fN21oOdni_c?si=EwRJuWLN_SQhSAOI"
             title="YouTube video player"
             frameBorder="0"

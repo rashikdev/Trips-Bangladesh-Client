@@ -24,7 +24,15 @@ const GuideDetailsPage = () => {
     },
   });
 
-  const { name, email, image, experience, languages, phone, rating } = Guide;
+  const {
+    name,
+    email,
+    image,
+    experience,
+    languages,
+    phone,
+    ratting: rating,
+  } = Guide;
 
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
@@ -67,8 +75,8 @@ const GuideDetailsPage = () => {
           </p>
 
           <p>
-            <span className="font-semibold text-gray-300">Rating:</span> ⭐{" "}
-            {rating}
+            <span className="font-semibold text-gray-300">Rating:</span>{" "}
+            {rating} ⭐
           </p>
         </div>
       </div>

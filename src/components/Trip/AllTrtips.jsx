@@ -24,17 +24,17 @@ const AllTrips = () => {
 
   return (
     <section className="min-h-screen py-16 px-6 md:px-12 bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] text-white pt-30">
-      <div className="max-w-7xl mx-auto">
+      <div className="md:max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12 text-primary">
           Explore All Trips
         </h2>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {packages.map((pkg) => (
             <Link key={pkg._id} to={`/package/${pkg._id}`}>
               <div
-                className="rounded-xl overflow-hidden shadow-md group bg-white text-gray-800 w-full max-w-xs mx-auto h-[300px] md:h-[500px] hover:scale-105 transition-transform duration-300 relative"
+                className="rounded-xl overflow-hidden shadow-md group bg-white text-gray-800 w-full mx-auto h-[300px] md:h-[500px] hover:scale-105 transition-transform duration-300 relative"
                 style={{
                   backgroundImage: `url(${pkg.thumbnail})`,
                   backgroundSize: "cover",
@@ -44,7 +44,7 @@ const AllTrips = () => {
                 {/* Text Content */}
                 <div className="p-5 flex flex-col h-full justify-between">
                   <div className="space-y-3">
-                    <h3 className="text-xl font-semibold backdrop-blur-xl leading-tight">
+                    <h3 className="text-xl font-semibold backdrop-blur-xl leading-tight w-fit">
                       {pkg.title}
                     </h3>
                     <p className="text-2xl font-bold text-orange-400 backdrop-blur-lg w-fit">

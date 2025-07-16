@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://trips-bangladesh-server.vercel.app",
 });
 
 const useAxiosSecure = () => {

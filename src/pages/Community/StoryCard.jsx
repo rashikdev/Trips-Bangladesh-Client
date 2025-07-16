@@ -3,8 +3,9 @@ import { PiShareFatThin } from "react-icons/pi";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
 
-const StoryCard = ({ story }) => {
+const StoryCard = ({ story, isLoading }) => {
   const [mainImage, ...otherImages] = story.images;
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const StoryCard = ({ story }) => {
       navigate("/login");
     }
   };
+
+  if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
 
   return (
     <div className="bg-gray-800 p-6 rounded-xl shadow-md backdrop-blur-md flex flex-col justify-between text-white">

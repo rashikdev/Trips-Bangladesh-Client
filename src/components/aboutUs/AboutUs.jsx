@@ -78,7 +78,7 @@ const AboutUs = () => {
                 <FaGithub />
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/rashikdev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-teal-300 transition"

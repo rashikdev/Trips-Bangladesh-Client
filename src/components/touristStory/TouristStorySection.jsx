@@ -22,13 +22,13 @@ const TouristStorySection = ({ stories = [] }) => {
   console.log(randomStories);
 
   return (
-    <section className="px-4 md:px-10">
+    <section className="px-4 md:px-10 mt-8 md:mt-0">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-primary mb-4">
             Tourist Stories
           </h2>
-          <p className="text-gray-600 mb-10">
+          <p className="text-gray-400 mb-10">
             Discover amazing experiences shared by fellow travelers
           </p>
         </div>

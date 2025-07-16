@@ -129,7 +129,7 @@ const Banner = () => {
 
           {/* Main Content */}
           <div className="relative z-10 text-center text-white max-w-2xl backdrop-blur-md bg-white/10 p-6 rounded-lg border border-white/30">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow banner-item">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow banner-item">
               Explore the Beauty of Bangladesh
             </h1>
             <p className="text-lg md:text-xl mb-6 banner-item px-7">

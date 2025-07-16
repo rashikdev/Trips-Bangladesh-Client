@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-t from-[#0d1b2a] to-[#1b263b] text-white py-10 mt-12">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
         {/* Logo & Tagline */}
-        <div className="flex flex-col gap-3 text-2xl">
+        <div className="flex flex-col items-center md:items-start gap-3 text-2xl">
           <Logo />
           <p className="text-white/70 text-sm max-w-xs">
             Explore Bangladesh with us. Discover hidden gems, local stories, and
@@ -37,7 +37,7 @@ const Footer = () => {
           <h4 className="text-lg font-semibold">Follow Us</h4>
           <div className="flex gap-5 text-xl">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/rashikdev"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-teal-300 transition"
@@ -45,7 +45,7 @@ const Footer = () => {
               <FaGithub />
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/rashikdev"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-teal-300 transition"
@@ -53,7 +53,7 @@ const Footer = () => {
               <FaLinkedin />
             </a>
             <a
-              href="https://twitter.com/yourusername"
+              href="https://x.com/RashikKhan513"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-teal-300 transition"

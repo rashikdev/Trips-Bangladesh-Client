@@ -2,7 +2,7 @@ import React from "react";
 import question from "../../assets/Question.gif";
 const FaqSection = () => {
   return (
-    <section className="py-20 px-4 md:px-12">
+    <section className="mt-8 md:mt-16 px-4 md:px-12">
       <div className="max-w-7xl mx-auto py-4">
         <h2 className="text-4xl font-bold text-primary text-center mb-10">
           Frequently Asked Questions

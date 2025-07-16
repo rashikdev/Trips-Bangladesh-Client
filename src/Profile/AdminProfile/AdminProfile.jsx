@@ -114,9 +114,6 @@ const TouristProfile = () => {
     },
   });
 
-  const isPending = application?.status === "pending";
-  console.log(application);
-
   const { data: stats = {}, isLoading: statsLoading } = useQuery({
     queryKey: ["adminStats"],
     queryFn: async () => {

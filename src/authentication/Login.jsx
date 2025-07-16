@@ -12,7 +12,6 @@ const Login = () => {
   const emailRef = createRef();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.state);
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -46,7 +45,7 @@ const Login = () => {
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
       {/* Login Card */}
-      <div className="relative z-10 mt-30 w-full max-w-md bg-white/10 border border-white/30 text-white p-8 rounded-2xl backdrop-blur-md shadow-xl">
+      <div className="relative z-10 md:mt-30 mt-20 w-full max-w-md bg-white/10 border border-white/30 text-white p-8 rounded-2xl backdrop-blur-md shadow-xl">
         <h2 className="text-3xl font-bold text-center mb-6">Welcome Back</h2>
 
         <form onSubmit={handleLogin} className="space-y-5">

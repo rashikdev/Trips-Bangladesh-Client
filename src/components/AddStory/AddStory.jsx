@@ -36,8 +36,6 @@ const AddStory = () => {
     }
   };
 
-  // console.log(storyImages);
-
   const onSubmit = async (data) => {
     if (!user) {
       toast.error("You must be logged in to submit a story.");

@@ -53,7 +53,6 @@ const JoinAsTourGuide = () => {
       .post("/applications", applicationInfo)
       .then((res) => {
         if (res.data.insertedId) {
-          console.log(res.data);
           Swal.fire({
             position: "center",
             icon: "success",
@@ -65,7 +64,6 @@ const JoinAsTourGuide = () => {
         }
       })
       .catch((err) => console.log(err));
-    console.log(data);
     reset();
   };
 

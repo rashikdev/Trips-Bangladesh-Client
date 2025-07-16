@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 const SideBar = () => {
   const { user, logoutUser } = useAuth();
   const { role, loading } = useRole(user?.email);
-  console.log(role);
+  // console.log(role);
   const navigate = useNavigate();
 
   const navLinkClass = "flex items-center gap-3 px-4 py-2";

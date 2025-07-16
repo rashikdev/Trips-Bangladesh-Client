@@ -62,10 +62,8 @@ const Register = () => {
       role: "tourist",
     };
 
-    // console.log(formData);
     createUser(data.email, data.password)
       .then((res) => {
-        // console.log(res.user);
         updateUser({ displayName: data.name, photoURL: uploadImage })
           .then((res) => {
             axiosSecure
@@ -75,7 +73,6 @@ const Register = () => {
                   toast.success("sign up successful");
                   navigate(location.state || "/");
                 }
-                console.log(res.data);
               })
               .catch((err) => console.log(err));
           })
@@ -83,7 +80,6 @@ const Register = () => {
       })
       .catch((err) => toast.error("This email is already registered"));
   };
-  console.log(uploadImage);
 
   return (
     <section

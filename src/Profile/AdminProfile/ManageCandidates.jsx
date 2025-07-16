@@ -33,15 +33,12 @@ const ManageCandidates = () => {
   const handleDetails = (app) => {
     setDetails(app);
     setModal(true);
-    console.log(app);
   };
   const handleAccept = async (app) => {
-    // console.log(app)
     try {
       const res = await axiosSecure.patch(`/applications/${app._id}`, app);
 
       const { updateResult, deleteResult, guideResult } = res.data;
-      console.log(updateResult, deleteResult, guideResult);
 
       if (
         updateResult.modifiedCount > 0 &&

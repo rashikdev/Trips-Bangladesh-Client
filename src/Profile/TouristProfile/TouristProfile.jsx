@@ -45,7 +45,6 @@ const TouristProfile = () => {
       return res.data;
     },
   });
-  console.log(userProfile);
   const handleUpdate = (e) => {
     e.preventDefault();
     setSaving(true);
@@ -118,7 +117,6 @@ const TouristProfile = () => {
   });
 
   const isPending = application?.status === "pending";
-  console.log(application);
 
   const { data: stats = {}, isLoading: statsLoading } = useQuery({
     queryKey: ["userStats", user?.email],

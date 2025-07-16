@@ -23,7 +23,6 @@ const PaymentHistory = () => {
     },
   });
 
-  console.log(payments);
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 

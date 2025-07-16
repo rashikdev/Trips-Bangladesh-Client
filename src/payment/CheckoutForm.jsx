@@ -13,7 +13,6 @@ const CheckoutForm = ({ booking }) => {
   const [transactionId, setTransactionId] = useState("");
   const navigate = useNavigate();
 
-  console.log(booking);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +59,6 @@ const CheckoutForm = ({ booking }) => {
           tourGuide: booking?.tourGuide,
           date: booking?.tourDate,
         };
-        console.log(paymentInfo);
 
         await axiosSecure.post("/payments", paymentInfo);
 

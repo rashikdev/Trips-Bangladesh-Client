@@ -40,7 +40,6 @@ const UpdateStory = () => {
     }
   };
 
-  console.log(story);
   const { author, authorImage, authorEmail } = story;
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -58,7 +57,6 @@ const UpdateStory = () => {
       authorImage,
       authorEmail,
     };
-    console.log(updatedStory);
 
     if (isImageUploading) {
       return toast.error("Please wait for images to upload.");

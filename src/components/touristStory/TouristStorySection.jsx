@@ -19,7 +19,6 @@ const TouristStorySection = ({ stories = [] }) => {
     },
   });
 
-  console.log(randomStories);
 
   return (
     <section className="px-4 md:px-10 mt-8 md:mt-0">

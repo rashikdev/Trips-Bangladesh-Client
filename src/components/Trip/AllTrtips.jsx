@@ -47,7 +47,7 @@ const AllTrips = () => {
                     <h3 className="text-xl font-semibold backdrop-blur-xl leading-tight w-fit">
                       {pkg.title}
                     </h3>
-                    <p className="text-2xl font-bold text-orange-400 backdrop-blur-lg w-fit">
+                    <p className="text-2xl font-bold text-orange-400 backdrop-blur-lg w-fit px-2">
                       {pkg.price} BDT
                     </p>
                     <p className="text-2xl font-bold bg-white/10 text-primary absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

@@ -19,8 +19,7 @@ const AllTrips = () => {
     },
   });
 
-  if (isLoading)
-    return <LoadingSpinner></LoadingSpinner>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   if (isError) return <div>Something went wrong</div>;
 
   return (
@@ -45,13 +44,13 @@ const AllTrips = () => {
                 {/* Text Content */}
                 <div className="p-5 flex flex-col h-full justify-between">
                   <div className="space-y-3">
-                    <h3 className="text-xl font-semibold text-white leading-tight">
+                    <h3 className="text-xl font-semibold backdrop-blur-xl leading-tight">
                       {pkg.title}
                     </h3>
-                    <p className="text-2xl font-bold text-gray-200">
+                    <p className="text-2xl font-bold text-orange-400 backdrop-blur-lg w-fit">
                       {pkg.price} BDT
                     </p>
-                    <p className="text-2xl font-bold bg-gradient-to-bl from-orange-400 to-orange-900 bg-clip-text text-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <p className="text-2xl font-bold bg-white/10 text-primary absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                       {pkg.tourType}
                     </p>
                   </div>

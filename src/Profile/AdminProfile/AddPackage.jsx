@@ -3,6 +3,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { number } from "motion";
 
 const AddPackage = () => {
   const axiosSecure = useAxiosSecure();
@@ -45,7 +46,7 @@ const AddPackage = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const tourType = form.tourType.value;
     const description = form.description.value;
 
@@ -72,7 +73,6 @@ const AddPackage = () => {
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
-            toast: true,
           });
           form.reset();
           setThumbnailUrl(null);
@@ -177,7 +177,7 @@ const AddPackage = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-primary hover:bg-orange-600 text-white font-semibold rounded-lg transition"
+          className="w-full py-3 bg-primary hover:bg-orange-600 text-white font-semibold rounded-lg transition cursor-pointer"
         >
           Add Package
         </button>

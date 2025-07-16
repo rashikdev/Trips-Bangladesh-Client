@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import {
   FaMoneyBillWave,
   FaUserTie,
@@ -5,6 +6,7 @@ import {
   FaUserFriends,
   FaRegNewspaper,
 } from "react-icons/fa";
+import CountUp from "react-countup";
 
 const AdminStatsCards = ({ stats }) => {
   const formatNumber = (num) => new Intl.NumberFormat("en-IN").format(num || 0);
@@ -12,35 +14,35 @@ const AdminStatsCards = ({ stats }) => {
   const cardData = [
     {
       title: "Total Payment",
-      value: `৳ ${formatNumber(stats?.totalPayment)}`,
+      key: "totalPayment",
       desc: "All-time user payments",
       icon: <FaMoneyBillWave className="text-3xl text-green-400" />,
       bg: "from-green-700 to-green-400/10",
     },
     {
       title: "Total Tour Guides",
-      value: formatNumber(stats?.totalTourGuides),
+      key: "totalTourGuides",
       desc: "Verified and active guides",
       icon: <FaUserTie className="text-3xl text-orange-400" />,
       bg: "from-orange-600/40 to-orange-400/10",
     },
     {
       title: "Total Packages",
-      value: formatNumber(stats?.totalPackages),
+      key: "totalPackages",
       desc: "Available for booking",
       icon: <FaSuitcaseRolling className="text-3xl text-blue-400" />,
       bg: "from-blue-600/40 to-blue-400/10",
     },
     {
       title: "Total Clients",
-      value: formatNumber(stats?.totalClients),
+      key: "totalClients",
       desc: "Registered tourists",
       icon: <FaUserFriends className="text-3xl text-pink-400" />,
       bg: "from-pink-600/50 to-pink-400/10",
     },
     {
       title: "Total Stories",
-      value: formatNumber(stats?.totalStories),
+      key: "totalStories",
       desc: "Shared by users",
       icon: <FaRegNewspaper className="text-3xl text-yellow-400" />,
       bg: "from-yellow-600/40 to-yellow-400/10",
@@ -60,7 +62,26 @@ const AdminStatsCards = ({ stats }) => {
             </h4>
             {card.icon}
           </div>
-          <p className="text-3xl font-bold text-white">{card.value}</p>
+
+          <p className="text-3xl font-bold text-white">
+            {card.key === "totalPayment" ? (
+              <>
+                ৳{" "}
+                <CountUp
+                  end={stats[card.key] || 0}
+                  duration={1.5}
+                  separator=","
+                />
+              </>
+            ) : (
+              <CountUp
+                end={stats[card.key] || 0}
+                duration={1.5}
+                separator=","
+              />
+            )}
+          </p>
+
           <p className="text-sm text-white/70">{card.desc}</p>
         </div>
       ))}

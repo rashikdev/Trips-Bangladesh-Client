@@ -37,7 +37,7 @@ const TourismGuide = () => {
   });
 
   return (
-    <section className="max-w-7xl mx-auto py-10 text-white min-h-[64vh]">
+    <section className="max-w-7xl mx-auto text-white min-h-[64vh]">
       <Tabs className="">
         <TabList className="flex border-b border-orange-600 mb-10">
           <Tab
@@ -70,15 +70,15 @@ const TourismGuide = () => {
               >
                 <div className="p-5 flex flex-col justify-between h-full">
                   <div className="space-y-4 text-white">
-                    <h3 className="w-fit px-2 font-semibold">
+                    <h3 className="w-fit px-2 font-semibold text-xl bg-primary">
                       {pkg.title}
                     </h3>
-                    <p className="text-xl px-3 font-bold w-fit">
+                    <p className="text-2xl bg-primary/20 px-3 font-bold w-fit">
                       {pkg.price} BDT
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-5xl text-center text-white/40">
+                    <h3 className="text-5xl text-center text-orange-500/60">
                       {pkg.tourType}
                     </h3>
                   </div>

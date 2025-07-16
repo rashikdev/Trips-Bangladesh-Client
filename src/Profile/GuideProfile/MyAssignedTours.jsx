@@ -34,7 +34,6 @@ const MyAssignedTours = () => {
   const totalPages = Math.ceil(totalApplications / limit);
 
   const handleAccept = async (id) => {
-    alert("Accepted");
     try {
       const res = await axiosSecure.patch(`/bookings/${id}`, {
         status: "accepted",

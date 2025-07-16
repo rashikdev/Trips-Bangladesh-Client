@@ -4,7 +4,7 @@ const FaqSection = () => {
   return (
     <section className="py-20 px-4 md:px-12">
       <div className="max-w-7xl mx-auto py-4">
-        <h2 className="text-4xl font-bold text-orange-600 text-center mb-10">
+        <h2 className="text-4xl font-bold text-primary text-center mb-10">
           Frequently Asked Questions
         </h2>
         <div className="flex flex-col md:flex-row gap-12 items-center">

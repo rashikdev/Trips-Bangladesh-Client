@@ -142,7 +142,7 @@ const Navbar = () => {
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 100 }}
-                  className="absolute right-0 mt-5 w-56 border border-white/10 shadow-xl rounded-lg z-50 p-4 bg-white/10 text-white space-y-2"
+                  className="absolute right-0 mt-5 w-56 border border-white/10 shadow-xl rounded-lg z-50 p-4 bg-black/30 text-white space-y-2"
                 >
                   <p className="text-sm font-semibold">{user.displayName}</p>
                   <p className="text-xs text-gray-300">{user.email}</p>

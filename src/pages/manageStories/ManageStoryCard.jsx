@@ -82,7 +82,7 @@ const ManageStoryCard = ({
             multiple
             accept="image/*"
             onChange={(e) => handleAddImages(e, story._id)}
-            className="text-white text-xs bg-slate-700 rounded px-2 py-1 file:bg-teal-500 file:text-white file:border-none file:rounded file:px-3 file:py-1 cursor-pointer"
+            className="text-white text-xs bg-slate-700 rounded px-2 py-1 file:bg-secondary file:text-white file:border-none file:rounded file:px-3 file:py-1 cursor-pointer"
           />
           {uploadingStoryId === story._id && (
             <span className="loading loading-spinner text-success mr-4"></span>

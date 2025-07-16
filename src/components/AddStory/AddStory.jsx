@@ -102,7 +102,7 @@ const AddStory = () => {
                 required: "Story content is required",
               })}
               rows="6"
-              placeholder="Share your travel experience..."
+              placeholder="Share your trip experience..."
               className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none"
             ></textarea>
             {errors.content && (

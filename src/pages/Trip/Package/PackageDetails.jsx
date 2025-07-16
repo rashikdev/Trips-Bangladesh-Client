@@ -118,7 +118,7 @@ const PackageDetails = () => {
         <TourGuidSlider guides={guides} guidesLoading={guidesLoading} />
       </div>
       {/* Booking Form */}
-      <div>
+      <div className="mt-10">
         <BookingForm singlepackage={singlepackage} guides={guides} />
       </div>
     </section>

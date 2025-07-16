@@ -56,7 +56,7 @@ const AboutUs = () => {
             <h3 className="text-2xl font-semibold">MD. Rashik</h3>
             <p className="text-white/80">
               I'm a passionate MERN Stack Developer with a love for crafting
-              immersive and user-friendly web experiences. Travel BD is one of
+              immersive and user-friendly web experiences. Trips is one of
               my full-stack projects that demonstrates authentication, database
               integration, smooth UI/UX, and real-time features.
             </p>

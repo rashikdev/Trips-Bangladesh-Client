@@ -102,7 +102,7 @@ const ManageStories = () => {
             You haven't added any stories yet.
           </p>
           <p className="text-sm text-gray-500">
-            Share your travel experiences by adding a new story!
+            Share your trips experiences by adding a new story!
           </p>
         </div>
       ) : (

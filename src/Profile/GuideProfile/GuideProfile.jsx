@@ -8,6 +8,7 @@ import { getCloudinaryImgUrl } from "../../utils/utils";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../components/loadingPage/LoadingSpinner";
+import CountUp from "react-countup";
 
 const GuideProfile = () => {
   const { user, updateUser } = useAuth();
@@ -44,6 +45,15 @@ const GuideProfile = () => {
       return res.data;
     },
   });
+
+  const { data: stats = [] } = useQuery({
+    queryKey: ["guideStates", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/guideStats?email=${user?.email}`);
+      return res.data;
+    },
+  });
+
   const handleUpdate = (e) => {
     e.preventDefault();
     setSaving(true);
@@ -109,7 +119,7 @@ const GuideProfile = () => {
   }
 
   return (
-    <section className="py-10 px-4 min-h-screen  text-white">
+    <section className="py-10 px-4 min-h-screen  text-white space-y-18">
       {/* User Profile info */}
       <div className="text-white md:w-11/12 mx-auto md:px-10 px-3 relative">
         <h3 className="text-2xl font-bold mb-6 text-center text-primary">
@@ -171,36 +181,54 @@ const GuideProfile = () => {
         </div>
       </div>
 
-      {/* Optional Stats Placeholder Section */}
-      {/* <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto text-white">
-
-        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
-          <div className="flex items-center gap-3 text-primary text-lg font-semibold">
-            <span>Total Stories</span>
-          </div>
-          <p className="text-center text-3xl font-bold text-white/90">
-            {stats?.totalStories || 0}
+      {/* guide stats */}
+      <div className="grid md:grid-cols-3 gap-10 text-white md:w-11/12 mx-auto md:px-10 px-3">
+        {/* Assigned Tours */}
+        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+          <h3 className="text-lg font-semibold">Assigned Tours</h3>
+          <p className="text-3xl font-bold mt-2 text-blue-500">
+            <CountUp end={stats.assigned || 0} duration={1.5} separator="," />
           </p>
         </div>
 
-        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
-          <div className="flex items-center gap-3 text-primary text-lg font-semibold">
-            <span>Total Bookings</span>
-          </div>
-          <p className="text-center text-3xl font-bold text-white/90">
-            {stats?.totalBookings || 0}
+        {/* Accepted Requests */}
+        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+          <h3 className="text-lg font-semibold">
+            Accepted Requests
+          </h3>
+          <p className="text-3xl font-bold mt-2 text-green-400">
+            <CountUp end={stats.accepted || 0} duration={1.5} separator="," />
           </p>
         </div>
 
-        <div className="h-40 bg-white/10 border border-white/20 rounded-xl backdrop-blur-lg p-6 flex flex-col justify-between items-center shadow-lg">
-          <div className="flex items-center gap-3 text-primary text-lg font-semibold">
-            <span>Payments</span>
-          </div>
-          <p className="text-center text-3xl font-bold text-white/90">
-            {stats?.totalPayments || 0}
+        {/* Rejected Requests */}
+        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+          <h3 className="text-lg font-semibold">
+            Rejected Requests
+          </h3>
+          <p className="text-3xl font-bold mt-2 text-red-500">
+            <CountUp end={stats.rejected || 0} duration={1.5} separator="," />
           </p>
         </div>
-      </div> */}
+
+        {/* Total Posts */}
+        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+          <h3 className="text-lg font-semibold">Total Posts</h3>
+          <p className="text-3xl font-bold mt-2 text-yellow-400">
+            <CountUp end={stats.posts || 0} duration={1.5} separator="," />
+          </p>
+        </div>
+
+        {/* Total Earnings */}
+        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+          <h3 className="text-lg font-semibold">
+            Total Earnings
+          </h3>
+          <p className="text-3xl font-bold mt-2">
+            <CountUp end={stats.earnings || 0} duration={1.5} separator="," className="text-green-500"/> BDT
+          </p>
+        </div>
+      </div>
 
       {/* Modal */}
       {editModal && (

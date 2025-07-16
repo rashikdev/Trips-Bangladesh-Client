@@ -9,7 +9,7 @@ const Banner = () => {
   const bannerRef = useRef();
 
   useEffect(() => {
-    const visited = localStorage.getItem("hasVisitedBDTravel");
+    const visited = localStorage.getItem("hasVisitedTrips");
     if (!visited) {
       setShowAnimation(true);
     } else {
@@ -22,7 +22,7 @@ const Banner = () => {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        localStorage.setItem("hasVisitedBDTravel", "true");
+        localStorage.setItem("hasVisitedTrips", "true");
         setShowMainBanner(true);
       },
     });

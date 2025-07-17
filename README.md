@@ -12,12 +12,6 @@
 
 ---
 
-## 🔐 Admin Credentials
-
-- **Email:** `abcd@gmail.com`
-- **Password:** `Rashik1212@`
-
----
 
 ## ✨ Key Features
 

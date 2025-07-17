@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUsSection = () => {
@@ -54,7 +55,8 @@ const ContactUsSection = () => {
             className="bg-white/10 p-6 rounded-xl backdrop-blur-md border border-white/20 shadow-lg space-y-5"
             onSubmit={(e) => {
               e.preventDefault();
-              alert("Message sent!");
+              toast.success("Message sent successfully!");
+              e.target.reset();
             }}
           >
             <div>

@@ -17,7 +17,7 @@ const ManageStoryCard = ({
   }, [story]);
 
   return (
-    <div className="bg-white/10 rounded-xl p-4 shadow-md space-y-4 py-8">
+    <div className="dark:bg-white/10 bg-zinc-300 rounded-xl p-4 shadow-md space-y-4 py-8">
       <div className="flex justify-between relative">
         <div className="flex items-center gap-3">
           <img
@@ -27,19 +27,19 @@ const ManageStoryCard = ({
           />
           <div>
             <p className="font-semibold">{story.author}</p>
-            <p className="text-sm text-gray-300">{story.authorEmail}</p>
+            <p className="text-sm dark:text-gray-300">{story.authorEmail}</p>
           </div>
         </div>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="hover:bg-gray-700 bg-gray-900 rounded-full w-9 h-9 flex items-center justify-center cursor-pointer"
+          className="dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-gray-900 rounded-full w-9 h-9 flex items-center justify-center cursor-pointer"
         >
           <CiMenuKebab size={22} />
         </button>
         {menuOpen && (
-          <ul className="absolute top-10 right-0 bg-gray-500 p-3 rounded w-34 *:cursor-pointer">
+          <ul className="absolute top-10 right-0 dark:bg-gray-500 bg-gray-400 p-3 rounded w-34 *:cursor-pointer">
             <Link to={`/dashboard/updateStory/${story._id}`}>
-              <li className="text-white mb-2 bg-gray-900 pl-2 rounded-md hover:bg-gray-800">
+              <li className="mb-2 text-white bg-gray-900 pl-2 rounded-md hover:bg-gray-800">
                 Edit Story
               </li>
             </Link>
@@ -53,8 +53,8 @@ const ManageStoryCard = ({
         )}
       </div>
 
-      <h3 className="text-xl font-bold">{story.title}</h3>
-      <p className="text-sm text-gray-300">{story.content}</p>
+      <h3 className="text-xl dark:text-white font-bold">{story.title}</h3>
+      <p className="text-sm dark:text-gray-300">{story.content}</p>
 
       <div className="grid grid-cols-3 gap-2 overflow-y-scroll max-h-24">
         {story.images.map((img, i) => (

@@ -101,11 +101,11 @@ const MyAssignedTours = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
-    <section className="min-h-screen py-10 px-6 text-white">
+    <section className="min-h-screen py-10 px-6">
       <h2 className="text-3xl font-semibold mb-6 text-center text-primary">
         My Assigned Tours
       </h2>
-      <div className="overflow-x-auto bg-white/10 p-6 rounded-lg border border-white/20">
+      <div className="overflow-x-auto bg-white/10 p-6 rounded-lg border border-white/20 shadow-md">
         <table className="w-full table-auto text-sm">
           <thead className="bg-white/20 text-left">
             <tr>
@@ -119,7 +119,7 @@ const MyAssignedTours = () => {
           </thead>
           <tbody>
             {assignedTours.map((tour) => (
-              <tr key={tour._id} className="border-t border-white/10">
+              <tr key={tour._id} className="border-t dark:border-white/10 border-gray-400">
                 <td className="px-4 py-2">{tour.packageName}</td>
                 <td className="px-4 py-2">{tour.touristName}</td>
                 <td className="px-4 py-2">

@@ -21,7 +21,6 @@ const TourGuideSlider = ({ guides, guidesLoading }) => {
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        pagination={{ clickable: true }}
         navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"

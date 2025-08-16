@@ -32,7 +32,7 @@ const AllTrips = () => {
   if (isError) return <div>Something went wrong</div>;
 
   return (
-    <section className="min-h-screen py-16 px-6 md:px-12 bg-gradient-to-b from-[#0d1b2a] to-[#1b263b] text-white pt-30">
+    <section className="min-h-screen py-16 px-6 md:px-12 pt-30">
       <div className="md:max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12 text-primary">
           Explore All Trips
@@ -40,8 +40,8 @@ const AllTrips = () => {
 
         {/* Sorting Controls */}
         <div className="flex justify-end mb-6 md:mb-10">
-          <div className="flex flex-col md:flex-row items-center gap-3 md:rounded-full rounded-xl bg-white/10 backdrop-blur-md p-3 shadow-lg border border-white/20 w-full md:w-auto overflow-x-auto">
-            <p className="text-white text-left font-medium mr-0 md:mr-2 mb-2 md:mb-0 whitespace-nowrap">
+          <div className="flex flex-col md:flex-row items-center gap-3 md:rounded-full rounded-xl dark:bg-white/10 p-3 shadow-lg border dark:border-white/20 border-zinc-300 w-full md:w-auto overflow-x-auto">
+            <p className="text-left font-medium mr-0 md:mr-2 mb-2 md:mb-0 whitespace-nowrap">
               Sort by Price:
             </p>
 
@@ -52,7 +52,7 @@ const AllTrips = () => {
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm sm:text-base transition-all duration-300 cursor-pointer whitespace-nowrap ${
                   sortOrder === "asc"
                     ? "bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg scale-105"
-                    : "bg-white text-gray-800 hover:bg-gray-200"
+                    : "text-gray-800 bg-gray-200"
                 }`}
                 title="Low to High"
               >
@@ -68,7 +68,7 @@ const AllTrips = () => {
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm sm:text-base transition-all duration-300 cursor-pointer whitespace-nowrap ${
                   sortOrder === "desc"
                     ? "bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg scale-105"
-                    : "bg-white text-gray-800 hover:bg-gray-200"
+                    : "text-gray-800 bg-gray-200"
                 }`}
                 title="High to Low"
               >

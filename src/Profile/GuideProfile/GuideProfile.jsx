@@ -120,9 +120,9 @@ const GuideProfile = () => {
   }
 
   return (
-    <section className="py-10 px-4 min-h-screen  text-white space-y-18">
+    <section className="py-10 px-4 min-h-screen space-y-18">
       {/* User Profile info */}
-      <div className="text-white md:w-11/12 mx-auto md:px-10 px-3 relative">
+      <div className="md:w-11/12 mx-auto md:px-10 px-3 relative">
         <h3 className="text-2xl font-bold mb-6 text-center text-primary">
           Welcome To Your Profile
         </h3>
@@ -144,28 +144,28 @@ const GuideProfile = () => {
             </h2>
 
             <p>
-              <span className="font-semibold text-gray-300">Email:</span>{" "}
-              <span className="text-white">{userProfile?.email}</span>
+              <span className="font-semibold dark:text-gray-300">Email:</span>{" "}
+              <span>{userProfile?.email}</span>
             </p>
 
             <p>
-              <span className="font-semibold text-gray-300">Phone:</span>{" "}
-              <span className="text-white">{userProfile?.number}</span>
+              <span className="font-semibold dark:text-gray-300">Phone:</span>{" "}
+              <span>{userProfile?.number}</span>
             </p>
 
             <p>
-              <span className="font-semibold text-gray-300">Languages:</span>{" "}
+              <span className="font-semibold dark:text-gray-300">Languages:</span>{" "}
               {(userProfile?.languages || []).map((lang, index) => (
                 <span
                   key={index}
-                  className="text-white text-sm font-semibold mr-2"
+                  className="text-sm font-semibold mr-2"
                 >
                   {lang},
                 </span>
               ))}
             </p>
             <p>
-              <span className="font-semibold text-gray-300">Role:</span>{" "}
+              <span className="font-semibold dark:text-gray-300">Role:</span>{" "}
               <span className="text-white bg-green-500 px-3 py-[2px] text-sm rounded-full font-semibold capitalize">
                 {userProfile?.role}
               </span>
@@ -175,7 +175,7 @@ const GuideProfile = () => {
         <div className="absolute space-x-4 md:top-30 md:right-16 top-18 right-6">
           <button
             onClick={() => setEditModal(true)}
-            className="text-sm px-2 py-1 bg-primary text-white border-none shadow-none hover:bg-gray-400 rounded font-semibold"
+            className="text-sm px-2 py-1 bg-primary text-white border-none shadow-none hover:bg-gray-400 rounded font-semibold cursor-pointer"
           >
             Edit Profile
           </button>
@@ -183,9 +183,9 @@ const GuideProfile = () => {
       </div>
 
       {/* guide stats */}
-      <div className="grid md:grid-cols-3 gap-10 text-white md:w-11/12 mx-auto md:px-10 px-3">
+      <div className="grid md:grid-cols-3 gap-10 md:w-11/12 mx-auto md:px-10 px-3">
         {/* Assigned Tours */}
-        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+        <div className="dark:bg-white/10 bg-zinc-200 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
           <h3 className="text-lg font-semibold">Assigned Tours</h3>
           <p className="text-3xl font-bold mt-2 text-blue-500">
             <CountUp end={stats.assigned || 0} duration={1.5} separator="," />
@@ -193,7 +193,7 @@ const GuideProfile = () => {
         </div>
 
         {/* Accepted Requests */}
-        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+        <div className="dark:bg-white/10 bg-zinc-200 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
           <h3 className="text-lg font-semibold">Accepted Requests</h3>
           <p className="text-3xl font-bold mt-2 text-green-400">
             <CountUp end={stats.accepted || 0} duration={1.5} separator="," />
@@ -201,7 +201,7 @@ const GuideProfile = () => {
         </div>
 
         {/* Rejected Requests */}
-        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+        <div className="dark:bg-white/10 bg-zinc-200 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
           <h3 className="text-lg font-semibold">Rejected Requests</h3>
           <p className="text-3xl font-bold mt-2 text-red-500">
             <CountUp end={stats.rejected || 0} duration={1.5} separator="," />
@@ -209,7 +209,7 @@ const GuideProfile = () => {
         </div>
 
         {/* Total Posts */}
-        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+        <div className="dark:bg-white/10 bg-zinc-200 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
           <h3 className="text-lg font-semibold">Total Posts</h3>
           <p className="text-3xl font-bold mt-2 text-yellow-400">
             <CountUp end={stats.posts || 0} duration={1.5} separator="," />
@@ -217,7 +217,7 @@ const GuideProfile = () => {
         </div>
 
         {/* Total Earnings */}
-        <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
+        <div className="dark:bg-white/10 bg-zinc-200 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
           <h3 className="text-lg font-semibold">Total Earnings</h3>
           <p className="text-3xl font-bold mt-2">
             <CountUp
@@ -236,7 +236,7 @@ const GuideProfile = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-md px-4">
           <form
             onSubmit={handleUpdate}
-            className="bg-white/10 border border-white/20 p-8 rounded-2xl w-full max-w-md shadow-xl space-y-5"
+            className="dark:bg-white/10 bg-zinc-200 border border-white/20 p-8 rounded-2xl w-full max-w-md shadow-xl space-y-5"
           >
             <h3 className="text-2xl font-bold text-center mb-2">
               Edit Your Profile
@@ -308,7 +308,7 @@ const GuideProfile = () => {
                 name="photo"
                 accept="image/*"
                 onChange={handleUpload}
-                className="w-full px-3 py-1 rounded-md  border border-white/30 text-white file:text-white file:bg-primary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
+                className="w-full px-3 py-1 rounded-md  border derk:border-white/30 file:text-white file:bg-primary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
               />
             </div>
 

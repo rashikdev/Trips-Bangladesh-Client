@@ -76,7 +76,7 @@ const CheckoutForm = ({ booking }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
+      className="space-y-4 text-black bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
     >
       <h2 className="text-xl font-bold mb-4">
         Payment for{" "}

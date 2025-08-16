@@ -73,7 +73,7 @@ const AddStory = () => {
   };
 
   return (
-    <section className="min-h-screen py-16 px-6 md:px-12 text-white">
+    <section className="min-h-screen py-16 px-6 md:px-12">
       <div className="max-w-3xl mx-auto bg-white/10 border border-white/20 p-8 rounded-xl shadow-xl backdrop-blur-md">
         <h2 className="text-3xl font-bold mb-8 text-center">Add Your Story</h2>
 
@@ -85,7 +85,7 @@ const AddStory = () => {
               type="text"
               {...register("title", { required: "Title is required" })}
               placeholder="Enter story title"
-              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400"
+              className="w-full px-4 py-2 rounded-md dark:bg-white/20 bg-zinc-300 border border-white/30 dark:placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.title && (
               <p className="text-sm text-red-400">{errors.title.message}</p>
@@ -101,7 +101,7 @@ const AddStory = () => {
               })}
               rows="6"
               placeholder="Share your trip experience..."
-              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none"
+              className="w-full px-4 py-2 rounded-md dark:bg-white/20 bg-zinc-300 border border-white/30 dark:placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
             ></textarea>
             {errors.content && (
               <p className="text-sm text-red-400">{errors.content.message}</p>
@@ -122,7 +122,7 @@ const AddStory = () => {
               onChange={(e) => {
                 handleUploadImage(e);
               }}
-              className="w-full px-3 py-2 rounded-md bg-white/20 border border-white/30 text-white file:text-white file:bg-secondary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
+              className="w-full px-3 py-2 rounded-md dark:bg-white/20 bg-zinc-300 border border-white/30 text-white file:text-white file:bg-secondary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
             />
             {errors.images && (
               <p className="text-sm text-red-400">{errors.images.message}</p>

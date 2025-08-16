@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const GuideCard = ({ guide }) => {
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-md hover:shadow-2xl transition hover:border hover:border-orange-500">
+    <div className="bg-white/10 backdrop-blur-md border dark:border-white/20 border-gray-300 rounded-xl p-6 shadow-md hover:shadow-2xl transition hover:border hover:border-orange-500">
       <img
         src={guide.image}
         alt={guide.name}

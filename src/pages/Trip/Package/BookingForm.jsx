@@ -62,7 +62,7 @@ const BookingForm = ({ singlepackage, guides }) => {
   };
 
   return (
-    <section className=" mx-auto bg-white/10 border border-white/20 p-8 rounded-xl backdrop-blur-md shadow-lg text-white">
+    <section className=" mx-auto bg-white/10 border border-white/20 p-8 rounded-xl backdrop-blur-md shadow-lg border-t-2 border-t-gray-200 dark:border-t-0">
       <h2 className="text-2xl font-bold mb-6 text-primary">Book Your Trip</h2>
       <form
         onSubmit={handleBooking}
@@ -75,7 +75,7 @@ const BookingForm = ({ singlepackage, guides }) => {
             type="text"
             value={title}
             readOnly
-            className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
           />
         </div>
 
@@ -86,7 +86,7 @@ const BookingForm = ({ singlepackage, guides }) => {
             type="text"
             value={user?.displayName || ""}
             readOnly
-            className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
           />
         </div>
 
@@ -97,7 +97,7 @@ const BookingForm = ({ singlepackage, guides }) => {
             type="email"
             value={user?.email || ""}
             readOnly
-            className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
           />
         </div>
 
@@ -108,7 +108,7 @@ const BookingForm = ({ singlepackage, guides }) => {
             type="text"
             value={user?.photoURL || ""}
             readOnly
-            className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
           />
         </div>
 
@@ -119,7 +119,7 @@ const BookingForm = ({ singlepackage, guides }) => {
             type="text"
             value={`${price}`}
             readOnly
-            className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
           />
         </div>
 
@@ -130,7 +130,7 @@ const BookingForm = ({ singlepackage, guides }) => {
             selected={tourDate}
             onChange={(date) => setTourDate(date)}
             dateFormat="dd/MM/yyyy"
-            className="w-full p-2 rounded bg-white/10 border border-white/30 text-white"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
             placeholderText="Select tour date"
             wrapperClassName="w-full"
           />
@@ -142,7 +142,7 @@ const BookingForm = ({ singlepackage, guides }) => {
           <select
             value={selectedGuide}
             onChange={(e) => setSelectedGuide(e.target.value)}
-            className="w-full p-2 rounded bg-white/10 border border-white/30"
+            className="w-full p-2 rounded dark:bg-white/10 bg-gray-300 border border-white/30 dark:text-white text-gray-700 outline-primary"
           >
             <option value="">Select a guide</option>
             {guides.map((guide, i) => (

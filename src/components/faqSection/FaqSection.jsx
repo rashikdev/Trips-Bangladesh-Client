@@ -22,7 +22,7 @@ const FaqSection = () => {
               {/* Q1 */}
               <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
                 <input type="checkbox" />
-                <div className="collapse-title text-lg font-semibold text-white">
+                <div className="collapse-title text-lg font-semibold">
                   What is Trips?
                 </div>
                 <div className="collapse-content text-gray-400">
@@ -37,7 +37,7 @@ const FaqSection = () => {
               {/* Q2 */}
               <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
                 <input type="checkbox" />
-                <div className="collapse-title text-lg font-semibold text-white">
+                <div className="collapse-title text-lg font-semibold">
                   How do I book a tour package?
                 </div>
                 <div className="collapse-content text-gray-400">
@@ -51,7 +51,7 @@ const FaqSection = () => {
               {/* Q3 */}
               <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
                 <input type="checkbox" />
-                <div className="collapse-title text-lg font-semibold text-white">
+                <div className="collapse-title text-lg font-semibold">
                   Can I cancel a booking?
                 </div>
                 <div className="collapse-content text-gray-400">
@@ -65,7 +65,7 @@ const FaqSection = () => {
               {/* Q4 */}
               <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
                 <input type="checkbox" />
-                <div className="collapse-title text-lg font-semibold text-white">
+                <div className="collapse-title text-lg font-semibold">
                   How do I become a tour guide?
                 </div>
                 <div className="collapse-content text-gray-400">

@@ -36,7 +36,7 @@ const projects = [
 ];
 const AboutUs = () => {
   return (
-    <section className="min-h-screen text-white pt-30 px-6 md:px-12">
+    <section className="min-h-screen pt-30 px-6 md:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         <h2 className="md:text-4xl text-2xl text-center font-bold text-primary">
           About the Developer
@@ -48,19 +48,19 @@ const AboutUs = () => {
             <img
               src={developerImg}
               alt="Developer"
-              className="md:w-30 md:h-50 w-60 h-60 rounded-full object-cover border-4 border-white/30 group-hover:border-orange-400"
+              className="md:w-30 md:h-50 w-60 h-60 rounded-full object-cover border-4 dark:border-white/30 border-zinc-400 group-hover:border-orange-400"
             />
           </div>
 
           <div className="text-left space-y-4 flex-3 p-4 md:p-0">
             <h3 className="text-2xl font-semibold">MD. Rashik</h3>
-            <p className="text-white/80">
+            <p className="dark:text-white/80 text-zinc-600">
               I'm a passionate MERN Stack Developer with a love for crafting
               immersive and user-friendly web experiences. Trips is one of
               my full-stack projects that demonstrates authentication, database
               integration, smooth UI/UX, and real-time features.
             </p>
-            <p className="text-white/70 text-sm">
+            <p className="dark:text-white/70 text-zinc-600 text-sm">
               🌐 Location: Rangpur, Dhaka, Bangladesh <br />
               💻 Experience: 10+ projects completed <br />
               🎯 Tech Stack: React, Node.js, MongoDB, Express, Tailwind,
@@ -98,7 +98,7 @@ const AboutUs = () => {
         </div>
 
         {/* Featured Projects */}
-        <div className="py-16 text-white">
+        <div className="py-16">
           <div className="">
             <h3 className="text-3xl font-bold text-center mb-12 text-primary">
               Featured Projects
@@ -113,7 +113,7 @@ const AboutUs = () => {
                   <h4 className="text-xl font-semibold mb-4">{project.name}</h4>
 
                   {/* Image */}
-                  <div className="mb-6 h-60 rounded-lg overflow-hidden border border-white/10">
+                  <div className="mb-6 h-60 rounded-lg overflow-hidden border dark:border-white/10 border-zinc-300">
                     <img
                       src={project.thumbnail}
                       alt={project.name}
@@ -122,7 +122,7 @@ const AboutUs = () => {
                   </div>
 
                   {/* Features */}
-                  <ul className="mb-6 list-disc list-inside text-white/80 space-y-1">
+                  <ul className="mb-6 list-disc list-inside dark:text-white/80 text-zinc-600 space-y-1">
                     {project.features.map((feature, i) => (
                       <li key={i}>{feature}</li>
                     ))}

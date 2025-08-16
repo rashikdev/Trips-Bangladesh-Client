@@ -37,7 +37,7 @@ const PackageDetails = () => {
   }
 
   return (
-    <section className="min-h-screen px-4 md:px-10 text-white pt-30">
+    <section className="min-h-screen px-4 md:px-10 pt-30">
       <div className="flex flex-col md:flex-row gap-4 md:h-[60vh]">
         {/* large thumbnail */}
         <div className="w-full md:w-2/5 h-64 md:h-full">
@@ -53,7 +53,7 @@ const PackageDetails = () => {
           <div className="flex flex-col h-full gap-8 justify-between md:px-10">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-4">{title}</h2>
-              <p className="text-base md:text-lg text-white/80">
+              <p className="text-base md:text-lg dark:text-white/80 text-black/60">
                 {description}
               </p>
             </div>
@@ -62,7 +62,7 @@ const PackageDetails = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Price */}
                 <div className="bg-white/10 backdrop-blur-lg p-4 rounded-xl border border-primary text-center shadow-md">
-                  <h4 className="text-sm md:text-base font-semibold text-white/70 mb-2">
+                  <h4 className="text-sm md:text-base font-semibold dark:text-white/70 mb-2">
                     Price
                   </h4>
                   <p className="text-xl font-bold text-orange-400">${price}</p>
@@ -70,7 +70,7 @@ const PackageDetails = () => {
 
                 {/* Duration */}
                 <div className="bg-white/10 backdrop-blur-lg p-4 rounded-xl border border-primary text-center shadow-md">
-                  <h4 className="text-sm md:text-base font-semibold text-white/70 mb-2">
+                  <h4 className="text-sm md:text-base font-semibold dark:text-white/70 mb-2">
                     Duration
                   </h4>
                   <p className="text-xl font-bold text-orange-400">3 days</p>
@@ -78,7 +78,7 @@ const PackageDetails = () => {
 
                 {/* Tour Type */}
                 <div className="bg-white/10 backdrop-blur-lg p-4 rounded-xl border border-primary text-center shadow-md">
-                  <h4 className="text-sm md:text-base font-semibold text-white/70 mb-2">
+                  <h4 className="text-sm md:text-base font-semibold dark:text-white/70 mb-2">
                     Tour Type
                   </h4>
                   <p className="text-xl font-bold text-orange-400">

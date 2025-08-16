@@ -73,20 +73,20 @@ const MyBooking = () => {
   }
 
   return (
-    <section className="px-4 md:px-12 py-16 min-h-screen text-white">
+    <section className="px-4 md:px-12 py-16 min-h-screen">
       {myBookings.length === 0 ? (
         <div className="bg-white/10 p-8 rounded-xl text-center shadow-xl border border-white/20 max-w-md flex flex-col items-center mx-auto mt-16 backdrop-blur-md">
           <h2 className="text-2xl font-semibold mb-3 text-primary">
             No Bookings Found
           </h2>
-          <p className="text-white/70">
+          <p className="dark:text-white/70">
             You haven&apos;t made any bookings yet.
           </p>
         </div>
       ) : (
         <div className="overflow-x-auto shadow-lg rounded-xl border border-white/20 backdrop-blur-md bg-white/5">
-          <table className="w-full text-sm text-white">
-            <thead className="bg-white/10 uppercase text-xs text-white/80">
+          <table className="w-full text-sm">
+            <thead className="bg-white/10 uppercase text-xs dark:text-white/80">
               <tr>
                 <th className="p-4 text-left">Package</th>
                 <th className="p-4 text-left">Tour Guide</th>
@@ -115,7 +115,7 @@ const MyBooking = () => {
                         booking.status === "rejected"
                           ? "bg-red-400/10 text-red-400"
                           : booking.status === "In Review"
-                          ? "bg-yellow-300/10 text-yellow-200"
+                          ? "dark:bg-yellow-300/10 bg-yellow-400/10 dark:text-yellow-200 text-yellow-400"
                           : "bg-green-400/10 text-green-400"
                       }`}
                     >
@@ -126,13 +126,13 @@ const MyBooking = () => {
                     {booking?.status === "pending" ? (
                       <div className="flex justify-center gap-3">
                         <Link to={`/dashboard/payment/${booking?._id}`}>
-                          <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded transition text-sm">
+                          <button className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded transition text-sm">
                             Pay
                           </button>
                         </Link>
                         <button
                           onClick={() => handleCancelConfirmation(booking?._id)}
-                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded transition text-sm"
+                          className="bg-red-500 hover:bg-red-600 px-4 py-1 rounded transition text-sm"
                         >
                           Cancel
                         </button>

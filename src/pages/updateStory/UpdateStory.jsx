@@ -84,7 +84,7 @@ const UpdateStory = () => {
   };
 
   return (
-    <section className="min-h-screen py-16 px-6 md:px-12 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
+    <section className="min-h-screen py-16 px-6 md:px-12">
       <div className="max-w-3xl mx-auto bg-white/10 border border-white/20 p-8 rounded-xl shadow-xl backdrop-blur-md">
         <h2 className="text-3xl font-bold mb-8 text-center">
           Update Your Story

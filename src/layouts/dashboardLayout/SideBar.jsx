@@ -38,7 +38,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="lg:border-r-2 border-primary text-white h-full">
+    <div className="lg:border-r-2 border-primary h-full">
       <div className="drawer z-50 sticky top-0 lg:drawer-open w-fit pr-4">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="flex justify-center items-center mt-5 ml-5">
@@ -70,7 +70,7 @@ const SideBar = () => {
         </div>
         <div className="drawer-side backdrop-blur-sm">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu text-white min-h-full w-64 text-base px-4 pt-8 space-y-2">
+          <ul className="menu min-h-full w-64 text-base px-4 pt-8 space-y-2">
             <li className="mb-6 text-center">
               <NavLink
                 to="/"
@@ -85,7 +85,7 @@ const SideBar = () => {
               to="/dashboard"
               end
               className={({ isActive }) =>
-                `${navLinkClass} ${isActive ? "text-primary" : "text-white"}`
+                `${navLinkClass} ${isActive ? "text-primary" : ""}`
               }
             >
               <FaUser /> Manage Profile
@@ -97,7 +97,7 @@ const SideBar = () => {
                   to="/dashboard/myBookings"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -107,7 +107,7 @@ const SideBar = () => {
                   to="/dashboard/manageStories"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -117,7 +117,7 @@ const SideBar = () => {
                   to="/dashboard/addStory"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -127,7 +127,7 @@ const SideBar = () => {
                   to="/dashboard/guideApplication"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -142,7 +142,7 @@ const SideBar = () => {
                   to="/dashboard/myAssignedTours"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -152,7 +152,7 @@ const SideBar = () => {
                   to="/dashboard/manageStories"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -162,7 +162,7 @@ const SideBar = () => {
                   to="/dashboard/addStory"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -177,7 +177,7 @@ const SideBar = () => {
                   to="/dashboard/addPackage"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -187,7 +187,7 @@ const SideBar = () => {
                   to="/dashboard/manageUsers"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -197,7 +197,7 @@ const SideBar = () => {
                   to="/dashboard/manageCandidates"
                   className={({ isActive }) =>
                     `${navLinkClass} ${
-                      isActive ? "text-primary" : "text-white"
+                      isActive ? "text-primary" : ""
                     }`
                   }
                 >
@@ -207,7 +207,7 @@ const SideBar = () => {
             )}
             <button
               onClick={handleLogout}
-              className="absolute bottom-4 left-8 py-1 bg-red-700 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
+              className="absolute text-white bottom-4 left-8 py-1 bg-red-700 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
             >
               Logout
             </button>

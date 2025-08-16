@@ -110,21 +110,21 @@ const Navbar = () => {
     >
       <div className="bg-white/10 backdrop-blur-lg rounded-xl px-4 py-3 flex items-center justify-between shadow-lg border border-white/20 min-h-[65px]">
         {/* Logo */}
-        <Link
-          to="/"
-          className="font-bold text-xl text-white hover:text-primary logo"
+        <div
+          className=" 
+          logo"
         >
           <Logo />
-        </Link>
+        </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 items-center font-medium text-white">
+        <div className="hidden md:flex gap-6 items-center font-medium">
           {menuItems}
         </div>
 
         {/* Right Side - Auth & Dropdown */}
         <div className="hidden md:flex items-center gap-4">
-          <div className="absolute top-[18px] right-20">
+          <div className="absolute top-[18px] right-30">
             <ThemeToggleBtn></ThemeToggleBtn>
           </div>
           {!user ? (

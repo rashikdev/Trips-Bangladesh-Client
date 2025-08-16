@@ -82,7 +82,7 @@ const JoinAsTourGuide = () => {
   return (
     <div>
       {application?.status !== "pending" ? (
-        <div className="min-h-screen py-16 px-6 md:px-12 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
+        <div className="min-h-screen py-16 px-6 md:px-12">
           <div className="max-w-3xl mx-auto bg-white/10 border border-white/20 p-8 rounded-xl shadow-xl backdrop-blur-md">
             <h2 className="text-3xl font-bold mb-8 text-center">
               Join as Tour Guide
@@ -96,7 +96,7 @@ const JoinAsTourGuide = () => {
                   type="text"
                   {...register("title", { required: "Title is required" })}
                   placeholder="Enter a title for your application"
-                  className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                  className="w-full px-4 py-2 rounded-md dark:bg-white/20 bg-zinc-200 border border-white/30 dark:placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 {errors.title && (
                   <p className="text-sm text-red-400">{errors.title.message}</p>
@@ -114,7 +114,7 @@ const JoinAsTourGuide = () => {
                   })}
                   rows="4"
                   placeholder="Share your reason..."
-                  className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none"
+                  className="w-full px-4 py-2 rounded-md dark:bg-white/20 bg-zinc-200 border border-white/30 dark:placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
                 ></textarea>
                 {errors.reason && (
                   <p className="text-sm text-red-400">
@@ -136,7 +136,7 @@ const JoinAsTourGuide = () => {
                     },
                   })}
                   placeholder="Paste your CV drive or web link"
-                  className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                  className="w-full px-4 py-2 rounded-md dark:bg-white/20 bg-zinc-200 border border-white/30 dark:placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 {errors.cvLink && (
                   <p className="text-sm text-red-400">

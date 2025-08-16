@@ -27,14 +27,14 @@ const PaymentHistory = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
-    <section className="md:px-10 text-white px-3">
+    <section className="md:px-10 px-3">
       <h2 className="text-3xl font-bold mb-8 text-orange-400">
         Payment History
       </h2>
 
       <div className="overflow-x-auto shadow-md rounded-xl border border-white/20 bg-white/5 backdrop-blur">
         <table className="w-full text-sm text-left">
-          <thead className="bg-white/10 text-white uppercase text-xs">
+          <thead className="bg-white/10 uppercase text-xs">
             <tr>
               <th className="p-4">#</th>
               <th className="p-4">Transaction ID</th>
@@ -48,7 +48,7 @@ const PaymentHistory = () => {
             {payments.map((payment, idx) => (
               <tr
                 key={payment._id}
-                className="border-t border-white/10 hover:bg-white/5 transition"
+                className="border-t dark:border-white/10 border-gray-300 hover:bg-white/5 transition"
               >
                 <td className="p-4">{idx + 1}</td>
                 <td className="p-4">{payment.transactionId}</td>

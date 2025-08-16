@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Logo = () => {
   return (
-    <div>
-      <h2>
-        Trips<span className="text-primary text-2xl leading-0">.</span>
+    <Link to="/">
+      <h2 className="font-bold text-xl text-primary">
+        Trips<span className="text-2xl leading-0">.</span>
       </h2>
-    </div>
+    </Link>
   );
 };
 

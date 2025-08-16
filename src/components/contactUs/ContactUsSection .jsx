@@ -3,6 +3,16 @@ import toast from "react-hot-toast";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUsSection = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.loading("Sending...");
+    setTimeout(() => {
+      e.target.reset();
+      toast.dismiss();
+      toast.success("Message sent successfully!");
+    }, 1000);
+  };
+
   return (
     <section className="px-4 mt-8 md:mt-16 md:px-10 dark:text-white/80 text-black/70">
       <div className="max-w-7xl mx-auto">
@@ -53,11 +63,7 @@ const ContactUsSection = () => {
           {/* Contact Form */}
           <form
             className="bg-white/10 p-6 rounded-xl backdrop-blur-md border border-gray-300 dark:border-white/20 shadow-lg space-y-5"
-            onSubmit={(e) => {
-              e.preventDefault();
-              toast.success("Message sent successfully!");
-              e.target.reset();
-            }}
+            onSubmit={handleSubmit}
           >
             <div>
               <label className="block text-sm mb-1 font-medium">Name</label>
@@ -91,7 +97,7 @@ const ContactUsSection = () => {
 
             <button
               type="submit"
-              className="w-full bg-primary hover:bg-orange-500 text-white font-semibold py-2 rounded-md transition duration-200"
+              className="w-full bg-primary hover:bg-orange-500 text-white font-semibold py-2 rounded-md transition duration-200 cursor-pointer"
             >
               Send Message
             </button>

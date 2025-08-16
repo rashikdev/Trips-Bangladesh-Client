@@ -132,7 +132,7 @@ const ManageCandidates = () => {
                   <td className="px-4 py-3">{app?.name}</td>
                   <td className="px-4 py-3">{app.email}</td>
                   <td className="px-4 py-3 capitalize">tourist</td>
-                  <td className="px-4 py-3 text-center space-x-3 font-semibold">
+                  <td className="px-4 md:py-3 pt-5 text-center flex items-center justify-center space-x-3 font-semibold text-white">
                     <button
                       onClick={() => handleAccept(app)}
                       className="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-sm cursor-pointer"

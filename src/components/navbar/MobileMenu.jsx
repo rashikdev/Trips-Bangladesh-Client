@@ -70,7 +70,7 @@ const MobileMenu = () => {
   );
 
   return (
-    <div className="md:hidden relative">
+    <div className="md:hidden flex items-center">
       {/* Toggle Button */}
       <button
         onClick={() => setOpen(true)}
@@ -85,7 +85,7 @@ const MobileMenu = () => {
           initial={{ x: "100%" }}
           animate={{ x: "-0%" }}
           transition={{ duration: 0.5 }}
-          className="absolute -right-12 -top-10 w-[105vw] h-[105vh] bg-black/90 text-white shadow-lg p-6 space-y-4 z-50 menu text-center pt-16"
+          className="fixed -right-12 -top-10 w-[105vw] h-[105vh] bg-black/90 text-white shadow-lg p-6 space-y-4 z-50 menu text-center pt-16"
         >
           {!user && (
             <button

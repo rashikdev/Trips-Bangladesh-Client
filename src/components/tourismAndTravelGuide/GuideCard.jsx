@@ -10,10 +10,10 @@ const GuideCard = ({ guide }) => {
         className="w-24 h-24 mx-auto rounded-full object-cover border-4 border-white mb-4"
       />
       <h3 className="text-xl font-semibold text-center">{guide.name}</h3>
-      <p className="text-center text-sm text-white/70">
+      <p className="text-center text-sm dark:text-white/70">
         Experience: {guide.experience} years
       </p>
-      <p className="text-center text-sm text-white/70">
+      <p className="text-center text-sm dark:text-white/70">
         Languages: {guide.languages.join(", ")}
       </p>
       <div className="mt-4 text-center">

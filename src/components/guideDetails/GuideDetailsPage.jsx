@@ -39,7 +39,7 @@ const GuideDetailsPage = () => {
   }
 
   return (
-    <div className="min-h-screen pt-30 text-white md:w-11/12 mx-auto md:px-10 px-3">
+    <div className="min-h-screen pt-30  md:w-11/12 mx-auto md:px-10 px-3">
       <div className="flex flex-col md:flex-row gap-10 items-center bg-white/5 border border-white/10 py-12 rounded-xl shadow-md backdrop-blur">
         {/* Guide Image */}
         <div className="flex-1">
@@ -55,34 +55,34 @@ const GuideDetailsPage = () => {
           <h2 className="text-3xl font-bold text-primary">{name}</h2>
 
           <p>
-            <span className="font-semibold text-gray-300">Email:</span>{" "}
-            <span className="text-white">{email}</span>
+            <span className="font-semibold dark:text-gray-300">Email:</span>{" "}
+            <span>{email}</span>
           </p>
 
           <p>
-            <span className="font-semibold text-gray-300">Phone:</span>{" "}
-            <span className="text-white">{phone}</span>
+            <span className="font-semibold dark:text-gray-300">Phone:</span>{" "}
+            <span>{phone}</span>
           </p>
 
           <p>
-            <span className="font-semibold text-gray-300">Experience:</span>{" "}
+            <span className="font-semibold dark:text-gray-300">Experience:</span>{" "}
             {experience}+ years
           </p>
 
           <p>
-            <span className="font-semibold text-gray-300">Languages:</span>{" "}
+            <span className="font-semibold dark:text-gray-300">Languages:</span>{" "}
             {Array.isArray(languages) ? languages.join(", ") : languages}
           </p>
 
           <p>
-            <span className="font-semibold text-gray-300">Rating:</span>{" "}
+            <span className="font-semibold dark:text-gray-300">Rating:</span>{" "}
             {rating} ⭐
           </p>
         </div>
       </div>
 
       {/* Stories Section Placeholder */}
-      <div className="mt-12 border border-white/10 rounded-xl bg-white/5 p-6 backdrop-blur">
+      <div className="mt-12 border border-white/10 rounded-xl bg-white/5 p-6 backdrop-blur shadow-md">
         <h2 className="text-2xl font-bold text-primary mb-4">Stories</h2>
         {storyLoading ? (
           <div>
@@ -94,7 +94,7 @@ const GuideDetailsPage = () => {
               <StoryCard key={story._id} story={story} />
             ))}
             {stories.length === 0 && (
-              <p className="text-white/80 italic">No stories shared yet.</p>
+              <p className="dark:text-white/80 italic">No stories shared yet.</p>
             )}
           </div>
         )}

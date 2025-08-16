@@ -137,7 +137,7 @@ const Banner = () => {
               local life.
             </p>
             <Link to="/trips">
-              <button className="bg-white text-black font-semibold px-6 py-2 rounded shadow hover:bg-gray-200 banner-item cursor-pointer">
+              <button className="bg-white text-black font-semibold px-6 py-2 rounded shadow hover:bg-primary hover:text-white banner-item cursor-pointer">
                 Start Your Journey
               </button>
             </Link>

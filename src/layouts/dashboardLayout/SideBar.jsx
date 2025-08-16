@@ -17,6 +17,7 @@ import {
   FaHome,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
+import ThemeToggleBtn from "../../components/ThemeToggle/ThemeToggleBtn";
 const SideBar = () => {
   const { user, logoutUser } = useAuth();
   const { role, loading } = useRole(user?.email);
@@ -96,9 +97,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/myBookings"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaBook /> My Bookings
@@ -106,9 +105,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/manageStories"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaEdit /> Manage Stories
@@ -116,9 +113,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/addStory"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaRegImages /> Add Stories
@@ -126,9 +121,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/guideApplication"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaUserTie /> Join as Tour Guide
@@ -141,9 +134,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/myAssignedTours"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaTasks /> My Assigned Tours
@@ -151,9 +142,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/manageStories"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaEdit /> Manage Stories
@@ -161,9 +150,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/addStory"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaRegImages /> Add Stories
@@ -176,9 +163,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/addPackage"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaPlus /> Add Package
@@ -186,9 +171,7 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/manageUsers"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaUsers /> Manage Users
@@ -196,21 +179,24 @@ const SideBar = () => {
                 <NavLink
                   to="/dashboard/manageCandidates"
                   className={({ isActive }) =>
-                    `${navLinkClass} ${
-                      isActive ? "text-primary" : ""
-                    }`
+                    `${navLinkClass} ${isActive ? "text-primary" : ""}`
                   }
                 >
                   <FaClipboardList /> Manage Candidates
                 </NavLink>
               </>
             )}
-            <button
-              onClick={handleLogout}
-              className="absolute text-white bottom-4 left-8 py-1 bg-red-700 border-2 border-transparent w-[80%] mx-auto text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
-            >
-              Logout
-            </button>
+            <div className="absolute bottom-4 flex w-full justify-center gap-5">
+              <button
+                onClick={handleLogout}
+                className="text-white bg-red-600 border-2 border-transparent w-[60%] text-center hover:bg-transparent/40 hover:text-red-500 hover:border-red-500 cursor-pointer transition duration-300"
+              >
+                Logout
+              </button>
+              <div className="bg-zinc-300 dark:bg-white/30 backdrop-blur-md p-2 rounded-full">
+                <ThemeToggleBtn></ThemeToggleBtn>
+              </div>
+            </div>
           </ul>
         </div>
       </div>

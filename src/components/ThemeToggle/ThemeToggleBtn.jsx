@@ -4,13 +4,14 @@ const ThemeToggleBtn = () => {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "black"
   );
+  const [animate, setAnimate] = useState(false);
 
   const handleToggle = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
-    
+
     if (theme === "dark") {
       root.classList.add("dark");
     } else {

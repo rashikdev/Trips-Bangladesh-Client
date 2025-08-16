@@ -177,7 +177,8 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className="flex md:hidden items-center gap-3">
+        <div className="flex md:hidden items-center gap-5">
+          <ThemeToggleBtn />
           {user?.photoURL && (
             <img
               src={user.photoURL}

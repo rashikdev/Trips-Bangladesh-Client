@@ -54,7 +54,7 @@ const ManageUsers = () => {
   const totalPages = Math.ceil(totalUsers / limit);
 
   return (
-    <div className="h-full p-10 text-white">
+    <div className="h-full p-10">
       <h2 className="text-2xl font-semibold mb-5 text-primary">Manage Users</h2>
 
       <form
@@ -66,10 +66,10 @@ const ManageUsers = () => {
           value={search}
           onChange={handleSearch}
           placeholder="Search by name or email..."
-          className="flex-1 p-3 rounded bg-white/20 text-white border border-white/30"
+          className="flex-1 p-3 rounded dark:bg-white/20 outline-none border dark:border-white/30 border-zinc-400"
         />
         <Select
-          className="text-black w-full md:w-64 p-1 rounded bg-white/20 border border-white/30"
+          className="text-black w-full md:w-64 p-1 rounded dark:bg-white/20 border dark:border-white/30 border-none"
           options={roleOptions}
           value={selectedRole}
           onChange={setSelectedRole}
@@ -82,9 +82,9 @@ const ManageUsers = () => {
         </button>
       </form>
 
-      <div className="overflow-x-auto bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
+      <div className="overflow-x-auto dark:bg-white/10 border-gray-500 bg-zinc-200 backdrop-blur-md rounded-lg">
         <table className="min-w-full text-left">
-          <thead className="bg-white/20 text-white uppercase text-sm">
+          <thead className="dark:bg-white/20 uppercase text-sm">
             <tr>
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Name</th>
@@ -97,7 +97,7 @@ const ManageUsers = () => {
               users.map((user, index) => (
                 <tr
                   key={user._id}
-                  className="border-t border-white/20 hover:bg-white/5 transition"
+                  className="border-t dark:border-white/20 border-gray-400 hover:bg-white/5 transition"
                 >
                   <td className="px-4 py-3">
                     {(currentPage - 1) * limit + index + 1}
@@ -109,7 +109,7 @@ const ManageUsers = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center py-6 text-white/70">
+                <td colSpan="4" className="text-center py-6">
                   No users found.
                 </td>
               </tr>

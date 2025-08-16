@@ -105,14 +105,14 @@ const ManageCandidates = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
-    <section className="p-10 min-h-screen text-white">
+    <section className="p-10 min-h-screen">
       <h2 className="text-2xl font-semibold mb-5 text-primary">
         Manage Candidates
       </h2>
 
-      <div className="overflow-x-auto bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
+      <div className="overflow-x-auto dark:bg-white/10 bg-zinc-300 backdrop-blur-md rounded-lg border border-white/20">
         <table className="min-w-full text-left">
-          <thead className="bg-white/20 text-white uppercase text-sm">
+          <thead className="dark:bg-white/10 bg-white/60 uppercase text-sm">
             <tr>
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Name</th>
@@ -158,7 +158,7 @@ const ManageCandidates = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="text-center py-6 text-white/70">
+                <td colSpan="5" className="text-center py-6">
                   No pending applications.
                 </td>
               </tr>

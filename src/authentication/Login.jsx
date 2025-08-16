@@ -59,7 +59,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400 transition"
+              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary transition"
               placeholder="you@example.com"
               required
             />
@@ -75,7 +75,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400 transition"
+                className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary transition"
                 placeholder="••••••••"
                 required
               />

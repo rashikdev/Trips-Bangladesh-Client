@@ -74,7 +74,7 @@ const MobileMenu = () => {
       {/* Toggle Button */}
       <button
         onClick={() => setOpen(true)}
-        className="text-white text-2xl z-50"
+        className="dark:text-white text-2xl z-50"
       >
         <FiMenu />
       </button>

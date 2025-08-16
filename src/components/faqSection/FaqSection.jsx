@@ -20,7 +20,7 @@ const FaqSection = () => {
           <div className="">
             <div className="space-y-4">
               {/* Q1 */}
-              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 dark:border-gray-700 border-gray-400 rounded-xl">
                 <input type="checkbox" />
                 <div className="collapse-title text-lg font-semibold">
                   What is Trips?
@@ -35,7 +35,7 @@ const FaqSection = () => {
               </div>
 
               {/* Q2 */}
-              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 dark:border-gray-700 border-gray-400 rounded-xl">
                 <input type="checkbox" />
                 <div className="collapse-title text-lg font-semibold">
                   How do I book a tour package?
@@ -49,7 +49,7 @@ const FaqSection = () => {
               </div>
 
               {/* Q3 */}
-              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 dark:border-gray-700 border-gray-400 rounded-xl">
                 <input type="checkbox" />
                 <div className="collapse-title text-lg font-semibold">
                   Can I cancel a booking?
@@ -63,7 +63,7 @@ const FaqSection = () => {
               </div>
 
               {/* Q4 */}
-              <div className="collapse collapse-arrow  backdrop-blur border-b-2 border-gray-700 rounded-xl">
+              <div className="collapse collapse-arrow  backdrop-blur border-b-2 dark:border-gray-700 border-gray-400 rounded-xl">
                 <input type="checkbox" />
                 <div className="collapse-title text-lg font-semibold">
                   How do I become a tour guide?

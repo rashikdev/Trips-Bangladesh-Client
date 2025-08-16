@@ -102,7 +102,7 @@ const Register = () => {
               id="name"
               placeholder="Your Name"
               {...register("name", { required: "Name is required" })}
-              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400"
+              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.name && (
               <p className="text-sm text-red-400 mt-1">{errors.name.message}</p>
@@ -125,7 +125,7 @@ const Register = () => {
                   message: "Invalid email format",
                 },
               })}
-              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400"
+              className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {errors.email && (
               <p className="text-sm text-red-400 mt-1">
@@ -171,7 +171,7 @@ const Register = () => {
                       "Min 8 characters with uppercase, lowercase, number, and special character",
                   },
                 })}
-                className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                className="w-full px-4 py-2 rounded-md bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button
                 type="button"

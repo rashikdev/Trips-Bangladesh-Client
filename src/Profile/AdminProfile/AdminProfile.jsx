@@ -127,15 +127,15 @@ const TouristProfile = () => {
   }
 
   return (
-    <section className="py-10 px-4 min-h-screen text-white space-y-10">
+    <section className="py-10 px-4 min-h-screen space-y-10">
       {/* User Profile info */}
-      <div className="text-white md:px-10 px-3 relative">
+      <div className="md:px-10 px-3 relative">
         {/* Welcome Message */}
         <div className="text-center md:px-10 px-4 mb-6">
           <h1 className="text-4xl font-bold text-orange-400 mb-2">
             Welcome Back, Admin!
           </h1>
-          <p className="text-white/80 text-lg">
+          <p className="dark:text-white/80 text-gray-600 text-lg">
             Here’s an overview of your dashboard activities and profile
             information.
           </p>
@@ -158,13 +158,13 @@ const TouristProfile = () => {
             </h2>
 
             <p>
-              <span className="font-semibold text-gray-300">Email:</span>{" "}
-              <span className="text-white">{userProfile?.email}</span>
+              <span className="font-semibold dark:text-white/80">Email:</span>{" "}
+              <span>{userProfile?.email}</span>
             </p>
 
             <p>
-              <span className="font-semibold text-gray-300">Phone:</span>{" "}
-              <span className="text-white">
+              <span className="font-semibold dark:text-gray-300">Phone:</span>{" "}
+              <span>
                 {userProfile?.number ? (
                   userProfile?.number
                 ) : (
@@ -174,12 +174,12 @@ const TouristProfile = () => {
             </p>
 
             <p>
-              <span className="font-semibold text-gray-300">Languages:</span>{" "}
+              <span className="font-semibold dark:text-gray-300">Languages:</span>{" "}
               {userProfile?.languages ? (
                 userProfile?.languages.map((lang, index) => (
                   <span
                     key={index}
-                    className="text-white text-sm font-semibold mr-2"
+                    className="text-sm font-semibold mr-2"
                   >
                     {lang},
                   </span>
@@ -189,7 +189,7 @@ const TouristProfile = () => {
               )}
             </p>
             <p>
-              <span className="font-semibold text-gray-300">Role:</span>{" "}
+              <span className="font-semibold dark:text-gray-300">Role:</span>{" "}
               <span className="text-white bg-green-600 px-2 py-[2px] text-sm rounded-md font-semibold">
                 {userProfile?.role}
               </span>
@@ -214,7 +214,7 @@ const TouristProfile = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-md px-4">
           <form
             onSubmit={handleUpdate}
-            className="bg-white/10 border border-white/20 p-8 rounded-2xl w-full max-w-md shadow-xl space-y-5"
+            className="dark:bg-white/10 bg-zinc-300 border border-white/20 p-8 rounded-2xl w-full max-w-md shadow-xl space-y-5"
           >
             <h3 className="text-2xl font-bold text-center mb-2">
               Edit Your Profile
@@ -286,7 +286,7 @@ const TouristProfile = () => {
                 name="photo"
                 accept="image/*"
                 onChange={handleUpload}
-                className="w-full px-3 py-1 rounded-md  border border-white/30 text-white file:text-white file:bg-primary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
+                className="w-full px-3 py-1 rounded-md  border bdark:border-white/30 file:text-white file:bg-primary file:border-none file:px-4 file:py-1 file:rounded file:cursor-pointer focus:outline-none"
               />
             </div>
 

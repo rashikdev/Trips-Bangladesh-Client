@@ -20,12 +20,12 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
           <ul className="space-y-2 text-sm text-white/70">
             <li>
-              <Link to="/" className="hover:text-teal-300 transition">
+              <Link to="/" className="hover:text-primary transition">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/trips" className="hover:text-teal-300 transition">
+              <Link to="/trips" className="hover:text-primary transition">
                 Packages
               </Link>
             </li>

@@ -37,7 +37,7 @@ const TourismGuide = () => {
   });
 
   return (
-    <section className="max-w-7xl mx-auto text-white min-h-[64vh]">
+    <section className="max-w-7xl mx-auto text-white mb-20">
       <Tabs className="p-5 md:p-0">
         <TabList className="flex border-b border-orange-600 mb-10">
           <Tab

@@ -32,6 +32,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", controlNavbar);
     };
   }, [lastScrollY]);
+  
   const handleLogout = async () => {
     try {
       await logoutUser();

@@ -38,6 +38,7 @@ const GuideProfile = () => {
     data: userProfile = [],
     refetch,
     isLoading,
+    onSuccess,
   } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
@@ -114,7 +115,7 @@ const GuideProfile = () => {
       });
   };
 
-  if (isLoading) {
+  if (isLoading || !userProfile?.email) {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
@@ -154,7 +155,7 @@ const GuideProfile = () => {
 
             <p>
               <span className="font-semibold text-gray-300">Languages:</span>{" "}
-              {userProfile?.languages.map((lang, index) => (
+              {(userProfile?.languages || []).map((lang, index) => (
                 <span
                   key={index}
                   className="text-white text-sm font-semibold mr-2"
@@ -193,9 +194,7 @@ const GuideProfile = () => {
 
         {/* Accepted Requests */}
         <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
-          <h3 className="text-lg font-semibold">
-            Accepted Requests
-          </h3>
+          <h3 className="text-lg font-semibold">Accepted Requests</h3>
           <p className="text-3xl font-bold mt-2 text-green-400">
             <CountUp end={stats.accepted || 0} duration={1.5} separator="," />
           </p>
@@ -203,9 +202,7 @@ const GuideProfile = () => {
 
         {/* Rejected Requests */}
         <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
-          <h3 className="text-lg font-semibold">
-            Rejected Requests
-          </h3>
+          <h3 className="text-lg font-semibold">Rejected Requests</h3>
           <p className="text-3xl font-bold mt-2 text-red-500">
             <CountUp end={stats.rejected || 0} duration={1.5} separator="," />
           </p>
@@ -221,11 +218,15 @@ const GuideProfile = () => {
 
         {/* Total Earnings */}
         <div className="bg-white/10 border border-white/20 rounded-xl p-6 backdrop-blur-md text-center shadow">
-          <h3 className="text-lg font-semibold">
-            Total Earnings
-          </h3>
+          <h3 className="text-lg font-semibold">Total Earnings</h3>
           <p className="text-3xl font-bold mt-2">
-            <CountUp end={stats.earnings || 0} duration={1.5} separator="," className="text-green-500"/> BDT
+            <CountUp
+              end={stats.earnings || 0}
+              duration={1.5}
+              separator=","
+              className="text-green-500"
+            />{" "}
+            BDT
           </p>
         </div>
       </div>

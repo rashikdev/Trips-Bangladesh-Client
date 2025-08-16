@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../loadingPage/LoadingSpinner";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa"; // react-icons
 
 const AllTrips = () => {
   const axiosSecure = useAxiosSecure();
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const {
     data: packages = [],
@@ -19,7 +21,14 @@ const AllTrips = () => {
     },
   });
 
-  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+  // Sorting logic
+  const sortedPackages = [...packages].sort((a, b) => {
+    if (sortOrder === "asc") return a.price - b.price;
+    if (sortOrder === "desc") return b.price - a.price;
+    return 0;
+  });
+
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>Something went wrong</div>;
 
   return (
@@ -29,9 +38,40 @@ const AllTrips = () => {
           Explore All Trips
         </h2>
 
+        {/* Sorting Controls */}
+        <div className="flex justify-end mb-10">
+          <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md p-2 rounded-full shadow-lg border border-white/20">
+            {/* Ascending */}
+            <button
+              onClick={() => setSortOrder("asc")}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full font-medium transition-all duration-300 cursor-pointer ${
+                sortOrder === "asc"
+                  ? "bg-gradient-to-r from-primary to-pink-500 text-white shadow-lg scale-105"
+                  : "bg-white text-gray-800 hover:bg-gray-200"
+              }`}
+            >
+              <FaArrowUp />
+              Low → High
+            </button>
+
+            {/* Descending */}
+            <button
+              onClick={() => setSortOrder("desc")}
+              className={`flex items-center gap-2 px-5 py-2 rounded-full font-medium transition-all duration-300 cursor-pointer ${
+                sortOrder === "desc"
+                  ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg scale-105"
+                  : "bg-white text-gray-800 hover:bg-gray-200"
+              }`}
+            >
+              <FaArrowDown />
+              High → Low
+            </button>
+          </div>
+        </div>
+
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {packages.map((pkg) => (
+          {sortedPackages.map((pkg) => (
             <Link key={pkg._id} to={`/package/${pkg._id}`}>
               <div
                 className="rounded-xl overflow-hidden shadow-md group bg-white text-gray-800 w-full mx-auto h-[300px] md:h-[500px] hover:scale-105 transition-transform duration-300 relative"

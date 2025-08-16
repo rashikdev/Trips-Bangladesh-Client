@@ -69,9 +69,16 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const updateUser = (updateData) => {
+  const updateUser = async (updateData) => {
     setLoading(true);
-    return updateProfile(auth.currentUser, updateData);
+    try {
+      await updateProfile(auth.currentUser, updateData);
+    } catch (err) {
+      console.error("Failed to update profile:", err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {

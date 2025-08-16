@@ -59,13 +59,6 @@
 
 ---
 
-## 📸 Preview Image
-
-> Save your screenshot as:  
-> `/public/travelbd-preview.jpg`  
-> and it will appear above.
-
----
 
 ## 🚀 How to Run Locally
 

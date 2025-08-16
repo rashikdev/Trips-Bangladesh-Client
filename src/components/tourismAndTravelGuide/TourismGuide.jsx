@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import GuideCard from "./GuideCard";
+import PackageCard from "../Shared/PackageCard";
 
 const TourismGuide = () => {
   // your data fetching here...
@@ -59,40 +60,7 @@ const TourismGuide = () => {
           {/* Content for Level 1 Course */}
           <div className="grid md:grid-cols-3 gap-6">
             {randomPackages.map((pkg) => (
-              <div
-                key={pkg._id}
-                className="rounded-xl shadow-lg overflow-hidden border-gray-600 h-[400px] hover:scale-105 transition duration-300 ease-in-out"
-                style={{
-                  backgroundImage: `url(${pkg.thumbnail})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="p-5 flex flex-col justify-between h-full">
-                  <div className="space-y-4 text-white">
-                    <h3 className="w-fit px-2 font-semibold text-xl bg-primary">
-                      {pkg.title}
-                    </h3>
-                    <p className="text-2xl bg-primary/20 px-3 font-bold w-fit">
-                      {pkg.price} BDT
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-5xl text-center text-orange-500/60">
-                      {pkg.tourType}
-                    </h3>
-                  </div>
-                  <Link
-                    to={`/package/${pkg._id}`}
-                    className="inline-block bg-primary hover:bg-orange-600 text-white font-medium px-5 py-2 rounded-full text-sm transition text-center group"
-                  >
-                    View Package{" "}
-                    <span className="inline-block transform transition-transform duration-300 group-hover:translate-x-2">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </div>
+              <PackageCard key={pkg._id} pkg={pkg}></PackageCard>
             ))}
           </div>
         </TabPanel>

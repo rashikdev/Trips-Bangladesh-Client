@@ -6,6 +6,7 @@ import TouristStorySection from "../components/touristStory/TouristStorySection"
 import FaqSection from "../components/faqSection/FaqSection";
 import ContactUsSection from "../components/contactUs/ContactUsSection ";
 import PopularDestinations from "../components/popularDestination/PopularDestinations";
+import ReviewSection from "../components/ReviewSection/ReviewSection";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <OverviewSection />
       <TourismGuide />
       <PopularDestinations />
+      <ReviewSection />
       <TouristStorySection />
       <FaqSection />
       <ContactUsSection />

@@ -20,14 +20,20 @@ const PopularDestinations = () => {
   });
 
   if (isLoading) {
-    return <p className="text-center text-gray-500">Loading destinations...</p>;
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-b-4 border-primary"></div>
+      </div>
+    );
   }
 
   if (isError) {
     return (
-      <p className="text-center text-red-500">
-        Failed to load destinations. Try again.
-      </p>
+      <div className="flex justify-center items-center py-20">
+        <p className="text-red-500 text-lg font-semibold bg-red-100 px-4 py-2 rounded-md shadow-sm">
+          Failed to load destinations. Please try again.
+        </p>
+      </div>
     );
   }
 
@@ -43,7 +49,7 @@ const PopularDestinations = () => {
           Explore the most loved travel spots and make unforgettable memories
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-10 md:px-0">
           {popularDestinations.map((pkg) => (
             <PackageCard key={pkg._id} pkg={pkg}></PackageCard>
           ))}

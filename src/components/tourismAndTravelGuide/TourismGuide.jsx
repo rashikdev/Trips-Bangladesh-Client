@@ -37,7 +37,7 @@ const TourismGuide = () => {
   });
 
   return (
-    <section className="max-w-7xl mx-auto text-white mb-20">
+    <section className="max-w-7xl mx-auto mb-20">
       <Tabs className="p-5 md:p-0">
         <TabList className="flex border-b border-orange-600 mb-10">
           <Tab
@@ -48,7 +48,7 @@ const TourismGuide = () => {
           </Tab>
 
           <Tab
-            className="flex items-center gap-2 px-6 py-3 cursor-pointer "
+            className="flex items-center gap-2 px-6 py-3 cursor-pointer"
             selectedClassName="text-orange-700  font-semibold outline-none"
           >
             Meet Our Tour Guides
@@ -61,7 +61,7 @@ const TourismGuide = () => {
             {randomPackages.map((pkg) => (
               <div
                 key={pkg._id}
-                className="rounded-xl shadow-lg overflow-hidden border border-gray-600 h-[400px] hover:scale-105 transition duration-300 ease-in-out"
+                className="rounded-xl shadow-lg overflow-hidden border-gray-600 h-[400px] hover:scale-105 transition duration-300 ease-in-out"
                 style={{
                   backgroundImage: `url(${pkg.thumbnail})`,
                   backgroundSize: "cover",

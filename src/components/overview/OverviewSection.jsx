@@ -2,7 +2,7 @@ import React from "react";
 
 const OverviewSection = () => {
   return (
-    <section className="relative py-20 text-white overflow-hidden">
+    <section className="relative py-20  overflow-hidden">
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center backdrop-blur-md bg-white/5 md:px-10 px-4 md:py-20 py-10 rounded-xl border border-white/10 shadow-xl">
         {/* Text Content */}
@@ -11,7 +11,7 @@ const OverviewSection = () => {
             Your Guide to Explore Bangladesh
           </h2>
           <div className="h-1 w-24 bg-primary rounded-full mb-6 mx-auto md:mx-0"></div>
-          <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+          <p className="text-lg md:text-xl text-black/80 dark:text-white/80 leading-relaxed">
             <span className="block mb-4">
               <strong className="text-primary">Trips</strong> is your ultimate
               companion for discovering the breathtaking beauty of Bangladesh.

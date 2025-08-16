@@ -7,6 +7,7 @@ import MobileMenu from "./MobileMenu";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { motion } from "motion/react";
+import ThemeToggleBtn from "../ThemeToggle/ThemeToggleBtn";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -32,7 +33,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", controlNavbar);
     };
   }, [lastScrollY]);
-  
+
   const handleLogout = async () => {
     try {
       await logoutUser();
@@ -123,6 +124,9 @@ const Navbar = () => {
 
         {/* Right Side - Auth & Dropdown */}
         <div className="hidden md:flex items-center gap-4">
+          <div className="absolute top-[18px] right-20">
+            <ThemeToggleBtn></ThemeToggleBtn>
+          </div>
           {!user ? (
             <NavLink
               to="/login"

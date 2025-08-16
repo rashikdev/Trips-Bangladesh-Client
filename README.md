@@ -12,7 +12,6 @@
 
 ---
 
-
 ## ✨ Key Features
 
 - 🧳 **Tour Package Booking:** Tourists can browse and book travel packages with guide details and pricing.
@@ -63,9 +62,9 @@
 ## 🚀 How to Run Locally
 
 ```bash
-# Clone frontend
-git clone https://github.com/rashikdev/travelbd-frontend.git
-cd travelbd-frontend
+# Clone trips-Bangladesh-Client
+git clone https://github.com/rashikdev/Trips-Bangladesh-Client.git
+cd trips-Bangladesh-Client
 
 # Install dependencies
 npm install
